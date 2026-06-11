@@ -1,0 +1,466 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>ORBIT — A Spherical Gallery</title>
+<style>
+  :root { color-scheme: dark; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { height: 100%; overflow: hidden; background: #0a0a0c; }
+  body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #f2f2f0;
+    -webkit-font-smoothing: antialiased;
+  }
+  #stage { position: fixed; inset: 0; cursor: grab; }
+  #stage.dragging { cursor: grabbing; }
+  canvas { display: block; }
+
+  /* ---------- HUD ---------- */
+  .hud { position: fixed; z-index: 10; pointer-events: none; user-select: none; }
+  .hud--logo {
+    top: 28px; left: 32px;
+    font-size: 15px; font-weight: 700; letter-spacing: .34em;
+    color: #f2f2f0;
+  }
+  .hud--logo span { color: #8a8a92; font-weight: 400; }
+  .hud--hint {
+    bottom: 28px; left: 50%; transform: translateX(-50%);
+    font-size: 11px; letter-spacing: .28em; text-transform: uppercase;
+    color: #b9b9c0;
+    display: flex; align-items: center; gap: 12px;
+    transition: opacity .6s ease;
+  }
+  .hud--hint.hidden { opacity: 0; }
+  .hud--hint::before, .hud--hint::after {
+    content: ""; width: 36px; height: 1px; background: #4a4a52;
+  }
+  .hud--count {
+    bottom: 28px; right: 32px;
+    font-size: 11px; letter-spacing: .2em; color: #8a8a92;
+    font-variant-numeric: tabular-nums;
+  }
+  .hud--label {
+    top: 28px; right: 32px;
+    font-size: 11px; letter-spacing: .28em; text-transform: uppercase;
+    color: #8a8a92;
+  }
+
+  /* hover title that follows cursor */
+  #hoverTitle {
+    position: fixed; z-index: 9; pointer-events: none;
+    font-size: 13px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
+    color: #f2f2f0; background: rgba(10,10,12,.78);
+    padding: 8px 14px; border: 1px solid rgba(242,242,240,.16);
+    transform: translate(14px, 14px);
+    opacity: 0; transition: opacity .18s ease;
+    white-space: nowrap;
+  }
+
+  /* ---------- Detail page ---------- */
+  #detail {
+    position: fixed; inset: 0; z-index: 20;
+    background: #101014;
+    transform: translateY(100%);
+    visibility: hidden;
+    display: flex; flex-direction: column;
+    overflow: hidden;
+  }
+  .detail-bar {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 24px 32px;
+  }
+  .detail-bar .brand {
+    font-size: 13px; font-weight: 700; letter-spacing: .34em; color: #f2f2f0;
+  }
+  #closeDetail {
+    pointer-events: auto;
+    background: #f2f2f0; color: #101014;
+    border: none; cursor: pointer;
+    font: 600 11px/1 "Helvetica Neue", Helvetica, Arial, sans-serif;
+    letter-spacing: .22em; text-transform: uppercase;
+    padding: 12px 22px; border-radius: 999px;
+  }
+  #closeDetail:hover { background: #ffffff; }
+  .detail-body {
+    flex: 1; display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+    gap: 48px; padding: 0 32px 40px; align-items: center;
+    max-width: 1280px; width: 100%; margin: 0 auto;
+  }
+  .detail-media { overflow: hidden; border-radius: 4px; }
+  .detail-media img { width: 100%; height: auto; display: block; transform: scale(1.12); }
+  .detail-copy .kicker {
+    font-size: 11px; letter-spacing: .3em; text-transform: uppercase; color: #8a8a92;
+    margin-bottom: 18px;
+  }
+  .detail-copy h1 {
+    font-size: clamp(34px, 5vw, 64px); font-weight: 700; line-height: 1.02;
+    letter-spacing: -.01em; margin-bottom: 22px; color: #f2f2f0;
+  }
+  .detail-copy p { font-size: 15px; line-height: 1.7; color: #c7c7cd; max-width: 46ch; }
+  @media (max-width: 820px) {
+    .detail-body { grid-template-columns: 1fr; gap: 24px; overflow-y: auto; align-items: start; }
+  }
+</style>
+</head>
+<body>
+  <div id="stage"></div>
+
+  <div class="hud hud--logo">ORBIT<span>&nbsp;/ FIELD</span></div>
+  <div class="hud hud--label">Selected Works</div>
+  <div class="hud hud--hint" id="hint">Drag to explore &nbsp;·&nbsp; Click a card to open</div>
+  <div class="hud hud--count" id="count">36 PROJECTS</div>
+  <div id="hoverTitle"></div>
+
+  <section id="detail" aria-hidden="true">
+    <div class="detail-bar">
+      <div class="brand">ORBIT / FIELD</div>
+      <button id="closeDetail">Close</button>
+    </div>
+    <div class="detail-body">
+      <div class="detail-media"><img id="detailImg" alt="" /></div>
+      <div class="detail-copy">
+        <div class="kicker" id="detailKicker">Case Study</div>
+        <h1 id="detailTitle">Project</h1>
+        <p id="detailText"></p>
+      </div>
+    </div>
+  </section>
+
+<script type="importmap">
+{ "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.165.0/build/three.module.js",
+    "gsap": "https://cdn.jsdelivr.net/npm/gsap@3.12.5/index.js"
+} }
+</script>
+<script type="module">
+import * as THREE from "three";
+import gsap from "gsap";
+
+/* ----------------------------------------------------------------
+   Inside-of-a-sphere gallery.
+   Camera sits at the origin; cards live on the inner wall of a
+   sphere and face the centre. Dragging rotates the whole card
+   group with lenis-style eased follow + inertia.
+----------------------------------------------------------------- */
+
+const TITLES = [
+  "Drift", "Halcyon", "Meridian", "Pulse", "Aperture", "Lumen",
+  "Cascade", "Vantage", "Ember", "Sonder", "Helix", "Tessera",
+  "Mirage", "Kinetic", "Aurora", "Monolith", "Echo", "Strata",
+  "Nocturne", "Vector", "Prism", "Atlas", "Cipher", "Reverie",
+  "Zenith", "Fathom", "Relay", "Quanta", "Solstice", "Umbra",
+  "Lattice", "Ion", "Verge", "Tempo", "Coda", "Flux"
+];
+const KICKERS = ["Interactive", "Film", "Identity", "Spatial", "Installation", "Product"];
+
+const RADIUS = 30;
+const stage = document.getElementById("stage");
+
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.setSize(window.innerWidth, window.innerHeight);
+stage.appendChild(renderer.domElement);
+
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x0a0a0c);
+scene.fog = new THREE.Fog(0x0a0a0c, RADIUS * 0.9, RADIUS * 1.65);
+
+const camera = new THREE.PerspectiveCamera(72, window.innerWidth / window.innerHeight, 0.1, 200);
+camera.position.set(0, 0, 0.001);
+
+/* Faint inner shell + dotted stars so rotation always reads. */
+const shell = new THREE.Mesh(
+  new THREE.SphereGeometry(RADIUS * 1.4, 48, 32),
+  new THREE.MeshBasicMaterial({ color: 0x141418, side: THREE.BackSide, wireframe: true, transparent: true, opacity: 0.18 })
+);
+const starGeo = new THREE.BufferGeometry();
+{
+  const pts = [];
+  for (let i = 0; i < 420; i++) {
+    const v = new THREE.Vector3().randomDirection().multiplyScalar(RADIUS * (1.05 + Math.random() * 0.3));
+    pts.push(v.x, v.y, v.z);
+  }
+  starGeo.setAttribute("position", new THREE.Float32BufferAttribute(pts, 3));
+}
+const stars = new THREE.Points(starGeo, new THREE.PointsMaterial({ color: 0x55555f, size: 0.12 }));
+
+const world = new THREE.Group();      // rotates with drag
+world.add(shell, stars);
+scene.add(world);
+
+/* ---------- card textures: image with fallback gradient ---------- */
+function fallbackTexture(i, title) {
+  const c = document.createElement("canvas");
+  c.width = 640; c.height = 480;
+  const g = c.getContext("2d");
+  const hue = (i * 47) % 360;
+  const grad = g.createLinearGradient(0, 0, 640, 480);
+  grad.addColorStop(0, `hsl(${hue}, 38%, 30%)`);
+  grad.addColorStop(1, `hsl(${(hue + 60) % 360}, 42%, 14%)`);
+  g.fillStyle = grad; g.fillRect(0, 0, 640, 480);
+  g.fillStyle = "rgba(255,255,255,.85)";
+  g.font = "700 44px Helvetica, Arial, sans-serif";
+  g.fillText(title.toUpperCase(), 36, 430);
+  const t = new THREE.CanvasTexture(c);
+  t.colorSpace = THREE.SRGBColorSpace;
+  return t;
+}
+function cardTexture(i, title, onUrl) {
+  const url = `https://picsum.photos/seed/orbit${i}/640/480`;
+  const tex = fallbackTexture(i, title);
+  const img = new Image();
+  img.crossOrigin = "anonymous";
+  img.onload = () => {
+    const t = new THREE.Texture(img);
+    t.colorSpace = THREE.SRGBColorSpace;
+    t.needsUpdate = true;
+    tex.userData.holder.material.map = t;
+    tex.userData.holder.material.needsUpdate = true;
+    onUrl(url);
+  };
+  img.src = url;
+  return tex;
+}
+
+/* ---------- build cards on inner sphere ---------- */
+const cards = [];
+const ROWS = [
+  { lat: 0.9, n: 8 }, { lat: 0.45, n: 11 }, { lat: 0.0, n: 12 },
+  { lat: -0.45, n: 11 }, { lat: -0.9, n: 8 }
+];
+let idx = 0;
+for (const row of ROWS) {
+  for (let k = 0; k < row.n; k++) {
+    const i = idx++;
+    const title = TITLES[i % TITLES.length];
+    const phi = Math.PI / 2 - row.lat;                       // polar angle
+    const theta = (k / row.n) * Math.PI * 2 + row.lat * 0.7; // stagger rows
+    const pos = new THREE.Vector3().setFromSphericalCoords(RADIUS, phi, theta);
+
+    const w = 10, h = 7.5;
+    const mat = new THREE.MeshBasicMaterial({ side: THREE.DoubleSide, transparent: true, opacity: 0 });
+    const mesh = new THREE.Mesh(new THREE.PlaneGeometry(w, h), mat);
+    const tex = cardTexture(i, title, url => { mesh.userData.imgUrl = url; });
+    tex.userData = { holder: mesh };
+    mat.map = tex;
+
+    mesh.position.copy(pos);
+    mesh.lookAt(0, 0, 0);
+    mesh.userData = {
+      title,
+      kicker: KICKERS[i % KICKERS.length],
+      index: i,
+      imgUrl: null,
+      baseScale: 1
+    };
+    world.add(mesh);
+    cards.push(mesh);
+
+    // staggered intro
+    gsap.to(mat, { opacity: 1, duration: 1.1, delay: 0.18 + i * 0.022, ease: "power2.out" });
+    mesh.scale.setScalar(0.6);
+    gsap.to(mesh.scale, { x: 1, y: 1, z: 1, duration: 1.2, delay: 0.18 + i * 0.022, ease: "power3.out" });
+  }
+}
+document.getElementById("count").textContent = `${cards.length} PROJECTS`;
+
+/* ---------- lenis-style drag: eased follow + inertia ---------- */
+const rot = {
+  yaw: 0, pitch: 0,            // rendered
+  tYaw: 0, tPitch: 0,          // target
+  vYaw: 0, vPitch: 0           // inertia velocity
+};
+const PITCH_LIMIT = 1.05;
+const EASE = 0.075;            // smooth-scroll style lag
+const DRAG_K = 0.0042;
+
+let dragging = false, moved = 0;
+let px = 0, py = 0, downX = 0, downY = 0;
+let detailOpen = false, animatingOpen = false;
+const hint = document.getElementById("hint");
+
+stage.addEventListener("pointerdown", e => {
+  if (detailOpen || animatingOpen) return;
+  dragging = true; moved = 0;
+  px = downX = e.clientX; py = downY = e.clientY;
+  rot.vYaw = rot.vPitch = 0;
+  stage.classList.add("dragging");
+  stage.setPointerCapture(e.pointerId);
+});
+stage.addEventListener("pointermove", e => {
+  mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
+  mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
+  hoverEl.style.left = e.clientX + "px";
+  hoverEl.style.top = e.clientY + "px";
+  if (!dragging) return;
+  const dx = e.clientX - px, dy = e.clientY - py;
+  px = e.clientX; py = e.clientY;
+  moved += Math.abs(dx) + Math.abs(dy);
+  rot.tYaw += dx * DRAG_K;                 // grab: drag right pulls wall right
+  rot.tPitch += dy * DRAG_K;
+  rot.tPitch = THREE.MathUtils.clamp(rot.tPitch, -PITCH_LIMIT, PITCH_LIMIT);
+  rot.vYaw = dx * DRAG_K;                  // remember velocity for inertia
+  rot.vPitch = dy * DRAG_K;
+  hint.classList.add("hidden");
+});
+function endDrag(e) {
+  if (!dragging) return;
+  dragging = false;
+  stage.classList.remove("dragging");
+  if (moved < 7 && e) tryOpen(e);          // click, not drag
+}
+stage.addEventListener("pointerup", endDrag);
+stage.addEventListener("pointercancel", () => endDrag(null));
+
+/* wheel = horizontal orbit, same eased pipeline */
+window.addEventListener("wheel", e => {
+  if (detailOpen) return;
+  rot.tYaw += (e.deltaY + e.deltaX) * 0.0011;
+  hint.classList.add("hidden");
+}, { passive: true });
+
+/* ---------- hover ---------- */
+const raycaster = new THREE.Raycaster();
+const mouse = new THREE.Vector2(-2, -2);
+const hoverEl = document.getElementById("hoverTitle");
+let hovered = null;
+
+function setHover(mesh) {
+  if (hovered === mesh) return;
+  if (hovered) gsap.to(hovered.scale, { x: 1, y: 1, z: 1, duration: 0.45, ease: "power3.out" });
+  hovered = mesh;
+  if (mesh) {
+    gsap.to(mesh.scale, { x: 1.1, y: 1.1, z: 1.1, duration: 0.45, ease: "power3.out" });
+    hoverEl.textContent = mesh.userData.title;
+    hoverEl.style.opacity = 1;
+  } else {
+    hoverEl.style.opacity = 0;
+  }
+}
+
+/* ---------- click -> animate detail page in ---------- */
+const detail = document.getElementById("detail");
+const savedQuat = new THREE.Quaternion();
+const detailImg = document.getElementById("detailImg");
+const detailTitle = document.getElementById("detailTitle");
+const detailKicker = document.getElementById("detailKicker");
+const detailText = document.getElementById("detailText");
+
+function tryOpen(e) {
+  mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
+  mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
+  raycaster.setFromCamera(mouse, camera);
+  const hit = raycaster.intersectObjects(cards)[0];
+  if (hit) openDetail(hit.object);
+}
+
+function openDetail(mesh) {
+  if (detailOpen || animatingOpen) return;
+  animatingOpen = true;
+  const d = mesh.userData;
+  detailTitle.textContent = d.title;
+  detailKicker.textContent = `${d.kicker} — ${String(d.index + 1).padStart(2, "0")}`;
+  const art = /^[aeiou]/i.test(d.kicker) ? "an" : "a";
+  detailText.textContent =
+    `${d.title} is ${art} ${d.kicker.toLowerCase()} piece from the ORBIT field. ` +
+    `This template page stands in for a full case study — the gallery sphere behind it is the star of the show. ` +
+    `Close this page to return to the field and keep exploring.`;
+  detailImg.src = `https://picsum.photos/seed/orbit${d.index}/1200/900`;
+  detail.setAttribute("aria-hidden", "false");
+  setHover(null);
+
+  const tl = gsap.timeline({ onComplete: () => { detailOpen = true; animatingOpen = false; } });
+  // dolly toward the clicked card, then slide the page up over it
+  savedQuat.copy(camera.quaternion);
+  const target = mesh.getWorldPosition(new THREE.Vector3());
+  const dir = target.clone().normalize();
+  tl.to(camera.position, {
+    x: dir.x * 9, y: dir.y * 9, z: dir.z * 9,
+    duration: 0.7, ease: "power3.inOut",
+    onUpdate: () => camera.lookAt(target)
+  }, 0)
+    .to(camera, { fov: 50, duration: 0.7, ease: "power3.inOut", onUpdate: () => camera.updateProjectionMatrix() }, 0)
+    .set(detail, { visibility: "visible", y: 0, yPercent: 100 }, 0)
+    .to(detail, { yPercent: 0, duration: 0.8, ease: "power4.inOut" }, 0.25)
+    .from(".detail-copy > *", { y: 36, opacity: 0, stagger: 0.07, duration: 0.6, ease: "power3.out" }, 0.7)
+    .from(detailImg, { scale: 1.3, duration: 1.0, ease: "power3.out" }, 0.65);
+}
+
+function closeDetail() {
+  if (!detailOpen || animatingOpen) return;
+  animatingOpen = true;
+  const tl = gsap.timeline({
+    onComplete: () => {
+      detailOpen = false; animatingOpen = false;
+      detail.style.visibility = "hidden";
+      detail.setAttribute("aria-hidden", "true");
+    }
+  });
+  const fromQuat = camera.quaternion.clone();
+  const lerp = { t: 0 };
+  tl.to(detail, { yPercent: 100, duration: 0.7, ease: "power4.inOut" }, 0)
+    .to(camera.position, { x: 0, y: 0, z: 0.001, duration: 0.8, ease: "power3.inOut" }, 0.1)
+    .to(lerp, {
+      t: 1, duration: 0.8, ease: "power3.inOut",
+      onUpdate: () => camera.quaternion.slerpQuaternions(fromQuat, savedQuat, lerp.t)
+    }, 0.1)
+    .to(camera, {
+      fov: 72, duration: 0.8, ease: "power3.inOut",
+      onUpdate: () => camera.updateProjectionMatrix()
+    }, 0.1);
+}
+document.getElementById("closeDetail").addEventListener("click", closeDetail);
+window.addEventListener("keydown", e => { if (e.key === "Escape") closeDetail(); });
+
+/* ---------- frame loop ---------- */
+function tick() {
+  requestAnimationFrame(tick);
+
+  if (!dragging) {
+    // inertia feeds the target, target eases into the render — lenis feel
+    rot.vYaw *= 0.94; rot.vPitch *= 0.94;
+    rot.tYaw += rot.vYaw;
+    rot.tPitch = THREE.MathUtils.clamp(rot.tPitch + rot.vPitch, -PITCH_LIMIT, PITCH_LIMIT);
+  }
+  rot.yaw += (rot.tYaw - rot.yaw) * EASE;
+  rot.pitch += (rot.tPitch - rot.pitch) * EASE;
+  world.rotation.set(rot.pitch, rot.yaw, 0);
+
+  if (!detailOpen && !animatingOpen && !dragging) {
+    raycaster.setFromCamera(mouse, camera);
+    const hit = raycaster.intersectObjects(cards)[0];
+    setHover(hit ? hit.object : null);
+    document.body.style.cursor = "";
+    stage.style.cursor = hit ? "pointer" : "grab";
+  }
+
+  renderer.render(scene, camera);
+}
+tick();
+
+window.addEventListener("resize", () => {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+});
+
+/* test hooks */
+window.__app = {
+  rot, cards, camera, world,
+  screenPos(mesh) {
+    const v = mesh.getWorldPosition(new THREE.Vector3()).project(camera);
+    return {
+      x: (v.x * 0.5 + 0.5) * window.innerWidth,
+      y: (-v.y * 0.5 + 0.5) * window.innerHeight,
+      inFront: v.z < 1
+    };
+  },
+  isDetailOpen: () => detailOpen,
+  openFirst: () => openDetail(cards[0]),
+  close: closeDetail
+};
+</script>
+</body>
+</html>
