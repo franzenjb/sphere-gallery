@@ -45,3 +45,26 @@ Hammer projection gives the slab its elliptical cross-section.
 *Technique: rasterized land mask → `scipy.ndimage.distance_transform_edt`
 in both directions → signed distance field, warped with multi-octave
 noise so the grain wanders like real wood, then `contour`/`contourf`.*
+
+## 04 · The Anti-Earth (3D)
+
+A planet where altitude is distance from the sea, rendered as a true 3D
+relief surface. Sail away from shore and you climb: the mid-Pacific is
+the new Himalaya, while the heart of Asia — farthest from salt water —
+sinks into the deepest basin on Earth. The dark line draped on the
+terrain is the old coastline; it is still sea level.
+
+*Technique: signed distance field + fractal noise → `mplot3d`
+`plot_surface` with `LightSource` hillshading and a hypsometric
+colormap pinned to the coastline.*
+
+## 05 · Low Earth Orbit (3D)
+
+A true 3D globe: coastlines wrapped onto a sphere, 23,000 visible
+airports as city lights, and great-circle flight paths physically
+lifting off the surface like a crown. The far hemisphere is removed
+the old-fashioned way — every vertex culled against the camera vector.
+
+*Technique: spherical coordinates by hand, per-vertex hemisphere
+culling, layered scatter glow, slerp arcs with altitude lift, and an
+atmosphere limb drawn in the camera's image plane.*

@@ -362,5 +362,19 @@
     "url": "map-art/03_dendrocartography.png",
     "img": "shots/map-art-dendrocartography.jpg",
     "description": "The Earth cut like timber: every growth ring is one step farther from the nearest coastline. Continents are the knots, oceans are the grain."
+  },
+  {
+    "name": "the-anti-earth",
+    "domain": "map-art · python 3D",
+    "url": "map-art/04_anti_earth.png",
+    "img": "shots/map-art-anti-earth.jpg",
+    "description": "A 3D planet where altitude is distance from the sea: the mid-Pacific becomes the new Himalaya and the heart of Asia the deepest basin. The dark line is the old coastline — still sea level."
+  },
+  {
+    "name": "low-earth-orbit",
+    "domain": "map-art · python 3D",
+    "url": "map-art/05_low_earth_orbit.png",
+    "img": "shots/map-art-low-earth-orbit.jpg",
+    "description": "A true 3D globe in matplotlib: 23,000 airports as city lights, flight routes arcing off the surface, far hemisphere culled vertex by vertex."
   }
 ]
