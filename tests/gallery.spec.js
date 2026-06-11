@@ -7,13 +7,17 @@ async function ready(page) {
   await page.waitForTimeout(1800); // intro animation settles
 }
 
-test("loads: canvas, 50 cards, no page errors", async ({ page }) => {
+test("loads: canvas, one card per jbf.com app, no page errors", async ({ page }) => {
   const errors = [];
   page.on("pageerror", e => errors.push(e.message));
   await ready(page);
   await expect(page.locator("#stage canvas")).toBeVisible();
+  const manifest = await page.evaluate(() =>
+    fetch("shots/manifest.json").then(r => r.json())
+  );
   const count = await page.evaluate(() => window.__app.cards.length);
-  expect(count).toBe(50);
+  expect(count).toBe(manifest.length);
+  expect(count).toBeGreaterThan(40);
   expect(errors).toEqual([]);
 });
 
@@ -71,6 +75,8 @@ test("clicking a card animates detail page in; close returns", async ({ page }) 
   await page.waitForFunction(() => window.__app.isDetailOpen(), null, { timeout: 5000 });
   await expect(page.locator("#detail")).toBeVisible();
   await expect(page.locator("#detailTitle")).not.toHaveText("");
+  const href = await page.locator("#visitLink").getAttribute("href");
+  expect(href).toMatch(/^https:\/\/.*jbf\.com/);
 
   // detail page actually covers the viewport (slid in)
   const box = await page.locator("#detail").boundingBox();

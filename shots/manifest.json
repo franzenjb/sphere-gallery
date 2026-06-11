@@ -1,0 +1,345 @@
+[
+  {
+    "name": "ai-gis-red-cross-workbench",
+    "domain": "ainow.jbf.com",
+    "url": "https://ainow.jbf.com",
+    "img": "shots/ai-gis-red-cross-workbench.jpg",
+    "description": ""
+  },
+  {
+    "name": "arc-real-estate",
+    "domain": "realestate.jbf.com",
+    "url": "https://realestate.jbf.com",
+    "img": "shots/arc-real-estate.jpg",
+    "description": ""
+  },
+  {
+    "name": "arc-real-estate-drive-time",
+    "domain": "drivetime.jbf.com",
+    "url": "https://drivetime.jbf.com",
+    "img": "shots/arc-real-estate-drive-time.jpg",
+    "description": "American Red Cross real estate drive-time staffing model"
+  },
+  {
+    "name": "ask-clara",
+    "domain": "clara.jbf.com",
+    "url": "https://clara.jbf.com",
+    "img": "shots/ask-clara.jpg",
+    "description": ""
+  },
+  {
+    "name": "atlas",
+    "domain": "atlas.jbf.com",
+    "url": "https://atlas.jbf.com",
+    "img": "shots/atlas.jpg",
+    "description": ""
+  },
+  {
+    "name": "biomed-blood-servicesv2",
+    "domain": "biomed.jbf.com",
+    "url": "https://biomed.jbf.com",
+    "img": "shots/biomed-blood-servicesv2.jpg",
+    "description": "BioMed donor education + presentation hub (future biomed.jbf.com)"
+  },
+  {
+    "name": "brain-dump",
+    "domain": "brain.jbf.com",
+    "url": "https://brain.jbf.com",
+    "img": "shots/brain-dump.jpg",
+    "description": ""
+  },
+  {
+    "name": "cascade1",
+    "domain": "cascade1.jbf.com",
+    "url": "https://cascade1.jbf.com",
+    "img": "shots/cascade1.jpg",
+    "description": "Project Cascade — conversational, anticipatory emergency mapping demo (synthetic Cascade County data)"
+  },
+  {
+    "name": "cascade2",
+    "domain": "tornadoalert.jbf.com",
+    "url": "https://tornadoalert.jbf.com",
+    "img": "shots/cascade2.jpg",
+    "description": "Cascade Demo V2 — conversational emergency mapping on real public data (Pinellas County, FL). Sibling to cascade-demo and ops.jbf.com."
+  },
+  {
+    "name": "cascade3",
+    "domain": "cascade3.jbf.com",
+    "url": "https://cascade3.jbf.com",
+    "img": "shots/cascade3.jpg",
+    "description": ""
+  },
+  {
+    "name": "chapter-view",
+    "domain": "donor-map.jbf.com",
+    "url": "https://donor-map.jbf.com",
+    "img": "shots/chapter-view.jpg",
+    "description": "Source repo for Community Mobilization 4.0, the coded ArcGIS map/app served at https://maps.jbf.com/chapter-view/ and embedded in ArcGIS Experience Builder."
+  },
+  {
+    "name": "coding-101",
+    "domain": "coding.jbf.com",
+    "url": "https://coding.jbf.com",
+    "img": "shots/coding-101.jpg",
+    "description": "Coding 101 — left-rail teaching site at coding.jbf.com (Coding, Codex, State Demo, Maps Demo, Search as Code)"
+  },
+  {
+    "name": "community-ops-interviews",
+    "domain": "interview.jbf.com",
+    "url": "https://interview.jbf.com",
+    "img": "shots/community-ops-interviews.jpg",
+    "description": ""
+  },
+  {
+    "name": "county-jbf",
+    "domain": "county.jbf.com",
+    "url": "https://county.jbf.com",
+    "img": "shots/county-jbf.jpg",
+    "description": "Three-panel county intelligence platform with ArcGIS map"
+  },
+  {
+    "name": "cpep-redcross-programs",
+    "domain": "cpep.jbf.com",
+    "url": "https://cpep.jbf.com",
+    "img": "shots/cpep-redcross-programs.jpg",
+    "description": "Private Red Cross program transition intelligence workspace for CPEP data, transcripts, decisions, runbooks, and tracker planning."
+  },
+  {
+    "name": "cvs",
+    "domain": "maps.jbf.com",
+    "url": "https://maps.jbf.com",
+    "img": "shots/cvs.jpg",
+    "description": "maps.jbf.com routing shell. Its /chapter-view route proxies to the coded Community Mobilization 4.0 app in the chapter-view repo."
+  },
+  {
+    "name": "da-field-lookup",
+    "domain": "da.jbf.com",
+    "url": "https://da.jbf.com",
+    "img": "shots/da-field-lookup.jpg",
+    "description": ""
+  },
+  {
+    "name": "dragon-memory",
+    "domain": "memory.jbf.com",
+    "url": "https://memory.jbf.com",
+    "img": "shots/dragon-memory.jpg",
+    "description": "Portable GitHub-backed memory system for Claude Code, Codex, Obsidian Sync, and mobile capture"
+  },
+  {
+    "name": "esri-restyle-demo",
+    "domain": "restyle.jbf.com",
+    "url": "https://restyle.jbf.com",
+    "img": "shots/esri-restyle-demo.jpg",
+    "description": "ArcGIS Maps SDK live re-styling demo — same data, your design, zero risk to the source"
+  },
+  {
+    "name": "final-mile-assessment",
+    "domain": "lastmile.jbf.com",
+    "url": "https://lastmile.jbf.com",
+    "img": "shots/final-mile-assessment.jpg",
+    "description": ""
+  },
+  {
+    "name": "first-project",
+    "domain": "tour.jbf.com",
+    "url": "https://tour.jbf.com",
+    "img": "shots/first-project.jpg",
+    "description": ""
+  },
+  {
+    "name": "hannah-community-mobilization",
+    "domain": "hannah.jbf.com",
+    "url": "https://hannah.jbf.com",
+    "img": "shots/hannah-community-mobilization.jpg",
+    "description": ""
+  },
+  {
+    "name": "hfc-lives-saved",
+    "domain": "livesaved.jbf.com",
+    "url": "https://livesaved.jbf.com",
+    "img": "shots/hfc-lives-saved.jpg",
+    "description": "Home Fire Campaign Lives Saved ArcGIS dashboard"
+  },
+  {
+    "name": "intel-jbf",
+    "domain": "intel.jbf.com",
+    "url": "https://intel.jbf.com",
+    "img": "shots/intel-jbf.jpg",
+    "description": "Red Cross Intel — chapter/region/division-scoped briefing dashboard (Tier 2 of Smart-Query Platform)"
+  },
+  {
+    "name": "jbf-knowledge-base",
+    "domain": "jbf.com",
+    "url": "https://jbf.com",
+    "img": "shots/jbf-knowledge-base.jpg",
+    "description": ""
+  },
+  {
+    "name": "jbf-tools",
+    "domain": "tools.jbf.com",
+    "url": "https://tools.jbf.com",
+    "img": "shots/jbf-tools.jpg",
+    "description": "Hub for browser-based ArcGIS/GIS tools — tools.jbf.com"
+  },
+  {
+    "name": "kg-explainer",
+    "domain": "kg.jbf.com",
+    "url": "https://kg.jbf.com",
+    "img": "shots/kg-explainer.jpg",
+    "description": ""
+  },
+  {
+    "name": "london-restaurant-guide",
+    "domain": "london.jbf.com",
+    "url": "https://london.jbf.com",
+    "img": "shots/london-restaurant-guide.jpg",
+    "description": ""
+  },
+  {
+    "name": "museum",
+    "domain": "museum.jbf.com",
+    "url": "https://museum.jbf.com",
+    "img": "shots/museum.jpg",
+    "description": ""
+  },
+  {
+    "name": "museum-2050",
+    "domain": "2050.jbf.com",
+    "url": "https://2050.jbf.com",
+    "img": "shots/museum-2050.jpg",
+    "description": ""
+  },
+  {
+    "name": "noaa-humanitarian-gis-hub",
+    "domain": "noaa.jbf.com",
+    "url": "https://noaa.jbf.com",
+    "img": "shots/noaa-humanitarian-gis-hub.jpg",
+    "description": ""
+  },
+  {
+    "name": "obsidian-jbf",
+    "domain": "obsidian.jbf.com",
+    "url": "https://obsidian.jbf.com",
+    "img": "shots/obsidian-jbf.jpg",
+    "description": ""
+  },
+  {
+    "name": "pma-nav-mockups",
+    "domain": "pma-nav.jbf.com",
+    "url": "https://pma-nav.jbf.com",
+    "img": "shots/pma-nav-mockups.jpg",
+    "description": ""
+  },
+  {
+    "name": "pma-suite",
+    "domain": "pma.jbf.com",
+    "url": "https://pma.jbf.com",
+    "img": "shots/pma-suite.jpg",
+    "description": ""
+  },
+  {
+    "name": "project-inventory",
+    "domain": "inventory.jbf.com",
+    "url": "https://inventory.jbf.com",
+    "img": "shots/project-inventory.jpg",
+    "description": "Searchable, sortable inventory of all 137 Vercel projects with tech stack"
+  },
+  {
+    "name": "rapt-4",
+    "domain": "rapt.jbf.com",
+    "url": "https://rapt.jbf.com",
+    "img": "shots/rapt-4.jpg",
+    "description": ""
+  },
+  {
+    "name": "realign-realestate",
+    "domain": "realign.jbf.com",
+    "url": "https://realign.jbf.com",
+    "img": "shots/realign-realestate.jpg",
+    "description": "FMAS — Data-driven framework for evaluating Red Cross real estate portfolio"
+  },
+  {
+    "name": "red-cross-language-access-demo",
+    "domain": "languages.jbf.com",
+    "url": "https://languages.jbf.com",
+    "img": "shots/red-cross-language-access-demo.jpg",
+    "description": "Multilingual volunteer intake and emergency alert mirror prototype"
+  },
+  {
+    "name": "red-cross-map-base-template",
+    "domain": "basemap.jbf.com",
+    "url": "https://basemap.jbf.com",
+    "img": "shots/red-cross-map-base-template.jpg",
+    "description": "Reusable Red Cross map base template from livessaved.jbf.com"
+  },
+  {
+    "name": "region-maps",
+    "domain": "regions.jbf.com",
+    "url": "https://regions.jbf.com",
+    "img": "shots/region-maps.jpg",
+    "description": "Region Maps — standalone Python-built regional map demo (regions.jbf.com)"
+  },
+  {
+    "name": "reintel-strategy-realestate",
+    "domain": "reintel.jbf.com",
+    "url": "https://reintel.jbf.com",
+    "img": "shots/reintel-strategy-realestate.jpg",
+    "description": "Facilities and CoStar real estate strategy intelligence for reintel.jbf.com"
+  },
+  {
+    "name": "response-gap-helene",
+    "domain": "helenegap.jbf.com",
+    "url": "https://helenegap.jbf.com",
+    "img": "shots/response-gap-helene.jpg",
+    "description": "Response Gap - Hurricane Helene: FEMA IHP x ALICE overlay (helenegap.jbf.com)"
+  },
+  {
+    "name": "sitaware",
+    "domain": "sitaware.jbf.com",
+    "url": "https://sitaware.jbf.com",
+    "img": "shots/sitaware.jpg",
+    "description": "Dark 3x3 grid mobile map — standalone ArcGIS public data explorer"
+  },
+  {
+    "name": "sitaware-codex",
+    "domain": "sitaware.codex.jbf.com",
+    "url": "https://sitaware.codex.jbf.com",
+    "img": "shots/sitaware-codex.jpg",
+    "description": ""
+  },
+  {
+    "name": "sitaware-desktop",
+    "domain": "desktop.sitaware.jbf.com",
+    "url": "https://desktop.sitaware.jbf.com",
+    "img": "shots/sitaware-desktop.jpg",
+    "description": "Desktop Situational Awareness Map — command-center layout"
+  },
+  {
+    "name": "tornadoes-us",
+    "domain": "tornado.jbf.com",
+    "url": "https://tornado.jbf.com",
+    "img": "shots/tornadoes-us.jpg",
+    "description": "Interactive compendium of US tornadoes 1950-2023 — filter by month/year/state/county/intensity/injuries/deaths. NOAA SPC data."
+  },
+  {
+    "name": "trailer-ops",
+    "domain": "trailer-ops.jbf.com",
+    "url": "https://trailer-ops.jbf.com",
+    "img": "shots/trailer-ops.jpg",
+    "description": "ARC Trailer Operations Dashboard — query-first fleet intelligence"
+  },
+  {
+    "name": "trailer-study",
+    "domain": "trailer-study.jbf.com",
+    "url": "https://trailer-study.jbf.com",
+    "img": "shots/trailer-study.jpg",
+    "description": ""
+  },
+  {
+    "name": "vulnerability-explorer",
+    "domain": "explorer.jbf.com",
+    "url": "https://explorer.jbf.com",
+    "img": "shots/vulnerability-explorer.jpg",
+    "description": ""
+  }
+]
