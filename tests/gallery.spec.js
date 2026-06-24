@@ -119,20 +119,22 @@ test("clicking a card animates detail page in; close returns", async ({ page }) 
   expect(cam).toBeLessThan(0.1);
 });
 
-test("art mode shows the same bookmarks as gallery artwork", async ({ page }) => {
+test("room mode builds one walkable gallery frame per bookmark", async ({ page }) => {
   await ready(page);
   const manifest = await page.evaluate(() =>
     fetch("shots/manifest.json").then(r => r.json())
   );
 
-  await page.getByRole("button", { name: "Art" }).click();
-  await expect(page.locator("#artGallery")).toBeVisible();
-  await expect(page.locator("body")).toHaveAttribute("data-view", "art");
-  await expect(page.locator(".art-card")).toHaveCount(manifest.length);
+  await page.getByRole("button", { name: "Room" }).click();
+  await expect(page.locator("body")).toHaveAttribute("data-view", "room");
+  const frameCount = await page.evaluate(() => window.__app.roomFrames.length);
+  expect(frameCount).toBe(manifest.length);
 
-  const firstCard = page.locator(".art-card").first();
-  await expect(firstCard).toHaveAttribute("href", manifest[0].url);
-  await expect(firstCard.locator("h2")).toHaveText(manifest[0].title);
+  const before = await page.evaluate(() => window.__app.roomWalk.tZ);
+  await page.mouse.wheel(0, 560);
+  await page.waitForTimeout(250);
+  const after = await page.evaluate(() => window.__app.roomWalk.tZ);
+  expect(after).toBeLessThan(before);
 
   await page.getByRole("button", { name: "Sphere" }).click();
   await expect(page.locator("body")).toHaveAttribute("data-view", "sphere");

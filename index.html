@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>JBF Now — Spherical Bookmark Gallery</title>
+<title>JBF Now — Bookmark Museum</title>
 <style>
   :root {
     color-scheme: dark;
@@ -253,7 +253,7 @@
   <div class="hud hud--logo">JBF<span>&nbsp;/ NOW</span></div>
   <div class="hud hud--switch" role="group" aria-label="Gallery view">
     <button class="mode-btn active" type="button" data-view="sphere" aria-pressed="true">Sphere</button>
-    <button class="mode-btn" type="button" data-view="art" aria-pressed="false">Art</button>
+    <button class="mode-btn" type="button" data-view="room" aria-pressed="false">Room</button>
   </div>
   <div class="hud hud--label">Chrome Now bookmarks</div>
   <div class="hud hud--hint" id="hint">Drag to explore &nbsp;·&nbsp; Click a card to open</div>
@@ -376,6 +376,19 @@ const world = new THREE.Group();      // rotates with drag
 world.add(shell, stars);
 scene.add(world);
 
+const room = new THREE.Group();
+room.visible = false;
+scene.add(room);
+const roomFrames = [];
+const roomWalk = {
+  z: 5,
+  tZ: 5,
+  minZ: -260,
+  maxZ: 5,
+  sideDrift: 0,
+  tSideDrift: 0
+};
+
 /* ---------- bookmark artwork and screenshots ---------- */
 function makeBookmarkArt(i, title, domain, includeLabel = true) {
   const c = document.createElement("canvas");
@@ -489,6 +502,100 @@ function buildCards(apps) {
   document.getElementById("count").textContent = `${cards.length} BOOKMARKS`;
 }
 
+function buildRoom(apps) {
+  room.clear();
+  roomFrames.length = 0;
+  const bays = Math.ceil(apps.length / 2);
+  const spacing = 9.2;
+  const length = bays * spacing + 24;
+  const roomWidth = 19;
+  const wallX = 9.8;
+  const frameX = 9.42;
+  roomWalk.minZ = -length + 18;
+  roomWalk.maxZ = 5;
+
+  const wallMat = new THREE.MeshBasicMaterial({ color: 0x111116, side: THREE.DoubleSide });
+  const floorMat = new THREE.MeshBasicMaterial({ color: 0x0d0d11, side: THREE.DoubleSide });
+  const lineMat = new THREE.MeshBasicMaterial({ color: 0x24242c, side: THREE.DoubleSide });
+
+  const floor = new THREE.Mesh(new THREE.PlaneGeometry(roomWidth, length), floorMat);
+  floor.rotation.x = -Math.PI / 2;
+  floor.position.set(0, -5.4, -length / 2 + 8);
+  room.add(floor);
+
+  const ceiling = new THREE.Mesh(new THREE.PlaneGeometry(roomWidth, length), new THREE.MeshBasicMaterial({ color: 0x0f0f14, side: THREE.DoubleSide }));
+  ceiling.rotation.x = Math.PI / 2;
+  ceiling.position.set(0, 7.2, -length / 2 + 8);
+  room.add(ceiling);
+
+  for (const side of [-1, 1]) {
+    const wall = new THREE.Mesh(new THREE.PlaneGeometry(length, 12.6), wallMat);
+    wall.rotation.y = side > 0 ? -Math.PI / 2 : Math.PI / 2;
+    wall.position.set(side * wallX, .9, -length / 2 + 8);
+    room.add(wall);
+  }
+
+  const endWall = new THREE.Mesh(new THREE.PlaneGeometry(roomWidth, 12.6), wallMat);
+  endWall.position.set(0, .9, -length + 8);
+  room.add(endWall);
+
+  for (let bay = 0; bay < bays + 1; bay++) {
+    const z = -bay * spacing - 4;
+    const stripe = new THREE.Mesh(new THREE.PlaneGeometry(roomWidth, .06), lineMat);
+    stripe.rotation.x = -Math.PI / 2;
+    stripe.position.set(0, -5.35, z);
+    room.add(stripe);
+  }
+
+  apps.forEach((app, i) => {
+    const title = displayName(app);
+    const art = artFor(app, i);
+    const side = i % 2 === 0 ? -1 : 1;
+    const bay = Math.floor(i / 2);
+    const z = -bay * spacing - 8.5;
+    const x = side * frameX;
+
+    const frame = new THREE.Mesh(
+      new THREE.PlaneGeometry(6.8, 4.8),
+      new THREE.MeshBasicMaterial({ map: art.texture, side: THREE.DoubleSide })
+    );
+    if (app.img) {
+      texLoader.load(app.img, t => {
+        t.colorSpace = THREE.SRGBColorSpace;
+        frame.material.map = t;
+        frame.material.needsUpdate = true;
+      });
+    }
+    frame.position.set(x, .9, z);
+    frame.rotation.y = side > 0 ? -Math.PI / 2 : Math.PI / 2;
+    frame.userData = {
+      title,
+      domain: shortDomain(app),
+      url: app.url,
+      img: app.img || art.dataUrl,
+      description: app.description,
+      index: i
+    };
+
+    const backing = new THREE.Mesh(
+      new THREE.PlaneGeometry(7.34, 5.34),
+      new THREE.MeshBasicMaterial({ color: 0x050507, side: THREE.DoubleSide })
+    );
+    backing.position.set(x + side * .03, .9, z);
+    backing.rotation.copy(frame.rotation);
+
+    const rail = new THREE.Mesh(
+      new THREE.PlaneGeometry(7.9, .08),
+      new THREE.MeshBasicMaterial({ color: 0x454550, side: THREE.DoubleSide })
+    );
+    rail.position.set(x + side * .04, -2.05, z);
+    rail.rotation.copy(frame.rotation);
+
+    room.add(backing, frame, rail);
+    roomFrames.push(frame);
+  });
+}
+
 function buildArtGallery(apps) {
   const grid = document.getElementById("artGrid");
   const fragment = document.createDocumentFragment();
@@ -533,23 +640,34 @@ fetch("shots/manifest.json")
   .then(r => r.json())
   .then(apps => {
     buildCards(apps);
+    buildRoom(apps);
     buildArtGallery(apps);
   });
 
 let currentView = "sphere";
 const modeButtons = [...document.querySelectorAll(".mode-btn")];
 function setView(mode) {
-  currentView = mode === "art" ? "art" : "sphere";
+  currentView = mode === "room" ? "room" : "sphere";
   document.body.dataset.view = currentView;
-  document.getElementById("artGallery").setAttribute("aria-hidden", String(currentView !== "art"));
+  document.getElementById("artGallery").setAttribute("aria-hidden", "true");
   modeButtons.forEach(btn => {
     const active = btn.dataset.view === currentView;
     btn.classList.toggle("active", active);
     btn.setAttribute("aria-pressed", String(active));
   });
-  if (currentView === "art") {
+  world.visible = currentView === "sphere";
+  room.visible = currentView === "room";
+  camera.position.set(0, currentView === "room" ? .8 : 0, currentView === "room" ? roomWalk.z : 0.001);
+  camera.rotation.set(0, 0, 0);
+  camera.fov = currentView === "room" ? (window.innerWidth <= 820 ? 82 : 66) : 72;
+  camera.updateProjectionMatrix();
+  document.getElementById("count").textContent =
+    currentView === "room" ? `${roomFrames.length} ROOM FRAMES` : `${cards.length} BOOKMARKS`;
+  if (currentView === "room") {
     setHover(null);
     hint.classList.add("hidden");
+  } else {
+    hint.classList.remove("hidden");
   }
 }
 modeButtons.forEach(btn => btn.addEventListener("click", () => setView(btn.dataset.view)));
@@ -565,12 +683,24 @@ const EASE = 0.075;            // smooth-scroll style lag
 const DRAG_K = 0.0042;
 
 let dragging = false, moved = 0;
+let roomDragging = false;
 let px = 0, py = 0, downX = 0, downY = 0;
 let detailOpen = false, animatingOpen = false;
 const hint = document.getElementById("hint");
+function clampRoomZ(value) {
+  return THREE.MathUtils.clamp(value, roomWalk.minZ, roomWalk.maxZ);
+}
 
 stage.addEventListener("pointerdown", e => {
-  if (detailOpen || animatingOpen || currentView !== "sphere") return;
+  if (detailOpen || animatingOpen) return;
+  if (currentView === "room") {
+    roomDragging = true; moved = 0;
+    px = downX = e.clientX; py = downY = e.clientY;
+    stage.classList.add("dragging");
+    stage.setPointerCapture(e.pointerId);
+    return;
+  }
+  if (currentView !== "sphere") return;
   dragging = true; moved = 0;
   px = downX = e.clientX; py = downY = e.clientY;
   rot.vYaw = rot.vPitch = 0;
@@ -582,6 +712,14 @@ stage.addEventListener("pointermove", e => {
   mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
   hoverEl.style.left = e.clientX + "px";
   hoverEl.style.top = e.clientY + "px";
+  if (roomDragging) {
+    const dx = e.clientX - px, dy = e.clientY - py;
+    px = e.clientX; py = e.clientY;
+    moved += Math.abs(dx) + Math.abs(dy);
+    roomWalk.tZ = clampRoomZ(roomWalk.tZ + dy * .09);
+    roomWalk.tSideDrift = THREE.MathUtils.clamp(roomWalk.tSideDrift + dx * .01, -1.35, 1.35);
+    return;
+  }
   if (!dragging) return;
   const dx = e.clientX - px, dy = e.clientY - py;
   px = e.clientX; py = e.clientY;
@@ -594,6 +732,12 @@ stage.addEventListener("pointermove", e => {
   hint.classList.add("hidden");
 });
 function endDrag(e) {
+  if (roomDragging) {
+    roomDragging = false;
+    stage.classList.remove("dragging");
+    if (moved < 7 && e) tryOpen(e);
+    return;
+  }
   if (!dragging) return;
   dragging = false;
   stage.classList.remove("dragging");
@@ -604,7 +748,12 @@ stage.addEventListener("pointercancel", () => endDrag(null));
 
 /* wheel = horizontal orbit, same eased pipeline */
 window.addEventListener("wheel", e => {
-  if (detailOpen || currentView !== "sphere") return;
+  if (detailOpen) return;
+  if (currentView === "room") {
+    roomWalk.tZ = clampRoomZ(roomWalk.tZ - (e.deltaY + e.deltaX) * .018);
+    return;
+  }
+  if (currentView !== "sphere") return;
   rot.tYaw += (e.deltaY + e.deltaX) * 0.0011;
   hint.classList.add("hidden");
 }, { passive: true });
@@ -636,18 +785,20 @@ const detailTitle = document.getElementById("detailTitle");
 const detailKicker = document.getElementById("detailKicker");
 const detailText = document.getElementById("detailText");
 const visitLink = document.getElementById("visitLink");
+let detailSourceView = "sphere";
 
 function tryOpen(e) {
   mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
   mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
   raycaster.setFromCamera(mouse, camera);
-  const hit = raycaster.intersectObjects(cards)[0];
+  const hit = raycaster.intersectObjects(currentView === "room" ? roomFrames : cards)[0];
   if (hit) openDetail(hit.object);
 }
 
 function openDetail(mesh) {
   if (detailOpen || animatingOpen) return;
   animatingOpen = true;
+  detailSourceView = currentView;
   const d = mesh.userData;
   detailTitle.textContent = d.title;
   detailKicker.textContent = `${d.domain} - ${String(d.index + 1).padStart(2, "0")}`;
@@ -658,6 +809,15 @@ function openDetail(mesh) {
   visitLink.textContent = d.url.startsWith("file:") ? "Open Local Bookmark" : "Open Bookmark";
   detail.setAttribute("aria-hidden", "false");
   setHover(null);
+
+  if (currentView === "room") {
+    const tl = gsap.timeline({ onComplete: () => { detailOpen = true; animatingOpen = false; } });
+    tl.set(detail, { visibility: "visible", y: 0, yPercent: 100 }, 0)
+      .to(detail, { yPercent: 0, duration: 0.72, ease: "power4.inOut" }, 0)
+      .from(".detail-copy > *", { y: 36, opacity: 0, stagger: 0.07, duration: 0.55, ease: "power3.out" }, 0.42)
+      .from(detailImg, { scale: 1.18, duration: .85, ease: "power3.out" }, 0.36);
+    return;
+  }
 
   const tl = gsap.timeline({ onComplete: () => { detailOpen = true; animatingOpen = false; } });
   // dolly toward the clicked card, then slide the page up over it
@@ -679,6 +839,17 @@ function openDetail(mesh) {
 function closeDetail() {
   if (!detailOpen || animatingOpen) return;
   animatingOpen = true;
+  if (detailSourceView === "room") {
+    const tl = gsap.timeline({
+      onComplete: () => {
+        detailOpen = false; animatingOpen = false;
+        detail.style.visibility = "hidden";
+        detail.setAttribute("aria-hidden", "true");
+      }
+    });
+    tl.to(detail, { yPercent: 100, duration: 0.68, ease: "power4.inOut" }, 0);
+    return;
+  }
   const tl = gsap.timeline({
     onComplete: () => {
       detailOpen = false; animatingOpen = false;
@@ -700,11 +871,38 @@ function closeDetail() {
     }, 0.1);
 }
 document.getElementById("closeDetail").addEventListener("click", closeDetail);
-window.addEventListener("keydown", e => { if (e.key === "Escape") closeDetail(); });
+window.addEventListener("keydown", e => {
+  if (e.key === "Escape") {
+    closeDetail();
+    return;
+  }
+  if (detailOpen || animatingOpen || currentView !== "room") return;
+  if (e.key === "ArrowUp" || e.key.toLowerCase() === "w") roomWalk.tZ = clampRoomZ(roomWalk.tZ - 5.5);
+  if (e.key === "ArrowDown" || e.key.toLowerCase() === "s") roomWalk.tZ = clampRoomZ(roomWalk.tZ + 5.5);
+  if (e.key === "ArrowLeft" || e.key.toLowerCase() === "a") roomWalk.tSideDrift = THREE.MathUtils.clamp(roomWalk.tSideDrift - .75, -1.35, 1.35);
+  if (e.key === "ArrowRight" || e.key.toLowerCase() === "d") roomWalk.tSideDrift = THREE.MathUtils.clamp(roomWalk.tSideDrift + .75, -1.35, 1.35);
+});
 
 /* ---------- frame loop ---------- */
 function tick() {
   requestAnimationFrame(tick);
+
+  if (currentView === "room") {
+    roomWalk.z += (roomWalk.tZ - roomWalk.z) * .11;
+    roomWalk.sideDrift += (roomWalk.tSideDrift - roomWalk.sideDrift) * .08;
+    camera.position.set(roomWalk.sideDrift, .8, roomWalk.z);
+    camera.lookAt(roomWalk.sideDrift * .28, .7, roomWalk.z - 22);
+
+    if (!detailOpen && !animatingOpen && !roomDragging) {
+      raycaster.setFromCamera(mouse, camera);
+      const hit = raycaster.intersectObjects(roomFrames)[0];
+      setHover(hit ? hit.object : null);
+      stage.style.cursor = hit ? "pointer" : "grab";
+    }
+
+    renderer.render(scene, camera);
+    return;
+  }
 
   if (!dragging) {
     // inertia feeds the target, target eases into the render — lenis feel
@@ -730,13 +928,14 @@ tick();
 
 window.addEventListener("resize", () => {
   camera.aspect = window.innerWidth / window.innerHeight;
+  if (currentView === "room") camera.fov = window.innerWidth <= 820 ? 82 : 66;
   camera.updateProjectionMatrix();
   renderer.setSize(window.innerWidth, window.innerHeight);
 });
 
 /* test hooks */
 window.__app = {
-  rot, cards, camera, world, renderer,
+  rot, cards, roomFrames, roomWalk, camera, world, room, renderer,
   setView,
   viewMode: () => currentView,
   screenPos(mesh) {

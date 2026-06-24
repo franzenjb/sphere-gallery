@@ -1,15 +1,15 @@
 # sphere-gallery
 
-Spherical bookmark gallery for Dragon's Chrome `Now` bookmark folder. You stand
-at the center of a sphere and the bookmarks wrap around you on its inner wall,
-with an alternate Art view that turns the same bookmarks into a generated
-gallery wall.
+Spherical and walkable-room bookmark gallery for Dragon's Chrome `Now` bookmark
+folder. You can stand at the center of a sphere with bookmarks wrapped around
+the inner wall, or switch into a museum-style room with bookmark frames hung
+along both sides.
 
 - **Three.js** — bookmark cards on the inside of a sphere, camera at the origin
 - **GSAP** — staggered intro, hover scale, click-to-open detail page transition
 - Lenis-style drag: eased follow (lerp) + inertia on release; wheel orbits too
 - Click a card -> camera dollies toward it, a bookmark detail page slides up
-- Art mode -> full-screen grid of generated bookmark artwork
+- Room mode -> walkable 3D gallery with one wall frame per bookmark
 - Images use saved screenshots when available, with generated artwork fallback
 
 No build step — a single `index.html` with an import map (three + gsap from CDN).
@@ -34,5 +34,10 @@ npm install
 npx playwright test
 ```
 
+Real thumbnails do not populate automatically. `shots/manifest.json` points to
+saved screenshots where this repo already had one; everything else gets
+generated artwork until a capture job writes a real `shots/*.jpg` and updates
+the manifest.
+
 Tests cover load, drag easing + inertia, click -> detail open/close + camera
-restore, Art mode, WebGL nonblank rendering, and text contrast.
+restore, Room mode, WebGL nonblank rendering, and text contrast.
