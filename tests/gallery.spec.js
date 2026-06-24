@@ -7,7 +7,7 @@ async function ready(page) {
   await page.waitForTimeout(1800); // intro animation settles
 }
 
-test("loads: canvas, one card per jbf.com app, no page errors", async ({ page }) => {
+test("loads: canvas, one card per Chrome Now bookmark, no page errors", async ({ page }) => {
   const errors = [];
   page.on("pageerror", e => errors.push(e.message));
   await ready(page);
@@ -17,7 +17,33 @@ test("loads: canvas, one card per jbf.com app, no page errors", async ({ page })
   );
   const count = await page.evaluate(() => window.__app.cards.length);
   expect(count).toBe(manifest.length);
-  expect(count).toBeGreaterThan(40);
+  expect(count).toBeGreaterThan(60);
+  const nonBackgroundSamples = await page.evaluate(() => {
+    const { renderer } = window.__app;
+    const gl = renderer.getContext();
+    const canvas = renderer.domElement;
+    const points = [
+      [0.18, 0.22], [0.38, 0.28], [0.62, 0.2], [0.82, 0.34],
+      [0.25, 0.52], [0.5, 0.5], [0.74, 0.58],
+      [0.18, 0.78], [0.42, 0.72], [0.66, 0.82], [0.88, 0.76]
+    ];
+    let nonBackground = 0;
+    const pixel = new Uint8Array(4);
+    for (const [x, y] of points) {
+      gl.readPixels(
+        Math.floor(canvas.width * x),
+        Math.floor(canvas.height * y),
+        1,
+        1,
+        gl.RGBA,
+        gl.UNSIGNED_BYTE,
+        pixel
+      );
+      if (pixel[0] + pixel[1] + pixel[2] > 45) nonBackground++;
+    }
+    return nonBackground;
+  });
+  expect(nonBackgroundSamples).toBeGreaterThan(2);
   expect(errors).toEqual([]);
 });
 
@@ -76,7 +102,7 @@ test("clicking a card animates detail page in; close returns", async ({ page }) 
   await expect(page.locator("#detail")).toBeVisible();
   await expect(page.locator("#detailTitle")).not.toHaveText("");
   const href = await page.locator("#visitLink").getAttribute("href");
-  expect(href).toMatch(/^https:\/\/.*jbf\.com/);
+  expect(href).toMatch(/^(https?|file):/);
 
   // detail page actually covers the viewport (slid in)
   const box = await page.locator("#detail").boundingBox();
@@ -91,6 +117,25 @@ test("clicking a card animates detail page in; close returns", async ({ page }) 
     return Math.hypot(p.x, p.y, p.z);
   });
   expect(cam).toBeLessThan(0.1);
+});
+
+test("art mode shows the same bookmarks as gallery artwork", async ({ page }) => {
+  await ready(page);
+  const manifest = await page.evaluate(() =>
+    fetch("shots/manifest.json").then(r => r.json())
+  );
+
+  await page.getByRole("button", { name: "Art" }).click();
+  await expect(page.locator("#artGallery")).toBeVisible();
+  await expect(page.locator("body")).toHaveAttribute("data-view", "art");
+  await expect(page.locator(".art-card")).toHaveCount(manifest.length);
+
+  const firstCard = page.locator(".art-card").first();
+  await expect(firstCard).toHaveAttribute("href", manifest[0].url);
+  await expect(firstCard.locator("h2")).toHaveText(manifest[0].title);
+
+  await page.getByRole("button", { name: "Sphere" }).click();
+  await expect(page.locator("body")).toHaveAttribute("data-view", "sphere");
 });
 
 test("text contrast: HUD and close button readable", async ({ page }) => {

@@ -3,17 +3,28 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>JBF Fleet — A Spherical Gallery</title>
+<title>JBF Now — Spherical Bookmark Gallery</title>
 <style>
-  :root { color-scheme: dark; }
+  :root {
+    color-scheme: dark;
+    --bg: #0a0a0c;
+    --surface: #101014;
+    --ink: #f2f2f0;
+    --muted: #b9b9c0;
+    --quiet: #8a8a92;
+    --line: rgba(242, 242, 240, .16);
+  }
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  html, body { height: 100%; overflow: hidden; background: #0a0a0c; }
+  html, body { height: 100%; overflow: hidden; background: var(--bg); }
   body {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    color: #f2f2f0;
+    color: var(--ink);
     -webkit-font-smoothing: antialiased;
   }
-  #stage { position: fixed; inset: 0; cursor: grab; }
+  #stage {
+    position: fixed; inset: 0; cursor: grab;
+    transition: opacity .42s ease, filter .42s ease;
+  }
   #stage.dragging { cursor: grabbing; }
   canvas { display: block; }
 
@@ -22,13 +33,31 @@
   .hud--logo {
     top: 28px; left: 32px;
     font-size: 15px; font-weight: 700; letter-spacing: .34em;
-    color: #f2f2f0;
+    color: var(--ink);
   }
-  .hud--logo span { color: #8a8a92; font-weight: 400; }
+  .hud--logo span { color: var(--quiet); font-weight: 400; }
+  .hud--switch {
+    top: 20px; left: 50%; transform: translateX(-50%);
+    display: flex; gap: 4px; padding: 4px;
+    background: rgba(242,242,240,.08);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    pointer-events: auto;
+  }
+  .mode-btn {
+    min-width: 92px; height: 34px;
+    border: none; border-radius: 6px;
+    background: transparent; color: var(--muted);
+    cursor: pointer;
+    font: 700 11px/1 "Helvetica Neue", Helvetica, Arial, sans-serif;
+    letter-spacing: .14em; text-transform: uppercase;
+  }
+  .mode-btn:hover { color: var(--ink); background: rgba(242,242,240,.1); }
+  .mode-btn.active { background: var(--ink); color: var(--surface); }
   .hud--hint {
     bottom: 28px; left: 50%; transform: translateX(-50%);
     font-size: 11px; letter-spacing: .28em; text-transform: uppercase;
-    color: #b9b9c0;
+    color: var(--muted);
     display: flex; align-items: center; gap: 12px;
     transition: opacity .6s ease;
   }
@@ -38,21 +67,21 @@
   }
   .hud--count {
     bottom: 28px; right: 32px;
-    font-size: 11px; letter-spacing: .2em; color: #8a8a92;
+    font-size: 11px; letter-spacing: .2em; color: var(--quiet);
     font-variant-numeric: tabular-nums;
   }
   .hud--label {
     top: 28px; right: 32px;
     font-size: 11px; letter-spacing: .28em; text-transform: uppercase;
-    color: #8a8a92;
+    color: var(--quiet);
   }
 
   /* hover title that follows cursor */
   #hoverTitle {
     position: fixed; z-index: 9; pointer-events: none;
     font-size: 13px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
-    color: #f2f2f0; background: rgba(10,10,12,.78);
-    padding: 8px 14px; border: 1px solid rgba(242,242,240,.16);
+    color: var(--ink); background: rgba(10,10,12,.78);
+    padding: 8px 14px; border: 1px solid var(--line);
     transform: translate(14px, 14px);
     opacity: 0; transition: opacity .18s ease;
     white-space: nowrap;
@@ -61,7 +90,7 @@
   /* ---------- Detail page ---------- */
   #detail {
     position: fixed; inset: 0; z-index: 20;
-    background: #101014;
+    background: var(--surface);
     transform: translateY(100%);
     visibility: hidden;
     display: flex; flex-direction: column;
@@ -72,11 +101,11 @@
     padding: 24px 32px;
   }
   .detail-bar .brand {
-    font-size: 13px; font-weight: 700; letter-spacing: .34em; color: #f2f2f0;
+    font-size: 13px; font-weight: 700; letter-spacing: .34em; color: var(--ink);
   }
   #closeDetail {
     pointer-events: auto;
-    background: #f2f2f0; color: #101014;
+    background: var(--ink); color: var(--surface);
     border: none; cursor: pointer;
     font: 600 11px/1 "Helvetica Neue", Helvetica, Arial, sans-serif;
     letter-spacing: .22em; text-transform: uppercase;
@@ -91,39 +120,162 @@
   .detail-media { overflow: hidden; border-radius: 4px; }
   .detail-media img { width: 100%; height: auto; display: block; transform: scale(1.12); }
   .detail-copy .kicker {
-    font-size: 11px; letter-spacing: .3em; text-transform: uppercase; color: #8a8a92;
+    font-size: 11px; letter-spacing: .3em; text-transform: uppercase; color: var(--quiet);
     margin-bottom: 18px;
   }
   .detail-copy h1 {
     font-size: clamp(34px, 5vw, 64px); font-weight: 700; line-height: 1.02;
-    letter-spacing: -.01em; margin-bottom: 22px; color: #f2f2f0;
+    letter-spacing: 0; margin-bottom: 22px; color: var(--ink);
   }
   .detail-copy p { font-size: 15px; line-height: 1.7; color: #c7c7cd; max-width: 46ch; }
   #visitLink {
     display: inline-block; margin-top: 28px;
-    background: #f2f2f0; color: #101014; text-decoration: none;
+    background: var(--ink); color: var(--surface); text-decoration: none;
     font: 600 11px/1 "Helvetica Neue", Helvetica, Arial, sans-serif;
     letter-spacing: .22em; text-transform: uppercase;
     padding: 14px 26px; border-radius: 999px;
   }
   #visitLink:hover { background: #ffffff; }
+  #artGallery {
+    position: fixed; inset: 0; z-index: 8;
+    overflow-y: auto;
+    padding: 96px 32px 48px;
+    background: rgba(10,10,12,.94);
+    visibility: hidden; opacity: 0;
+    transform: translateY(22px);
+    pointer-events: none;
+    transition: opacity .34s ease, transform .34s ease, visibility .34s ease;
+  }
+  .art-shell { max-width: 1380px; margin: 0 auto; }
+  .art-head {
+    display: flex; align-items: end; justify-content: space-between;
+    gap: 24px; margin-bottom: 22px;
+  }
+  .art-head .kicker {
+    font-size: 11px; letter-spacing: .28em; text-transform: uppercase;
+    color: var(--quiet); margin-bottom: 12px;
+  }
+  .art-head h1 {
+    font-size: clamp(34px, 6vw, 82px);
+    line-height: .95; letter-spacing: 0;
+  }
+  .art-count {
+    color: var(--muted);
+    font-size: 11px; letter-spacing: .18em; text-transform: uppercase;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+  .art-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+  }
+  .art-card {
+    position: relative;
+    min-height: 280px;
+    display: flex; flex-direction: column; justify-content: space-between;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    color: var(--ink);
+    text-decoration: none;
+    background: #141418;
+    isolation: isolate;
+  }
+  .art-card img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    filter: saturate(1.08) contrast(1.04);
+    z-index: -2;
+  }
+  .art-card::after {
+    content: "";
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(7,7,9,.08), rgba(7,7,9,.78));
+    z-index: -1;
+  }
+  .art-card:hover { border-color: rgba(242,242,240,.42); }
+  .art-card-top,
+  .art-card-bottom { padding: 16px; }
+  .art-card-index {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-width: 38px; height: 26px;
+    background: rgba(7,7,9,.62);
+    border: 1px solid rgba(242,242,240,.2);
+    border-radius: 999px;
+    font-size: 11px; font-weight: 700;
+    font-variant-numeric: tabular-nums;
+  }
+  .art-card h2 {
+    font-size: 19px; line-height: 1.08; letter-spacing: 0;
+    margin-bottom: 10px; max-width: 16ch;
+    text-wrap: balance;
+  }
+  .art-card p {
+    color: #d8d8dd;
+    font-size: 11px; letter-spacing: .12em; text-transform: uppercase;
+    overflow-wrap: anywhere;
+  }
+  body[data-view="art"] #stage {
+    opacity: .16;
+    filter: blur(10px) saturate(.76);
+    pointer-events: none;
+  }
+  body[data-view="art"] #artGallery {
+    visibility: visible; opacity: 1; transform: translateY(0);
+    pointer-events: auto;
+  }
+  body[data-view="art"] .hud--hint,
+  body[data-view="art"] .hud--count,
+  body[data-view="art"] .hud--label { opacity: 0; }
   @media (max-width: 820px) {
+    .hud--logo { top: 20px; left: 18px; font-size: 12px; letter-spacing: .22em; }
+    .hud--label { display: none; }
+    .hud--switch { top: 14px; right: 14px; left: auto; transform: none; }
+    .mode-btn { min-width: 76px; height: 32px; letter-spacing: .1em; }
+    .hud--hint, .hud--count { display: none; }
+    #hoverTitle { display: none; }
     .detail-body { grid-template-columns: 1fr; gap: 24px; overflow-y: auto; align-items: start; }
+    .detail-bar { padding: 20px 18px; }
+    .detail-body { padding: 0 18px 32px; }
+    #artGallery { padding: 78px 16px 44px; }
+    .art-head { align-items: start; flex-direction: column; }
+    .art-grid { grid-template-columns: repeat(auto-fit, minmax(168px, 1fr)); gap: 12px; }
+    .art-card { min-height: 238px; }
+    .art-card h2 { font-size: 16px; }
   }
 </style>
 </head>
-<body>
+<body data-view="sphere">
   <div id="stage"></div>
 
-  <div class="hud hud--logo">JBF<span>&nbsp;/ FLEET</span></div>
-  <div class="hud hud--label">jbf.com apps on Vercel</div>
+  <div class="hud hud--logo">JBF<span>&nbsp;/ NOW</span></div>
+  <div class="hud hud--switch" role="group" aria-label="Gallery view">
+    <button class="mode-btn active" type="button" data-view="sphere" aria-pressed="true">Sphere</button>
+    <button class="mode-btn" type="button" data-view="art" aria-pressed="false">Art</button>
+  </div>
+  <div class="hud hud--label">Chrome Now bookmarks</div>
   <div class="hud hud--hint" id="hint">Drag to explore &nbsp;·&nbsp; Click a card to open</div>
-  <div class="hud hud--count" id="count">— LIVE APPS</div>
+  <div class="hud hud--count" id="count">— BOOKMARKS</div>
   <div id="hoverTitle"></div>
+
+  <section id="artGallery" aria-hidden="true">
+    <div class="art-shell">
+      <div class="art-head">
+        <div>
+          <div class="kicker">Bookmark Art Wall</div>
+          <h1>Now</h1>
+        </div>
+        <div class="art-count" id="galleryCount">— BOOKMARKS</div>
+      </div>
+      <div class="art-grid" id="artGrid"></div>
+    </div>
+  </section>
 
   <section id="detail" aria-hidden="true">
     <div class="detail-bar">
-      <div class="brand">JBF / FLEET</div>
+      <div class="brand">JBF / NOW</div>
       <button id="closeDetail">Close</button>
     </div>
     <div class="detail-body">
@@ -132,7 +284,7 @@
         <div class="kicker" id="detailKicker">Case Study</div>
         <h1 id="detailTitle">Project</h1>
         <p id="detailText"></p>
-        <a id="visitLink" href="#" target="_blank" rel="noopener">Visit Site ↗</a>
+        <a id="visitLink" href="#" target="_blank" rel="noopener noreferrer">Open Bookmark</a>
       </div>
     </div>
   </section>
@@ -157,11 +309,42 @@ import gsap from "gsap";
 function prettyName(slug) {
   return slug.replace(/[-_]+/g, " ").replace(/\b\w/g, c => c.toUpperCase());
 }
+function displayName(app) {
+  return app.title || prettyName(app.name || "bookmark");
+}
+function shortDomain(app) {
+  return app.domain || "Bookmark";
+}
+function hashString(value) {
+  let hash = 2166136261;
+  for (let i = 0; i < value.length; i++) {
+    hash ^= value.charCodeAt(i);
+    hash = Math.imul(hash, 16777619);
+  }
+  return hash >>> 0;
+}
+function wrapCanvasText(ctx, text, x, y, maxWidth, lineHeight, maxLines) {
+  const words = String(text).split(/\s+/).filter(Boolean);
+  const lines = [];
+  let line = "";
+  for (const word of words) {
+    const test = line ? `${line} ${word}` : word;
+    if (ctx.measureText(test).width <= maxWidth || !line) {
+      line = test;
+    } else {
+      lines.push(line);
+      line = word;
+      if (lines.length === maxLines - 1) break;
+    }
+  }
+  if (line && lines.length < maxLines) lines.push(line);
+  for (let i = 0; i < lines.length; i++) ctx.fillText(lines[i], x, y + i * lineHeight);
+}
 
 const RADIUS = 30;
 const stage = document.getElementById("stage");
 
-const renderer = new THREE.WebGLRenderer({ antialias: true });
+const renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true });
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 renderer.setSize(window.innerWidth, window.innerHeight);
 stage.appendChild(renderer.domElement);
@@ -193,24 +376,59 @@ const world = new THREE.Group();      // rotates with drag
 world.add(shell, stars);
 scene.add(world);
 
-/* ---------- card textures: app screenshot with fallback gradient ---------- */
-function fallbackTexture(i, title) {
+/* ---------- bookmark artwork and screenshots ---------- */
+function makeBookmarkArt(i, title, domain, includeLabel = true) {
   const c = document.createElement("canvas");
   c.width = 640; c.height = 480;
   const g = c.getContext("2d");
-  const hue = (i * 47) % 360;
+  const seed = hashString(`${title}|${domain}|${i}`);
+  const hue = seed % 360;
+  const hue2 = (hue + 58 + (seed % 44)) % 360;
+  g.fillStyle = `hsl(${hue}, 36%, 12%)`;
+  g.fillRect(0, 0, 640, 480);
   const grad = g.createLinearGradient(0, 0, 640, 480);
-  grad.addColorStop(0, `hsl(${hue}, 38%, 30%)`);
-  grad.addColorStop(1, `hsl(${(hue + 60) % 360}, 42%, 14%)`);
+  grad.addColorStop(0, `hsl(${hue}, 56%, 34%)`);
+  grad.addColorStop(.52, `hsl(${hue2}, 58%, 22%)`);
+  grad.addColorStop(1, `hsl(${(hue + 140) % 360}, 42%, 10%)`);
   g.fillStyle = grad; g.fillRect(0, 0, 640, 480);
-  g.fillStyle = "rgba(255,255,255,.85)";
-  g.font = "700 40px Helvetica, Arial, sans-serif";
-  g.fillText(title.toUpperCase().slice(0, 24), 36, 430);
+  g.globalAlpha = .82;
+  for (let band = 0; band < 7; band++) {
+    const offset = ((seed >> (band * 3)) & 63) - 20;
+    g.fillStyle = band % 2 ? "rgba(255,255,255,.1)" : "rgba(0,0,0,.18)";
+    g.save();
+    g.translate(320, 240);
+    g.rotate(((hue + band * 18) / 180) * Math.PI);
+    g.fillRect(-420 + offset * 2, -210 + band * 58, 840, 26 + band * 4);
+    g.restore();
+  }
+  g.globalAlpha = 1;
+  if (includeLabel) {
+    g.fillStyle = "rgba(7,7,9,.62)";
+    g.fillRect(0, 342, 640, 138);
+    g.fillStyle = "rgba(255,255,255,.88)";
+    g.font = "700 16px Helvetica, Arial, sans-serif";
+    g.fillText(String(domain).toUpperCase().slice(0, 46), 36, 386);
+    g.fillStyle = "#ffffff";
+    g.font = "700 38px Helvetica, Arial, sans-serif";
+    wrapCanvasText(g, title, 36, 432, 560, 42, 2);
+  }
   const t = new THREE.CanvasTexture(c);
   t.colorSpace = THREE.SRGBColorSpace;
-  return t;
+  return { texture: t, dataUrl: c.toDataURL("image/jpeg", .9) };
 }
 const texLoader = new THREE.TextureLoader();
+const artCache = new Map();
+const wallArtCache = new Map();
+function artFor(app, i) {
+  const key = `${app.url || app.name || i}`;
+  if (!artCache.has(key)) artCache.set(key, makeBookmarkArt(i, displayName(app), shortDomain(app)));
+  return artCache.get(key);
+}
+function wallArtFor(app, i) {
+  const key = `${app.url || app.name || i}`;
+  if (!wallArtCache.has(key)) wallArtCache.set(key, makeBookmarkArt(i, displayName(app), shortDomain(app), false));
+  return wallArtCache.get(key);
+}
 
 /* ---------- build cards on inner sphere from the jbf.com fleet ---------- */
 const cards = [];
@@ -230,7 +448,8 @@ function buildCards(apps) {
   for (const row of distributeRows(apps.length)) {
     for (let k = 0; k < row.n; k++) {
       const app = apps[i];
-      const title = prettyName(app.name);
+      const title = displayName(app);
+      const art = artFor(app, i);
       const phi = Math.PI / 2 - row.lat;                       // polar angle
       const theta = (k / row.n) * Math.PI * 2 + row.lat * 0.7; // stagger rows
       const pos = new THREE.Vector3().setFromSphericalCoords(RADIUS, phi, theta);
@@ -238,20 +457,22 @@ function buildCards(apps) {
       const w = 10, h = 7.5;
       const mat = new THREE.MeshBasicMaterial({ side: THREE.DoubleSide, transparent: true, opacity: 0 });
       const mesh = new THREE.Mesh(new THREE.PlaneGeometry(w, h), mat);
-      mat.map = fallbackTexture(i, title);
-      texLoader.load(app.img, t => {
-        t.colorSpace = THREE.SRGBColorSpace;
-        mat.map = t;
-        mat.needsUpdate = true;
-      });
+      mat.map = art.texture;
+      if (app.img) {
+        texLoader.load(app.img, t => {
+          t.colorSpace = THREE.SRGBColorSpace;
+          mat.map = t;
+          mat.needsUpdate = true;
+        });
+      }
 
       mesh.position.copy(pos);
       mesh.lookAt(0, 0, 0);
       mesh.userData = {
         title,
-        domain: app.domain,
+        domain: shortDomain(app),
         url: app.url,
-        img: app.img,
+        img: app.img || art.dataUrl,
         description: app.description,
         index: i
       };
@@ -265,12 +486,73 @@ function buildCards(apps) {
       i++;
     }
   }
-  document.getElementById("count").textContent = `${cards.length} LIVE APPS`;
+  document.getElementById("count").textContent = `${cards.length} BOOKMARKS`;
+}
+
+function buildArtGallery(apps) {
+  const grid = document.getElementById("artGrid");
+  const fragment = document.createDocumentFragment();
+  apps.forEach((app, i) => {
+    const title = displayName(app);
+    const domain = shortDomain(app);
+    const art = wallArtFor(app, i);
+    const card = document.createElement("a");
+    card.className = "art-card";
+    card.href = app.url;
+    card.target = "_blank";
+    card.rel = "noopener noreferrer";
+
+    const img = document.createElement("img");
+    img.src = art.dataUrl;
+    img.alt = "";
+    card.appendChild(img);
+
+    const top = document.createElement("div");
+    top.className = "art-card-top";
+    const index = document.createElement("span");
+    index.className = "art-card-index";
+    index.textContent = String(i + 1).padStart(2, "0");
+    top.appendChild(index);
+
+    const bottom = document.createElement("div");
+    bottom.className = "art-card-bottom";
+    const heading = document.createElement("h2");
+    heading.textContent = title;
+    const host = document.createElement("p");
+    host.textContent = domain;
+    bottom.append(heading, host);
+
+    card.append(top, bottom);
+    fragment.appendChild(card);
+  });
+  grid.replaceChildren(fragment);
+  document.getElementById("galleryCount").textContent = `${apps.length} BOOKMARKS`;
 }
 
 fetch("shots/manifest.json")
   .then(r => r.json())
-  .then(buildCards);
+  .then(apps => {
+    buildCards(apps);
+    buildArtGallery(apps);
+  });
+
+let currentView = "sphere";
+const modeButtons = [...document.querySelectorAll(".mode-btn")];
+function setView(mode) {
+  currentView = mode === "art" ? "art" : "sphere";
+  document.body.dataset.view = currentView;
+  document.getElementById("artGallery").setAttribute("aria-hidden", String(currentView !== "art"));
+  modeButtons.forEach(btn => {
+    const active = btn.dataset.view === currentView;
+    btn.classList.toggle("active", active);
+    btn.setAttribute("aria-pressed", String(active));
+  });
+  if (currentView === "art") {
+    setHover(null);
+    hint.classList.add("hidden");
+  }
+}
+modeButtons.forEach(btn => btn.addEventListener("click", () => setView(btn.dataset.view)));
 
 /* ---------- lenis-style drag: eased follow + inertia ---------- */
 const rot = {
@@ -288,7 +570,7 @@ let detailOpen = false, animatingOpen = false;
 const hint = document.getElementById("hint");
 
 stage.addEventListener("pointerdown", e => {
-  if (detailOpen || animatingOpen) return;
+  if (detailOpen || animatingOpen || currentView !== "sphere") return;
   dragging = true; moved = 0;
   px = downX = e.clientX; py = downY = e.clientY;
   rot.vYaw = rot.vPitch = 0;
@@ -322,7 +604,7 @@ stage.addEventListener("pointercancel", () => endDrag(null));
 
 /* wheel = horizontal orbit, same eased pipeline */
 window.addEventListener("wheel", e => {
-  if (detailOpen) return;
+  if (detailOpen || currentView !== "sphere") return;
   rot.tYaw += (e.deltaY + e.deltaX) * 0.0011;
   hint.classList.add("hidden");
 }, { passive: true });
@@ -339,7 +621,7 @@ function setHover(mesh) {
   hovered = mesh;
   if (mesh) {
     gsap.to(mesh.scale, { x: 1.1, y: 1.1, z: 1.1, duration: 0.45, ease: "power3.out" });
-    hoverEl.textContent = `${mesh.userData.title} — ${mesh.userData.domain}`;
+    hoverEl.textContent = `${mesh.userData.title} - ${mesh.userData.domain}`;
     hoverEl.style.opacity = 1;
   } else {
     hoverEl.style.opacity = 0;
@@ -368,12 +650,12 @@ function openDetail(mesh) {
   animatingOpen = true;
   const d = mesh.userData;
   detailTitle.textContent = d.title;
-  detailKicker.textContent = `${d.domain} — ${String(d.index + 1).padStart(2, "0")}`;
-  detailText.textContent = d.description ||
-    `${d.title} is a live app in the jbf.com fleet, deployed on Vercel at ${d.domain}. ` +
-    `Close this page to return to the sphere and keep exploring.`;
+  detailKicker.textContent = `${d.domain} - ${String(d.index + 1).padStart(2, "0")}`;
+  detailText.textContent =
+    `${d.title} is saved in the Chrome Now bookmark folder. Open it to continue from ${d.domain}.`;
   detailImg.src = d.img;
   visitLink.href = d.url;
+  visitLink.textContent = d.url.startsWith("file:") ? "Open Local Bookmark" : "Open Bookmark";
   detail.setAttribute("aria-hidden", "false");
   setHover(null);
 
@@ -434,7 +716,7 @@ function tick() {
   rot.pitch += (rot.tPitch - rot.pitch) * EASE;
   world.rotation.set(rot.pitch, rot.yaw, 0);
 
-  if (!detailOpen && !animatingOpen && !dragging) {
+  if (!detailOpen && !animatingOpen && !dragging && currentView === "sphere") {
     raycaster.setFromCamera(mouse, camera);
     const hit = raycaster.intersectObjects(cards)[0];
     setHover(hit ? hit.object : null);
@@ -454,7 +736,9 @@ window.addEventListener("resize", () => {
 
 /* test hooks */
 window.__app = {
-  rot, cards, camera, world,
+  rot, cards, camera, world, renderer,
+  setView,
+  viewMode: () => currentView,
   screenPos(mesh) {
     const v = mesh.getWorldPosition(new THREE.Vector3()).project(camera);
     return {

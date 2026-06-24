@@ -1,345 +1,706 @@
 [
   {
-    "name": "ai-gis-red-cross-workbench",
-    "domain": "ainow.jbf.com",
-    "url": "https://ainow.jbf.com",
-    "img": "shots/ai-gis-red-cross-workbench.jpg",
-    "description": ""
+    "name": "jbf-fleet-a-spherical-gallery",
+    "title": "JBF Fleet — A Spherical Gallery",
+    "domain": "sphere-gallery-omega.vercel.app",
+    "url": "https://sphere-gallery-omega.vercel.app/",
+    "img": "",
+    "description": "Saved in Chrome Now bookmarks. Source: sphere-gallery-omega.vercel.app.",
+    "source": "Chrome Bookmarks Bar / Now",
+    "sourcePath": "bookmark_bar / Bookmarks Bar / Now / JBF Fleet — A Spherical Gallery",
+    "sourceIndex": 1
   },
   {
-    "name": "arc-real-estate",
-    "domain": "realestate.jbf.com",
-    "url": "https://realestate.jbf.com",
-    "img": "shots/arc-real-estate.jpg",
-    "description": ""
+    "name": "sdk-before-after",
+    "title": "SDK Before After",
+    "domain": "active-projects-git-claude-arcgis-rest-fdefb6-jbf-2539-e1ec6bfb.vercel.app",
+    "url": "https://active-projects-git-claude-arcgis-rest-fdefb6-jbf-2539-e1ec6bfb.vercel.app/restyle-demo/",
+    "img": "",
+    "description": "Saved in Chrome Now bookmarks. Source: active-projects-git-claude-arcgis-rest-fdefb6-jbf-2539-e1ec6bfb.vercel.app.",
+    "source": "Chrome Bookmarks Bar / Now",
+    "sourcePath": "bookmark_bar / Bookmarks Bar / Now / SDK Before After",
+    "sourceIndex": 2
   },
   {
-    "name": "arc-real-estate-drive-time",
-    "domain": "drivetime.jbf.com",
-    "url": "https://drivetime.jbf.com",
-    "img": "shots/arc-real-estate-drive-time.jpg",
-    "description": "American Red Cross real estate drive-time staffing model"
+    "name": "patient-animal-resource",
+    "title": "Patient Animal Resource",
+    "domain": "animals.jbf.com",
+    "url": "https://animals.jbf.com/",
+    "img": "",
+    "description": "Saved in Chrome Now bookmarks. Source: animals.jbf.com.",
+    "source": "Chrome Bookmarks Bar / Now",
+    "sourcePath": "bookmark_bar / Bookmarks Bar / Now / Patient Animal Resource",
+    "sourceIndex": 3
   },
   {
-    "name": "ask-clara",
-    "domain": "clara.jbf.com",
-    "url": "https://clara.jbf.com",
-    "img": "shots/ask-clara.jpg",
-    "description": ""
+    "name": "red-cross-master-geography-catalog",
+    "title": "Red Cross Master Geography Catalog",
+    "domain": "red-cross-data.vercel.app",
+    "url": "https://red-cross-data.vercel.app/#downloads",
+    "img": "",
+    "description": "Saved in Chrome Now bookmarks. Source: red-cross-data.vercel.app.",
+    "source": "Chrome Bookmarks Bar / Now",
+    "sourcePath": "bookmark_bar / Bookmarks Bar / Now / Red Cross Master Geography Catalog",
+    "sourceIndex": 4
   },
   {
-    "name": "atlas",
-    "domain": "atlas.jbf.com",
-    "url": "https://atlas.jbf.com",
-    "img": "shots/atlas.jpg",
-    "description": ""
+    "name": "rapt-4-command-console",
+    "title": "RAPT 4 Command Console",
+    "domain": "rapt.jbf.com",
+    "url": "https://rapt.jbf.com/",
+    "img": "shots/rapt-4.jpg",
+    "description": "Saved in Chrome Now bookmarks. Source: rapt.jbf.com.",
+    "source": "Chrome Bookmarks Bar / Now",
+    "sourcePath": "bookmark_bar / Bookmarks Bar / Now / RAPT 4 Command Console",
+    "sourceIndex": 5
   },
   {
-    "name": "biomed-blood-servicesv2",
-    "domain": "biomed.jbf.com",
-    "url": "https://biomed.jbf.com",
-    "img": "shots/biomed-blood-servicesv2.jpg",
-    "description": "BioMed donor education + presentation hub (future biomed.jbf.com)"
-  },
-  {
-    "name": "brain-dump",
-    "domain": "brain.jbf.com",
-    "url": "https://brain.jbf.com",
-    "img": "shots/brain-dump.jpg",
-    "description": ""
-  },
-  {
-    "name": "cascade1",
-    "domain": "cascade1.jbf.com",
-    "url": "https://cascade1.jbf.com",
-    "img": "shots/cascade1.jpg",
-    "description": "Project Cascade — conversational, anticipatory emergency mapping demo (synthetic Cascade County data)"
-  },
-  {
-    "name": "cascade2",
-    "domain": "tornadoalert.jbf.com",
-    "url": "https://tornadoalert.jbf.com",
-    "img": "shots/cascade2.jpg",
-    "description": "Cascade Demo V2 — conversational emergency mapping on real public data (Pinellas County, FL). Sibling to cascade-demo and ops.jbf.com."
-  },
-  {
-    "name": "cascade3",
-    "domain": "cascade3.jbf.com",
-    "url": "https://cascade3.jbf.com",
-    "img": "shots/cascade3.jpg",
-    "description": ""
-  },
-  {
-    "name": "chapter-view",
-    "domain": "donor-map.jbf.com",
-    "url": "https://donor-map.jbf.com",
-    "img": "shots/chapter-view.jpg",
-    "description": "Source repo for Community Mobilization 4.0, the coded ArcGIS map/app served at https://maps.jbf.com/chapter-view/ and embedded in ArcGIS Experience Builder."
-  },
-  {
-    "name": "coding-101",
-    "domain": "coding.jbf.com",
-    "url": "https://coding.jbf.com",
-    "img": "shots/coding-101.jpg",
-    "description": "Coding 101 — left-rail teaching site at coding.jbf.com (Coding, Codex, State Demo, Maps Demo, Search as Code)"
-  },
-  {
-    "name": "community-ops-interviews",
-    "domain": "interview.jbf.com",
-    "url": "https://interview.jbf.com",
-    "img": "shots/community-ops-interviews.jpg",
-    "description": ""
-  },
-  {
-    "name": "county-jbf",
-    "domain": "county.jbf.com",
-    "url": "https://county.jbf.com",
-    "img": "shots/county-jbf.jpg",
-    "description": "Three-panel county intelligence platform with ArcGIS map"
-  },
-  {
-    "name": "cpep-redcross-programs",
-    "domain": "cpep.jbf.com",
-    "url": "https://cpep.jbf.com",
-    "img": "shots/cpep-redcross-programs.jpg",
-    "description": "Private Red Cross program transition intelligence workspace for CPEP data, transcripts, decisions, runbooks, and tracker planning."
-  },
-  {
-    "name": "cvs",
-    "domain": "maps.jbf.com",
-    "url": "https://maps.jbf.com",
-    "img": "shots/cvs.jpg",
-    "description": "maps.jbf.com routing shell. Its /chapter-view route proxies to the coded Community Mobilization 4.0 app in the chapter-view repo."
-  },
-  {
-    "name": "da-field-lookup",
-    "domain": "da.jbf.com",
-    "url": "https://da.jbf.com",
-    "img": "shots/da-field-lookup.jpg",
-    "description": ""
-  },
-  {
-    "name": "dragon-memory",
-    "domain": "memory.jbf.com",
-    "url": "https://memory.jbf.com",
-    "img": "shots/dragon-memory.jpg",
-    "description": "Portable GitHub-backed memory system for Claude Code, Codex, Obsidian Sync, and mobile capture"
-  },
-  {
-    "name": "esri-restyle-demo",
-    "domain": "restyle.jbf.com",
-    "url": "https://restyle.jbf.com",
-    "img": "shots/esri-restyle-demo.jpg",
-    "description": "ArcGIS Maps SDK live re-styling demo — same data, your design, zero risk to the source"
-  },
-  {
-    "name": "final-mile-assessment",
-    "domain": "lastmile.jbf.com",
-    "url": "https://lastmile.jbf.com",
-    "img": "shots/final-mile-assessment.jpg",
-    "description": ""
-  },
-  {
-    "name": "first-project",
-    "domain": "tour.jbf.com",
-    "url": "https://tour.jbf.com",
-    "img": "shots/first-project.jpg",
-    "description": ""
-  },
-  {
-    "name": "hannah-community-mobilization",
-    "domain": "hannah.jbf.com",
-    "url": "https://hannah.jbf.com",
-    "img": "shots/hannah-community-mobilization.jpg",
-    "description": ""
-  },
-  {
-    "name": "hfc-lives-saved",
-    "domain": "livesaved.jbf.com",
-    "url": "https://livesaved.jbf.com",
-    "img": "shots/hfc-lives-saved.jpg",
-    "description": "Home Fire Campaign Lives Saved ArcGIS dashboard"
-  },
-  {
-    "name": "intel-jbf",
-    "domain": "intel.jbf.com",
-    "url": "https://intel.jbf.com",
-    "img": "shots/intel-jbf.jpg",
-    "description": "Red Cross Intel — chapter/region/division-scoped briefing dashboard (Tier 2 of Smart-Query Platform)"
-  },
-  {
-    "name": "jbf-knowledge-base",
-    "domain": "jbf.com",
-    "url": "https://jbf.com",
-    "img": "shots/jbf-knowledge-base.jpg",
-    "description": ""
-  },
-  {
-    "name": "jbf-tools",
-    "domain": "tools.jbf.com",
-    "url": "https://tools.jbf.com",
-    "img": "shots/jbf-tools.jpg",
-    "description": "Hub for browser-based ArcGIS/GIS tools — tools.jbf.com"
-  },
-  {
-    "name": "kg-explainer",
-    "domain": "kg.jbf.com",
-    "url": "https://kg.jbf.com",
-    "img": "shots/kg-explainer.jpg",
-    "description": ""
-  },
-  {
-    "name": "london-restaurant-guide",
-    "domain": "london.jbf.com",
-    "url": "https://london.jbf.com",
-    "img": "shots/london-restaurant-guide.jpg",
-    "description": ""
-  },
-  {
-    "name": "museum",
-    "domain": "museum.jbf.com",
-    "url": "https://museum.jbf.com",
-    "img": "shots/museum.jpg",
-    "description": ""
-  },
-  {
-    "name": "museum-2050",
-    "domain": "2050.jbf.com",
-    "url": "https://2050.jbf.com",
-    "img": "shots/museum-2050.jpg",
-    "description": ""
-  },
-  {
-    "name": "noaa-humanitarian-gis-hub",
-    "domain": "noaa.jbf.com",
-    "url": "https://noaa.jbf.com",
-    "img": "shots/noaa-humanitarian-gis-hub.jpg",
-    "description": ""
-  },
-  {
-    "name": "obsidian-jbf",
-    "domain": "obsidian.jbf.com",
-    "url": "https://obsidian.jbf.com",
-    "img": "shots/obsidian-jbf.jpg",
-    "description": ""
-  },
-  {
-    "name": "pma-nav-mockups",
-    "domain": "pma-nav.jbf.com",
-    "url": "https://pma-nav.jbf.com",
-    "img": "shots/pma-nav-mockups.jpg",
-    "description": ""
-  },
-  {
-    "name": "pma-suite",
-    "domain": "pma.jbf.com",
-    "url": "https://pma.jbf.com",
-    "img": "shots/pma-suite.jpg",
-    "description": ""
+    "name": "red-cross-gis-data-assistant",
+    "title": "Red Cross GIS Data Assistant",
+    "domain": "red-cross-gis-data-assistant.vercel.app",
+    "url": "https://red-cross-gis-data-assistant.vercel.app/",
+    "img": "",
+    "description": "Saved in Chrome Now bookmarks. Source: red-cross-gis-data-assistant.vercel.app.",
+    "source": "Chrome Bookmarks Bar / Now",
+    "sourcePath": "bookmark_bar / Bookmarks Bar / Now / Red Cross GIS Data Assistant",
+    "sourceIndex": 6
   },
   {
     "name": "project-inventory",
+    "title": "Project Inventory",
     "domain": "inventory.jbf.com",
-    "url": "https://inventory.jbf.com",
+    "url": "https://inventory.jbf.com/",
     "img": "shots/project-inventory.jpg",
-    "description": "Searchable, sortable inventory of all 137 Vercel projects with tech stack"
+    "description": "Saved in Chrome Now bookmarks. Source: inventory.jbf.com.",
+    "source": "Chrome Bookmarks Bar / Now",
+    "sourcePath": "bookmark_bar / Bookmarks Bar / Now / Project Inventory",
+    "sourceIndex": 7
   },
   {
-    "name": "rapt-4",
-    "domain": "rapt.jbf.com",
-    "url": "https://rapt.jbf.com",
-    "img": "shots/rapt-4.jpg",
-    "description": ""
+    "name": "hanna-v2",
+    "title": "Hanna V2",
+    "domain": "hannahv2.jbf.com",
+    "url": "https://hannahv2.jbf.com/",
+    "img": "",
+    "description": "Saved in Chrome Now bookmarks. Source: hannahv2.jbf.com.",
+    "source": "Chrome Bookmarks Bar / Now",
+    "sourcePath": "bookmark_bar / Bookmarks Bar / Now / Hanna V2",
+    "sourceIndex": 8
   },
   {
-    "name": "realign-realestate",
+    "name": "chapter-realignment-engine-american-red-cross",
+    "title": "Chapter Realignment Engine — American Red Cross",
     "domain": "realign.jbf.com",
-    "url": "https://realign.jbf.com",
+    "url": "https://realign.jbf.com/#",
     "img": "shots/realign-realestate.jpg",
-    "description": "FMAS — Data-driven framework for evaluating Red Cross real estate portfolio"
+    "description": "Saved in Chrome Now bookmarks. Source: realign.jbf.com.",
+    "source": "Chrome Bookmarks Bar / Now",
+    "sourcePath": "bookmark_bar / Bookmarks Bar / Now / Chapter Realignment Engine — American Red Cross",
+    "sourceIndex": 9
   },
   {
-    "name": "red-cross-language-access-demo",
-    "domain": "languages.jbf.com",
-    "url": "https://languages.jbf.com",
-    "img": "shots/red-cross-language-access-demo.jpg",
-    "description": "Multilingual volunteer intake and emergency alert mirror prototype"
+    "name": "jeff-franzen-rc-map-style-lab",
+    "title": "Jeff Franzen RC Map Style Lab",
+    "domain": "vector-basemap-lab.vercel.app",
+    "url": "https://vector-basemap-lab.vercel.app/",
+    "img": "",
+    "description": "Saved in Chrome Now bookmarks. Source: vector-basemap-lab.vercel.app.",
+    "source": "Chrome Bookmarks Bar / Now",
+    "sourcePath": "bookmark_bar / Bookmarks Bar / Now / Jeff Franzen RC Map Style Lab",
+    "sourceIndex": 10
   },
   {
-    "name": "red-cross-map-base-template",
-    "domain": "basemap.jbf.com",
-    "url": "https://basemap.jbf.com",
-    "img": "shots/red-cross-map-base-template.jpg",
-    "description": "Reusable Red Cross map base template from livessaved.jbf.com"
-  },
-  {
-    "name": "region-maps",
-    "domain": "regions.jbf.com",
-    "url": "https://regions.jbf.com",
-    "img": "shots/region-maps.jpg",
-    "description": "Region Maps — standalone Python-built regional map demo (regions.jbf.com)"
-  },
-  {
-    "name": "reintel-strategy-realestate",
+    "name": "real-estate-facilities-intelligence-reintel-jbf-com-intel",
+    "title": "Real Estate Facilities Intelligence reintel.jbf.com intel",
     "domain": "reintel.jbf.com",
-    "url": "https://reintel.jbf.com",
+    "url": "https://reintel.jbf.com/",
     "img": "shots/reintel-strategy-realestate.jpg",
-    "description": "Facilities and CoStar real estate strategy intelligence for reintel.jbf.com"
+    "description": "Saved in Chrome Now bookmarks. Source: reintel.jbf.com.",
+    "source": "Chrome Bookmarks Bar / Now",
+    "sourcePath": "bookmark_bar / Bookmarks Bar / Now / Real Estate Facilities Intelligence reintel.jbf.com intel",
+    "sourceIndex": 11
   },
   {
-    "name": "response-gap-helene",
-    "domain": "helenegap.jbf.com",
-    "url": "https://helenegap.jbf.com",
-    "img": "shots/response-gap-helene.jpg",
-    "description": "Response Gap - Hurricane Helene: FEMA IHP x ALICE overlay (helenegap.jbf.com)"
+    "name": "wyar",
+    "title": "WYAR",
+    "domain": "wyar.jbf.com",
+    "url": "https://wyar.jbf.com/",
+    "img": "",
+    "description": "Saved in Chrome Now bookmarks. Source: wyar.jbf.com.",
+    "source": "Chrome Bookmarks Bar / Now",
+    "sourcePath": "bookmark_bar / Bookmarks Bar / Now / WYAR",
+    "sourceIndex": 12
   },
   {
-    "name": "sitaware",
+    "name": "neris-api",
+    "title": "NERIS API",
+    "domain": "neris-api-data.vercel.app",
+    "url": "https://neris-api-data.vercel.app/",
+    "img": "",
+    "description": "Saved in Chrome Now bookmarks. Source: neris-api-data.vercel.app.",
+    "source": "Chrome Bookmarks Bar / Now",
+    "sourcePath": "bookmark_bar / Bookmarks Bar / Now / NERIS API",
+    "sourceIndex": 13
+  },
+  {
+    "name": "obsidian-grafify",
+    "title": "Obsidian Grafify",
+    "domain": "Local file",
+    "url": "file:///Users/jefffranzen/dev/vault-graph/graphify-out/graph.html",
+    "img": "",
+    "description": "Saved in Chrome Now bookmarks. Source: Local file.",
+    "source": "Chrome Bookmarks Bar / Now",
+    "sourcePath": "bookmark_bar / Bookmarks Bar / Now / Obsidian Grafify",
+    "sourceIndex": 14
+  },
+  {
+    "name": "agol-layer-browser-arcgis-sdk",
+    "title": "AGOL Layer Browser — ArcGIS SDK",
+    "domain": "maps.jbf.com",
+    "url": "https://maps.jbf.com/agol-mapbox-v2",
+    "img": "shots/cvs.jpg",
+    "description": "Saved in Chrome Now bookmarks. Source: maps.jbf.com.",
+    "source": "Chrome Bookmarks Bar / Now",
+    "sourcePath": "bookmark_bar / Bookmarks Bar / Now / AGOL Layer Browser — ArcGIS SDK",
+    "sourceIndex": 15
+  },
+  {
+    "name": "sitaware-jbf-com",
+    "title": "sitaware.jbf.com",
     "domain": "sitaware.jbf.com",
-    "url": "https://sitaware.jbf.com",
+    "url": "https://sitaware.jbf.com/",
     "img": "shots/sitaware.jpg",
-    "description": "Dark 3x3 grid mobile map — standalone ArcGIS public data explorer"
+    "description": "Saved in Chrome Now bookmarks. Source: sitaware.jbf.com.",
+    "source": "Chrome Bookmarks Bar / Now",
+    "sourcePath": "bookmark_bar / Bookmarks Bar / Now / sitaware.jbf.com",
+    "sourceIndex": 16
+  },
+  {
+    "name": "universal-language",
+    "title": "Universal Language",
+    "domain": "languages.jbf.com",
+    "url": "https://languages.jbf.com/#top",
+    "img": "shots/red-cross-language-access-demo.jpg",
+    "description": "Saved in Chrome Now bookmarks. Source: languages.jbf.com.",
+    "source": "Chrome Bookmarks Bar / Now",
+    "sourcePath": "bookmark_bar / Bookmarks Bar / Now / Universal Language",
+    "sourceIndex": 17
+  },
+  {
+    "name": "northeast-division-dfsc-drive-times",
+    "title": "Northeast Division - DFSC Drive Times",
+    "domain": "experience.arcgis.com",
+    "url": "https://experience.arcgis.com/experience/8ea3d7f5d79b41808a8c558e6b5c26c6",
+    "img": "",
+    "description": "Saved in Chrome Now bookmarks. Source: experience.arcgis.com.",
+    "source": "Chrome Bookmarks Bar / Now",
+    "sourcePath": "bookmark_bar / Bookmarks Bar / Now / Northeast Division - DFSC Drive Times",
+    "sourceIndex": 18
+  },
+  {
+    "name": "flow",
+    "title": "Flow",
+    "domain": "blood-type-flow-tool.vercel.app",
+    "url": "https://blood-type-flow-tool.vercel.app/",
+    "img": "",
+    "description": "Saved in Chrome Now bookmarks. Source: blood-type-flow-tool.vercel.app.",
+    "source": "Chrome Bookmarks Bar / Now",
+    "sourcePath": "bookmark_bar / Bookmarks Bar / Now / Flow",
+    "sourceIndex": 19
+  },
+  {
+    "name": "coding-101-codex-101",
+    "title": "Coding 101 + Codex 101",
+    "domain": "coding.jbf.com",
+    "url": "https://coding.jbf.com/#codex-map",
+    "img": "shots/coding-101.jpg",
+    "description": "Saved in Chrome Now bookmarks. Source: coding.jbf.com.",
+    "source": "Chrome Bookmarks Bar / Now",
+    "sourcePath": "bookmark_bar / Bookmarks Bar / Now / Coding 101 + Codex 101",
+    "sourceIndex": 20
+  },
+  {
+    "name": "cascade-i",
+    "title": "Cascade I",
+    "domain": "cascade1.jbf.com",
+    "url": "https://cascade1.jbf.com/",
+    "img": "shots/cascade1.jpg",
+    "description": "Saved in Chrome Now bookmarks. Source: cascade1.jbf.com.",
+    "source": "Chrome Bookmarks Bar / Now",
+    "sourcePath": "bookmark_bar / Bookmarks Bar / Now / Cascade I",
+    "sourceIndex": 21
+  },
+  {
+    "name": "prompt-builder",
+    "title": "Prompt Builder",
+    "domain": "two-techniques.vercel.app",
+    "url": "https://two-techniques.vercel.app/beta.html",
+    "img": "",
+    "description": "Saved in Chrome Now bookmarks. Source: two-techniques.vercel.app.",
+    "source": "Chrome Bookmarks Bar / Now",
+    "sourcePath": "bookmark_bar / Bookmarks Bar / Now / Prompt Builder",
+    "sourceIndex": 22
+  },
+  {
+    "name": "real-estate-data-library-intel",
+    "title": "Real Estate Data Library - intel",
+    "domain": "red-cross-real-estate-data.vercel.app",
+    "url": "https://red-cross-real-estate-data.vercel.app/",
+    "img": "",
+    "description": "Saved in Chrome Now bookmarks. Source: red-cross-real-estate-data.vercel.app.",
+    "source": "Chrome Bookmarks Bar / Now",
+    "sourcePath": "bookmark_bar / Bookmarks Bar / Now / Real Estate Data Library - intel",
+    "sourceIndex": 23
+  },
+  {
+    "name": "clara-participant-intake",
+    "title": "Clara Participant Intake",
+    "domain": "docs.google.com",
+    "url": "https://docs.google.com/forms/d/e/1FAIpQLSeMC0pQhgy0vEDjeTWASGUb6WctVkld-TlpCsIRXagxmbbDvg/viewform",
+    "img": "",
+    "description": "Saved in Chrome Now bookmarks. Source: docs.google.com.",
+    "source": "Chrome Bookmarks Bar / Now",
+    "sourcePath": "bookmark_bar / Bookmarks Bar / Now / Clara Participant Intake",
+    "sourceIndex": 24
+  },
+  {
+    "name": "commmob-nate-interactive-learning-platform",
+    "title": "CommMob - Nate - Interactive Learning Platform",
+    "domain": "redcross-overview.vercel.app",
+    "url": "https://redcross-overview.vercel.app/",
+    "img": "",
+    "description": "Saved in Chrome Now bookmarks. Source: redcross-overview.vercel.app.",
+    "source": "Chrome Bookmarks Bar / Now",
+    "sourcePath": "bookmark_bar / Bookmarks Bar / Now / CommMob - Nate - Interactive Learning Platform",
+    "sourceIndex": 25
+  },
+  {
+    "name": "sitaware-cascade-command-center",
+    "title": "SitAware Cascade — Command Center",
+    "domain": "sitaware-cascade-32sw3luvw-jbf-2539-e1ec6bfb.vercel.app",
+    "url": "https://sitaware-cascade-32sw3luvw-jbf-2539-e1ec6bfb.vercel.app/",
+    "img": "",
+    "description": "Saved in Chrome Now bookmarks. Source: sitaware-cascade-32sw3luvw-jbf-2539-e1ec6bfb.vercel.app.",
+    "source": "Chrome Bookmarks Bar / Now",
+    "sourcePath": "bookmark_bar / Bookmarks Bar / Now / SECOND / SitAware Cascade — Command Center",
+    "sourceIndex": 26
+  },
+  {
+    "name": "ask-clara-arc-policy-assistant",
+    "title": "Ask Clara — ARC Policy Assistant",
+    "domain": "clara.jbf.com",
+    "url": "https://clara.jbf.com/",
+    "img": "shots/ask-clara.jpg",
+    "description": "Saved in Chrome Now bookmarks. Source: clara.jbf.com.",
+    "source": "Chrome Bookmarks Bar / Now",
+    "sourcePath": "bookmark_bar / Bookmarks Bar / Now / SECOND / Ask Clara — ARC Policy Assistant",
+    "sourceIndex": 27
+  },
+  {
+    "name": "ops-jbf-com",
+    "title": "ops.jbf.com",
+    "domain": "ops.jbf.com",
+    "url": "https://ops.jbf.com/",
+    "img": "",
+    "description": "Saved in Chrome Now bookmarks. Source: ops.jbf.com.",
+    "source": "Chrome Bookmarks Bar / Now",
+    "sourcePath": "bookmark_bar / Bookmarks Bar / Now / SECOND / ops.jbf.com",
+    "sourceIndex": 28
+  },
+  {
+    "name": "da-lookup-helene2024",
+    "title": "DA Lookup helene2024",
+    "domain": "da.jbf.com",
+    "url": "https://da.jbf.com/",
+    "img": "shots/da-field-lookup.jpg",
+    "description": "Saved in Chrome Now bookmarks. Source: da.jbf.com.",
+    "source": "Chrome Bookmarks Bar / Now",
+    "sourcePath": "bookmark_bar / Bookmarks Bar / Now / SECOND / DA Lookup helene2024",
+    "sourceIndex": 29
+  },
+  {
+    "name": "intel-jbf-com",
+    "title": "intel.jbf.com",
+    "domain": "intel.jbf.com",
+    "url": "https://intel.jbf.com/",
+    "img": "shots/intel-jbf.jpg",
+    "description": "Saved in Chrome Now bookmarks. Source: intel.jbf.com.",
+    "source": "Chrome Bookmarks Bar / Now",
+    "sourcePath": "bookmark_bar / Bookmarks Bar / Now / SECOND / intel.jbf.com",
+    "sourceIndex": 30
+  },
+  {
+    "name": "knowledge-graph",
+    "title": "Knowledge Graph",
+    "domain": "explorer.jbf.com",
+    "url": "https://explorer.jbf.com/kg.html",
+    "img": "shots/vulnerability-explorer.jpg",
+    "description": "Saved in Chrome Now bookmarks. Source: explorer.jbf.com.",
+    "source": "Chrome Bookmarks Bar / Now",
+    "sourcePath": "bookmark_bar / Bookmarks Bar / Now / SECOND / Knowledge Graph",
+    "sourceIndex": 31
+  },
+  {
+    "name": "county-jbf-com",
+    "title": "county.jbf.com",
+    "domain": "county.jbf.com",
+    "url": "https://county.jbf.com/",
+    "img": "shots/county-jbf.jpg",
+    "description": "Saved in Chrome Now bookmarks. Source: county.jbf.com.",
+    "source": "Chrome Bookmarks Bar / Now",
+    "sourcePath": "bookmark_bar / Bookmarks Bar / Now / SECOND / county.jbf.com",
+    "sourceIndex": 32
+  },
+  {
+    "name": "cascade-ii",
+    "title": "Cascade II",
+    "domain": "cascade2.jbf.com",
+    "url": "https://cascade2.jbf.com/",
+    "img": "",
+    "description": "Saved in Chrome Now bookmarks. Source: cascade2.jbf.com.",
+    "source": "Chrome Bookmarks Bar / Now",
+    "sourcePath": "bookmark_bar / Bookmarks Bar / Now / SECOND / Cascade II",
+    "sourceIndex": 33
+  },
+  {
+    "name": "commmob-v",
+    "title": "CommMob V",
+    "domain": "experience.arcgis.com",
+    "url": "https://experience.arcgis.com/experience/820c46b79457478c83610ca862087e95",
+    "img": "",
+    "description": "Saved in Chrome Now bookmarks. Source: experience.arcgis.com.",
+    "source": "Chrome Bookmarks Bar / Now",
+    "sourcePath": "bookmark_bar / Bookmarks Bar / Now / SECOND / CommMob V",
+    "sourceIndex": 34
+  },
+  {
+    "name": "flare-experience-builder",
+    "title": "Flare - Experience Builder",
+    "domain": "experience.arcgis.com",
+    "url": "https://experience.arcgis.com/experience/575b73aaf15e4c36a823256e8be6fbd3",
+    "img": "",
+    "description": "Saved in Chrome Now bookmarks. Source: experience.arcgis.com.",
+    "source": "Chrome Bookmarks Bar / Now",
+    "sourcePath": "bookmark_bar / Bookmarks Bar / Now / SECOND / Flare - Experience Builder",
+    "sourceIndex": 35
+  },
+  {
+    "name": "flare-vercel",
+    "title": "Flare - Vercel",
+    "domain": "flare-v2-red.vercel.app",
+    "url": "https://flare-v2-red.vercel.app/",
+    "img": "",
+    "description": "Saved in Chrome Now bookmarks. Source: flare-v2-red.vercel.app.",
+    "source": "Chrome Bookmarks Bar / Now",
+    "sourcePath": "bookmark_bar / Bookmarks Bar / Now / SECOND / Flare - Vercel",
+    "sourceIndex": 36
+  },
+  {
+    "name": "jbf-tools",
+    "title": "JBF Tools",
+    "domain": "tools.jbf.com",
+    "url": "https://tools.jbf.com/",
+    "img": "shots/jbf-tools.jpg",
+    "description": "Saved in Chrome Now bookmarks. Source: tools.jbf.com.",
+    "source": "Chrome Bookmarks Bar / Now",
+    "sourcePath": "bookmark_bar / Bookmarks Bar / Now / SECOND / JBF Tools",
+    "sourceIndex": 37
+  },
+  {
+    "name": "realestate-jbf-com",
+    "title": "realestate.jbf.com",
+    "domain": "realestate.jbf.com",
+    "url": "https://realestate.jbf.com/",
+    "img": "shots/arc-real-estate.jpg",
+    "description": "Saved in Chrome Now bookmarks. Source: realestate.jbf.com.",
+    "source": "Chrome Bookmarks Bar / Now",
+    "sourcePath": "bookmark_bar / Bookmarks Bar / Now / SECOND / realestate.jbf.com",
+    "sourceIndex": 38
   },
   {
     "name": "sitaware-codex",
+    "title": "SitAware Codex",
     "domain": "sitaware.codex.jbf.com",
-    "url": "https://sitaware.codex.jbf.com",
+    "url": "http://sitaware.codex.jbf.com/",
     "img": "shots/sitaware-codex.jpg",
-    "description": ""
+    "description": "Saved in Chrome Now bookmarks. Source: sitaware.codex.jbf.com.",
+    "source": "Chrome Bookmarks Bar / Now",
+    "sourcePath": "bookmark_bar / Bookmarks Bar / Now / SECOND / SitAware Codex",
+    "sourceIndex": 39
   },
   {
-    "name": "sitaware-desktop",
-    "domain": "desktop.sitaware.jbf.com",
-    "url": "https://desktop.sitaware.jbf.com",
-    "img": "shots/sitaware-desktop.jpg",
-    "description": "Desktop Situational Awareness Map — command-center layout"
+    "name": "final-mile-intelligence-map",
+    "title": "Final Mile Intelligence Map",
+    "domain": "final-mile-intel.vercel.app",
+    "url": "https://final-mile-intel.vercel.app/",
+    "img": "",
+    "description": "Saved in Chrome Now bookmarks. Source: final-mile-intel.vercel.app.",
+    "source": "Chrome Bookmarks Bar / Now",
+    "sourcePath": "bookmark_bar / Bookmarks Bar / Now / SECOND / Final Mile Intelligence Map",
+    "sourceIndex": 40
   },
   {
-    "name": "tornadoes-us",
-    "domain": "tornado.jbf.com",
-    "url": "https://tornado.jbf.com",
-    "img": "shots/tornadoes-us.jpg",
-    "description": "Interactive compendium of US tornadoes 1950-2023 — filter by month/year/state/county/intensity/injuries/deaths. NOAA SPC data."
+    "name": "helenegap-jbf-com",
+    "title": "HeleneGap.JBF.com",
+    "domain": "helenegap.jbf.com",
+    "url": "https://helenegap.jbf.com/",
+    "img": "shots/response-gap-helene.jpg",
+    "description": "Saved in Chrome Now bookmarks. Source: helenegap.jbf.com.",
+    "source": "Chrome Bookmarks Bar / Now",
+    "sourcePath": "bookmark_bar / Bookmarks Bar / Now / TERTIARY / ALICE / HeleneGap.JBF.com",
+    "sourceIndex": 41
   },
   {
-    "name": "trailer-ops",
-    "domain": "trailer-ops.jbf.com",
-    "url": "https://trailer-ops.jbf.com",
-    "img": "shots/trailer-ops.jpg",
-    "description": "ARC Trailer Operations Dashboard — query-first fleet intelligence"
+    "name": "alice-disaster-assistance-tracker-unitedforalice",
+    "title": "ALICE Disaster Assistance Tracker | UnitedForALICE",
+    "domain": "unitedforalice.org",
+    "url": "https://unitedforalice.org/disaster-assistance-tracker",
+    "img": "",
+    "description": "Saved in Chrome Now bookmarks. Source: unitedforalice.org.",
+    "source": "Chrome Bookmarks Bar / Now",
+    "sourcePath": "bookmark_bar / Bookmarks Bar / Now / TERTIARY / ALICE / ALICE Disaster Assistance Tracker | UnitedForALICE",
+    "sourceIndex": 42
   },
   {
-    "name": "trailer-study",
-    "domain": "trailer-study.jbf.com",
-    "url": "https://trailer-study.jbf.com",
-    "img": "shots/trailer-study.jpg",
-    "description": ""
+    "name": "alice-helene-charts",
+    "title": "ALICE — Helene Charts",
+    "domain": "Local file",
+    "url": "file:///Users/jefffranzen/dev/alice-charts/index.html",
+    "img": "",
+    "description": "Saved in Chrome Now bookmarks. Source: Local file.",
+    "source": "Chrome Bookmarks Bar / Now",
+    "sourcePath": "bookmark_bar / Bookmarks Bar / Now / TERTIARY / ALICE / ALICE — Helene Charts",
+    "sourceIndex": 43
   },
   {
-    "name": "vulnerability-explorer",
-    "domain": "explorer.jbf.com",
-    "url": "https://explorer.jbf.com",
-    "img": "shots/vulnerability-explorer.jpg",
-    "description": ""
+    "name": "interview-scoring-community-operations-branch",
+    "title": "Interview Scoring — Community Operations Branch",
+    "domain": "interview.jbf.com",
+    "url": "https://interview.jbf.com/candidates",
+    "img": "shots/community-ops-interviews.jpg",
+    "description": "Saved in Chrome Now bookmarks. Source: interview.jbf.com.",
+    "source": "Chrome Bookmarks Bar / Now",
+    "sourcePath": "bookmark_bar / Bookmarks Bar / Now / TERTIARY / Interview Scoring — Community Operations Branch",
+    "sourceIndex": 44
+  },
+  {
+    "name": "lightrag",
+    "title": "Lightrag",
+    "domain": "dragons-brain-production-bb2c.up.railway.app",
+    "url": "https://dragons-brain-production-bb2c.up.railway.app/webui/",
+    "img": "",
+    "description": "Saved in Chrome Now bookmarks. Source: dragons-brain-production-bb2c.up.railway.app.",
+    "source": "Chrome Bookmarks Bar / Now",
+    "sourcePath": "bookmark_bar / Bookmarks Bar / Now / TERTIARY / Lightrag",
+    "sourceIndex": 45
+  },
+  {
+    "name": "registrant-dashboard-tour-jbf-com",
+    "title": "Registrant Dashboard tour.jbf.com",
+    "domain": "tour.jbf.com",
+    "url": "https://tour.jbf.com/",
+    "img": "shots/first-project.jpg",
+    "description": "Saved in Chrome Now bookmarks. Source: tour.jbf.com.",
+    "source": "Chrome Bookmarks Bar / Now",
+    "sourcePath": "bookmark_bar / Bookmarks Bar / Now / TERTIARY / Registrant Dashboard tour.jbf.com",
+    "sourceIndex": 46
+  },
+  {
+    "name": "commmob-data-processor",
+    "title": "CommMob Data Processor",
+    "domain": "commmob-data-processor-live.vercel.app",
+    "url": "https://commmob-data-processor-live.vercel.app/?",
+    "img": "",
+    "description": "Saved in Chrome Now bookmarks. Source: commmob-data-processor-live.vercel.app.",
+    "source": "Chrome Bookmarks Bar / Now",
+    "sourcePath": "bookmark_bar / Bookmarks Bar / Now / TERTIARY / CommMob Data Processor",
+    "sourceIndex": 47
+  },
+  {
+    "name": "eb-embed-widget-recipes-sandra-hayden",
+    "title": "EB Embed Widget Recipes Sandra Hayden",
+    "domain": "sandra-hayden-embeds.vercel.app",
+    "url": "https://sandra-hayden-embeds.vercel.app/",
+    "img": "",
+    "description": "Saved in Chrome Now bookmarks. Source: sandra-hayden-embeds.vercel.app.",
+    "source": "Chrome Bookmarks Bar / Now",
+    "sourcePath": "bookmark_bar / Bookmarks Bar / Now / TERTIARY / EB Embed Widget Recipes Sandra Hayden",
+    "sourceIndex": 48
+  },
+  {
+    "name": "damage-intelligence-console-arcgis-sdk-field-notes",
+    "title": "Damage Intelligence Console | ArcGIS SDK Field Notes",
+    "domain": "two-techniques.vercel.app",
+    "url": "https://two-techniques.vercel.app/damage-intelligence.html",
+    "img": "",
+    "description": "Saved in Chrome Now bookmarks. Source: two-techniques.vercel.app.",
+    "source": "Chrome Bookmarks Bar / Now",
+    "sourcePath": "bookmark_bar / Bookmarks Bar / Now / TERTIARY / Damage Intelligence Console | ArcGIS SDK Field Notes",
+    "sourceIndex": 49
+  },
+  {
+    "name": "eb-teaching-app-sdk-embeds-for-experience-builder",
+    "title": "EB Teaching App — SDK Embeds for Experience Builder",
+    "domain": "eb-teaching-app.vercel.app",
+    "url": "https://eb-teaching-app.vercel.app/?demo=1",
+    "img": "",
+    "description": "Saved in Chrome Now bookmarks. Source: eb-teaching-app.vercel.app.",
+    "source": "Chrome Bookmarks Bar / Now",
+    "sourcePath": "bookmark_bar / Bookmarks Bar / Now / TERTIARY / EB Teaching App — SDK Embeds for Experience Builder",
+    "sourceIndex": 50
+  },
+  {
+    "name": "lets-do-this",
+    "title": "Lets Do This",
+    "domain": "instagram.com",
+    "url": "https://www.instagram.com/p/DYNRh_ZDAc7/",
+    "img": "",
+    "description": "Saved in Chrome Now bookmarks. Source: instagram.com.",
+    "source": "Chrome Bookmarks Bar / Now",
+    "sourcePath": "bookmark_bar / Bookmarks Bar / Now / TERTIARY / Lets Do This",
+    "sourceIndex": 51
+  },
+  {
+    "name": "two-sdk-techniques-beyond-experience-builder-dragon-jeff-franzen",
+    "title": "Two SDK Techniques Beyond Experience Builder — Dragon / Jeff Franzen",
+    "domain": "two-techniques.vercel.app",
+    "url": "https://two-techniques.vercel.app/",
+    "img": "",
+    "description": "Saved in Chrome Now bookmarks. Source: two-techniques.vercel.app.",
+    "source": "Chrome Bookmarks Bar / Now",
+    "sourcePath": "bookmark_bar / Bookmarks Bar / Now / TERTIARY / Two SDK Techniques Beyond Experience Builder — Dragon / Jeff Franzen",
+    "sourceIndex": 52
+  },
+  {
+    "name": "lower-48-choropleth-demo",
+    "title": "Lower 48 Choropleth Demo",
+    "domain": "state-demo-three.vercel.app",
+    "url": "https://state-demo-three.vercel.app/",
+    "img": "",
+    "description": "Saved in Chrome Now bookmarks. Source: state-demo-three.vercel.app.",
+    "source": "Chrome Bookmarks Bar / Now",
+    "sourcePath": "bookmark_bar / Bookmarks Bar / Now / Lower 48 Choropleth Demo",
+    "sourceIndex": 53
+  },
+  {
+    "name": "ai-at-the-red-cross",
+    "title": "AI at the Red Cross",
+    "domain": "red-cross-ai.vercel.app",
+    "url": "https://red-cross-ai.vercel.app/login?from=%2F",
+    "img": "",
+    "description": "Saved in Chrome Now bookmarks. Source: red-cross-ai.vercel.app.",
+    "source": "Chrome Bookmarks Bar / Now",
+    "sourcePath": "bookmark_bar / Bookmarks Bar / Now / AI at the Red Cross",
+    "sourceIndex": 54
+  },
+  {
+    "name": "brivo-dashboard-real-estate",
+    "title": "Brivo Dashboard Real Estate",
+    "domain": "arc-nhq-gis.maps.arcgis.com",
+    "url": "https://arc-nhq-gis.maps.arcgis.com/apps/dashboards/220f85a5c36a4e8b89ce0abc58548bfc",
+    "img": "",
+    "description": "Saved in Chrome Now bookmarks. Source: arc-nhq-gis.maps.arcgis.com.",
+    "source": "Chrome Bookmarks Bar / Now",
+    "sourcePath": "bookmark_bar / Bookmarks Bar / Now / Brivo Dashboard Real Estate",
+    "sourceIndex": 55
+  },
+  {
+    "name": "red-cross-community-vulnerability-atlas-alice-data-platform",
+    "title": "Red Cross Community Vulnerability Atlas | ALICE Data Platform",
+    "domain": "franzenjb.github.io",
+    "url": "https://franzenjb.github.io/alice-redcross-atlas/",
+    "img": "",
+    "description": "Saved in Chrome Now bookmarks. Source: franzenjb.github.io.",
+    "source": "Chrome Bookmarks Bar / Now",
+    "sourcePath": "bookmark_bar / Bookmarks Bar / Now / Red Cross Community Vulnerability Atlas | ALICE Data Platform",
+    "sourceIndex": 56
+  },
+  {
+    "name": "storyboard-ai-gis-and-the-new-red-cross-workbench",
+    "title": "Storyboard | AI, GIS, and the New Red Cross Workbench",
+    "domain": "ainow.jbf.com",
+    "url": "https://ainow.jbf.com/storyboard.html",
+    "img": "shots/ai-gis-red-cross-workbench.jpg",
+    "description": "Saved in Chrome Now bookmarks. Source: ainow.jbf.com.",
+    "source": "Chrome Bookmarks Bar / Now",
+    "sourcePath": "bookmark_bar / Bookmarks Bar / Now / Storyboard | AI, GIS, and the New Red Cross Workbench",
+    "sourceIndex": 57
+  },
+  {
+    "name": "ai-gis-and-the-new-red-cross-workbench",
+    "title": "AI, GIS, and the New Red Cross Workbench",
+    "domain": "ainow.jbf.com",
+    "url": "https://ainow.jbf.com/#s4",
+    "img": "shots/ai-gis-red-cross-workbench.jpg",
+    "description": "Saved in Chrome Now bookmarks. Source: ainow.jbf.com.",
+    "source": "Chrome Bookmarks Bar / Now",
+    "sourcePath": "bookmark_bar / Bookmarks Bar / Now / AI, GIS, and the New Red Cross Workbench",
+    "sourceIndex": 58
+  },
+  {
+    "name": "trends-observatory-trends-jbf-com",
+    "title": "Trends Observatory — trends.jbf.com",
+    "domain": "trend-observatory.vercel.app",
+    "url": "https://trend-observatory.vercel.app/",
+    "img": "",
+    "description": "Saved in Chrome Now bookmarks. Source: trend-observatory.vercel.app.",
+    "source": "Chrome Bookmarks Bar / Now",
+    "sourcePath": "bookmark_bar / Bookmarks Bar / Now / Trends Observatory — trends.jbf.com",
+    "sourceIndex": 59
+  },
+  {
+    "name": "americanredcross-my-sharepoint-com",
+    "title": "americanredcross-my.sharepoint.com",
+    "domain": "americanredcross-my.sharepoint.com",
+    "url": "https://americanredcross-my.sharepoint.com/personal/timothy_dahlum_redcross_org/_layouts/15/stream.aspx?id=%2Fpersonal%2Ftimothy%5Fdahlum%5Fredcross%5Forg%2FDocuments%2FRecordings%2F%5BPAC%20IP%5D%20Situation%20Unit%20Workgroup%2D20260522%5F205233UTC%2DMeeting%20Recording%2Emp4&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2E331ea614%2Df9b2%2D415f%2Da4df%2Da63a71c42694&isDarkMode=true",
+    "img": "",
+    "description": "Saved in Chrome Now bookmarks. Source: americanredcross-my.sharepoint.com.",
+    "source": "Chrome Bookmarks Bar / Now",
+    "sourcePath": "bookmark_bar / Bookmarks Bar / Now / ",
+    "sourceIndex": 60
+  },
+  {
+    "name": "shottr-upload-gallery",
+    "title": "Shottr Upload Gallery",
+    "domain": "shottr.cc",
+    "url": "https://shottr.cc/gallery.html?code=1779876974.731625670.32e0d2cff3b3f95b91b34b4d584fbcd5ea7549ad71c2a6f3a9a7e4a146e01894",
+    "img": "",
+    "description": "Saved in Chrome Now bookmarks. Source: shottr.cc.",
+    "source": "Chrome Bookmarks Bar / Now",
+    "sourcePath": "bookmark_bar / Bookmarks Bar / Now / Shottr Upload Gallery",
+    "sourceIndex": 61
+  },
+  {
+    "name": "arc-real-estate-drive-time-deployment-overview-vercel",
+    "title": "arc-real-estate-drive-time – Deployment Overview – Vercel",
+    "domain": "vercel.com",
+    "url": "https://vercel.com/jbf-2539-e1ec6bfb/arc-real-estate-drive-time/Cgxrw3zXPbvaaBAL7qEJBFMoBcNq",
+    "img": "",
+    "description": "Saved in Chrome Now bookmarks. Source: vercel.com.",
+    "source": "Chrome Bookmarks Bar / Now",
+    "sourcePath": "bookmark_bar / Bookmarks Bar / Now / arc-real-estate-drive-time – Deployment Overview – Vercel",
+    "sourceIndex": 62
+  },
+  {
+    "name": "coding-101-codex-101-state-demo-search-as-code-ai-risk-white-papers",
+    "title": "Coding 101 + Codex 101 + State Demo + Search as Code + AI Risk + White Papers",
+    "domain": "coding.jbf.com",
+    "url": "https://coding.jbf.com/#glossary",
+    "img": "shots/coding-101.jpg",
+    "description": "Saved in Chrome Now bookmarks. Source: coding.jbf.com.",
+    "source": "Chrome Bookmarks Bar / Now",
+    "sourcePath": "bookmark_bar / Bookmarks Bar / Now / Coding 101 + Codex 101 + State Demo + Search as Code + AI Risk + White Papers",
+    "sourceIndex": 63
+  },
+  {
+    "name": "claude-design",
+    "title": "Claude Design",
+    "domain": "claude.ai",
+    "url": "https://claude.ai/design/p/0e1d320b-2b8e-47e1-aff5-a3a507ca4f11?file=REALIGN+Scenario+Report.dc.html",
+    "img": "",
+    "description": "Saved in Chrome Now bookmarks. Source: claude.ai.",
+    "source": "Chrome Bookmarks Bar / Now",
+    "sourcePath": "bookmark_bar / Bookmarks Bar / Now / Claude Design",
+    "sourceIndex": 64
   }
 ]
