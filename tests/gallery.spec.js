@@ -132,11 +132,38 @@ test("room mode builds one walkable gallery frame per bookmark", async ({ page }
   const frameCount = await page.evaluate(() => window.__app.roomFrames.length);
   expect(frameCount).toBe(manifest.length);
 
+  const lookBefore = await page.evaluate(() => window.__app.roomWalk.tYaw);
+  await page.mouse.move(640, 400);
+  await page.mouse.down();
+  await page.mouse.move(960, 400, { steps: 8 });
+  await page.mouse.up();
+  const lookAfter = await page.evaluate(() => window.__app.roomWalk.tYaw);
+  expect(Math.abs(lookAfter - lookBefore)).toBeGreaterThan(0.6);
+
+  await page.waitForTimeout(800);
+  const framePos = await page.evaluate(() => {
+    const { roomFrames, screenPos } = window.__app;
+    let best = null, bestD = Infinity;
+    for (const frame of roomFrames) {
+      const p = screenPos(frame);
+      if (!p.inFront || p.x < 0 || p.x > innerWidth || p.y < 0 || p.y > innerHeight) continue;
+      const d = Math.hypot(p.x - innerWidth / 2, p.y - innerHeight / 2);
+      if (d < bestD) { bestD = d; best = p; }
+    }
+    return best;
+  });
+  expect(framePos).not.toBeNull();
+  await page.mouse.click(framePos.x, framePos.y);
+  await page.waitForFunction(() => window.__app.isDetailOpen(), null, { timeout: 5000 });
+  await expect(page.locator("#detail")).toBeVisible();
+  await page.click("#closeDetail");
+  await page.waitForFunction(() => !window.__app.isDetailOpen(), null, { timeout: 5000 });
+
   const before = await page.evaluate(() => window.__app.roomWalk.tZ);
   await page.mouse.wheel(0, 560);
   await page.waitForTimeout(250);
   const after = await page.evaluate(() => window.__app.roomWalk.tZ);
-  expect(after).toBeLessThan(before);
+  expect(Math.abs(after - before)).toBeGreaterThan(1);
 
   await page.getByRole("button", { name: "Sphere" }).click();
   await expect(page.locator("body")).toHaveAttribute("data-view", "sphere");

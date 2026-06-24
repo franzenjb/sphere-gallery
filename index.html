@@ -380,13 +380,23 @@ const room = new THREE.Group();
 room.visible = false;
 scene.add(room);
 const roomFrames = [];
+const ROOM_START_Z = -1.5;
+const ROOM_BACK_LIMIT_Z = 3;
 const roomWalk = {
-  z: 5,
-  tZ: 5,
+  x: 0,
+  tX: 0,
+  z: ROOM_START_Z,
+  tZ: ROOM_START_Z,
   minZ: -260,
-  maxZ: 5,
+  maxZ: ROOM_BACK_LIMIT_Z,
+  minX: -4.4,
+  maxX: 4.4,
   sideDrift: 0,
-  tSideDrift: 0
+  tSideDrift: 0,
+  yaw: 0,
+  tYaw: 0,
+  pitch: 0,
+  tPitch: 0
 };
 
 /* ---------- bookmark artwork and screenshots ---------- */
@@ -512,7 +522,9 @@ function buildRoom(apps) {
   const wallX = 9.8;
   const frameX = 9.42;
   roomWalk.minZ = -length + 18;
-  roomWalk.maxZ = 5;
+  roomWalk.maxZ = ROOM_BACK_LIMIT_Z;
+  roomWalk.minX = -4.4;
+  roomWalk.maxX = 4.4;
 
   const wallMat = new THREE.MeshBasicMaterial({ color: 0x111116, side: THREE.DoubleSide });
   const floorMat = new THREE.MeshBasicMaterial({ color: 0x0d0d11, side: THREE.DoubleSide });
@@ -657,8 +669,13 @@ function setView(mode) {
   });
   world.visible = currentView === "sphere";
   room.visible = currentView === "room";
-  camera.position.set(0, currentView === "room" ? .8 : 0, currentView === "room" ? roomWalk.z : 0.001);
-  camera.rotation.set(0, 0, 0);
+  if (currentView === "room") {
+    camera.position.set(roomWalk.x, .8, roomWalk.z);
+    applyRoomLook();
+  } else {
+    camera.position.set(0, 0, 0.001);
+    camera.rotation.set(0, 0, 0);
+  }
   camera.fov = currentView === "room" ? (window.innerWidth <= 820 ? 82 : 66) : 72;
   camera.updateProjectionMatrix();
   document.getElementById("count").textContent =
@@ -681,6 +698,8 @@ const rot = {
 const PITCH_LIMIT = 1.05;
 const EASE = 0.075;            // smooth-scroll style lag
 const DRAG_K = 0.0042;
+const ROOM_LOOK_K = 0.003;
+const ROOM_PITCH_LIMIT = 0.72;
 
 let dragging = false, moved = 0;
 let roomDragging = false;
@@ -689,6 +708,43 @@ let detailOpen = false, animatingOpen = false;
 const hint = document.getElementById("hint");
 function clampRoomZ(value) {
   return THREE.MathUtils.clamp(value, roomWalk.minZ, roomWalk.maxZ);
+}
+function clampRoomX(value) {
+  return THREE.MathUtils.clamp(value, roomWalk.minX, roomWalk.maxX);
+}
+function roomForwardVector() {
+  return new THREE.Vector3(
+    Math.sin(roomWalk.tYaw),
+    0,
+    -Math.cos(roomWalk.tYaw)
+  );
+}
+function roomRightVector() {
+  return new THREE.Vector3(
+    Math.cos(roomWalk.tYaw),
+    0,
+    Math.sin(roomWalk.tYaw)
+  );
+}
+function walkRoom(forward, strafe = 0) {
+  const f = roomForwardVector();
+  const r = roomRightVector();
+  roomWalk.tX = clampRoomX(roomWalk.tX + f.x * forward + r.x * strafe);
+  roomWalk.tZ = clampRoomZ(roomWalk.tZ + f.z * forward + r.z * strafe);
+  roomWalk.tSideDrift = roomWalk.tX;
+}
+function applyRoomLook() {
+  const cosPitch = Math.cos(roomWalk.pitch);
+  const look = new THREE.Vector3(
+    Math.sin(roomWalk.yaw) * cosPitch,
+    Math.sin(roomWalk.pitch),
+    -Math.cos(roomWalk.yaw) * cosPitch
+  );
+  camera.lookAt(
+    camera.position.x + look.x * 24,
+    camera.position.y + look.y * 24,
+    camera.position.z + look.z * 24
+  );
 }
 
 stage.addEventListener("pointerdown", e => {
@@ -716,8 +772,8 @@ stage.addEventListener("pointermove", e => {
     const dx = e.clientX - px, dy = e.clientY - py;
     px = e.clientX; py = e.clientY;
     moved += Math.abs(dx) + Math.abs(dy);
-    roomWalk.tZ = clampRoomZ(roomWalk.tZ + dy * .09);
-    roomWalk.tSideDrift = THREE.MathUtils.clamp(roomWalk.tSideDrift + dx * .01, -1.35, 1.35);
+    roomWalk.tYaw += dx * ROOM_LOOK_K;
+    roomWalk.tPitch = THREE.MathUtils.clamp(roomWalk.tPitch - dy * ROOM_LOOK_K * .72, -ROOM_PITCH_LIMIT, ROOM_PITCH_LIMIT);
     return;
   }
   if (!dragging) return;
@@ -750,7 +806,7 @@ stage.addEventListener("pointercancel", () => endDrag(null));
 window.addEventListener("wheel", e => {
   if (detailOpen) return;
   if (currentView === "room") {
-    roomWalk.tZ = clampRoomZ(roomWalk.tZ - (e.deltaY + e.deltaX) * .018);
+    walkRoom((e.deltaY + e.deltaX) * .018, 0);
     return;
   }
   if (currentView !== "sphere") return;
@@ -877,10 +933,12 @@ window.addEventListener("keydown", e => {
     return;
   }
   if (detailOpen || animatingOpen || currentView !== "room") return;
-  if (e.key === "ArrowUp" || e.key.toLowerCase() === "w") roomWalk.tZ = clampRoomZ(roomWalk.tZ - 5.5);
-  if (e.key === "ArrowDown" || e.key.toLowerCase() === "s") roomWalk.tZ = clampRoomZ(roomWalk.tZ + 5.5);
-  if (e.key === "ArrowLeft" || e.key.toLowerCase() === "a") roomWalk.tSideDrift = THREE.MathUtils.clamp(roomWalk.tSideDrift - .75, -1.35, 1.35);
-  if (e.key === "ArrowRight" || e.key.toLowerCase() === "d") roomWalk.tSideDrift = THREE.MathUtils.clamp(roomWalk.tSideDrift + .75, -1.35, 1.35);
+  if (e.key === "ArrowUp" || e.key.toLowerCase() === "w") walkRoom(5.5, 0);
+  if (e.key === "ArrowDown" || e.key.toLowerCase() === "s") walkRoom(-5.5, 0);
+  if (e.key.toLowerCase() === "a") walkRoom(0, -1.2);
+  if (e.key.toLowerCase() === "d") walkRoom(0, 1.2);
+  if (e.key === "ArrowLeft") roomWalk.tYaw -= .34;
+  if (e.key === "ArrowRight") roomWalk.tYaw += .34;
 });
 
 /* ---------- frame loop ---------- */
@@ -889,9 +947,12 @@ function tick() {
 
   if (currentView === "room") {
     roomWalk.z += (roomWalk.tZ - roomWalk.z) * .11;
-    roomWalk.sideDrift += (roomWalk.tSideDrift - roomWalk.sideDrift) * .08;
-    camera.position.set(roomWalk.sideDrift, .8, roomWalk.z);
-    camera.lookAt(roomWalk.sideDrift * .28, .7, roomWalk.z - 22);
+    roomWalk.x += (roomWalk.tX - roomWalk.x) * .1;
+    roomWalk.sideDrift = roomWalk.x;
+    roomWalk.yaw += (roomWalk.tYaw - roomWalk.yaw) * .14;
+    roomWalk.pitch += (roomWalk.tPitch - roomWalk.pitch) * .14;
+    camera.position.set(roomWalk.x, .8, roomWalk.z);
+    applyRoomLook();
 
     if (!detailOpen && !animatingOpen && !roomDragging) {
       raycaster.setFromCamera(mouse, camera);
