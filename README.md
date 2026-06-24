@@ -1,18 +1,21 @@
 # sphere-gallery
 
-Spherical and walkable-room bookmark gallery for Dragon's Chrome `Now` bookmark
-folder. You can stand at the center of a sphere with bookmarks wrapped around
-the inner wall, or switch into a museum-style room with bookmark frames hung
-along both sides.
+Spatial bookmark atlas for Dragon's Chrome `Now` bookmark folder.
 
-- **Three.js** — bookmark cards on the inside of a sphere, camera at the origin
-- **GSAP** — staggered intro, hover scale, click-to-open detail page transition
-- Lenis-style drag: eased follow (lerp) + inertia on release; wheel orbits too
-- Click a card -> camera dollies toward it, a bookmark detail page slides up
-- Room mode -> walkable 3D gallery with one wall frame per bookmark
-- Images use saved screenshots when available, with generated artwork fallback
+The app no longer treats screenshots as the main artifact, because many Now
+bookmarks are private, local, auth-gated, or otherwise poor screenshot targets.
+Every bookmark gets a generated placard from its title, domain, category, and
+source order. Saved screenshots are used only as detail-panel previews when they
+already exist.
 
-No build step — a single `index.html` with an import map (three + gsap from CDN).
+- **Three.js Atlas** - generated bookmark placards arranged in domain clusters
+- **Board view** - scannable 2D wall using the same consistent placards
+- **Retractable/resizable index** - search, cluster filters, selection detail,
+  and open-link action
+- **Thumbnail independent** - missing screenshots do not produce blank cards
+- Drag and wheel rotate the atlas with eased follow and inertia
+
+No build step - a single `index.html` with an import map for Three.js from CDN.
 
 ## Data Source
 
@@ -36,8 +39,9 @@ npx playwright test
 
 Real thumbnails do not populate automatically. `shots/manifest.json` points to
 saved screenshots where this repo already had one; everything else gets
-generated artwork until a capture job writes a real `shots/*.jpg` and updates
-the manifest.
+generated placard art at runtime. A capture job can still write real
+`shots/*.jpg` files and update the manifest, but the UI should not depend on it.
 
-Tests cover load, drag easing + inertia, click -> detail open/close + camera
-restore, Room mode, WebGL nonblank rendering, and text contrast.
+Tests cover load, generated placards, atlas drag easing, search, cluster
+filters, Board mode, detail selection, resizable/collapsible index behavior,
+WebGL nonblank rendering, and text contrast.
