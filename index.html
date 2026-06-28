@@ -104,6 +104,39 @@
     padding: 0 10px;
     font: 700 12px/1 "Helvetica Neue", Helvetica, Arial, sans-serif;
   }
+  .search-row {
+    position: relative;
+    margin-top: 10px;
+  }
+  #bookmarkSearch {
+    width: 100%;
+    height: 36px;
+    border: 1px solid rgba(242,242,240,.18);
+    border-radius: 6px;
+    background: rgba(7,7,9,.72);
+    color: var(--ink);
+    padding: 0 42px 0 10px;
+    font: 700 12px/1 "Helvetica Neue", Helvetica, Arial, sans-serif;
+    outline: none;
+  }
+  #bookmarkSearch::placeholder { color: #8f8f98; }
+  #bookmarkSearch:focus {
+    border-color: rgba(242,242,240,.48);
+    box-shadow: 0 0 0 2px rgba(242,242,240,.08);
+  }
+  #clearSearch {
+    position: absolute;
+    top: 5px; right: 6px;
+    width: 26px; height: 26px;
+    border: 1px solid rgba(242,242,240,.18);
+    border-radius: 50%;
+    background: rgba(242,242,240,.1);
+    color: var(--ink);
+    cursor: pointer;
+    font: 700 16px/1 "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+  #clearSearch[hidden] { display: none; }
+  #clearSearch:hover { background: rgba(242,242,240,.18); }
   .collection-meta {
     margin-top: 9px;
     min-height: 28px;
@@ -299,6 +332,10 @@
   <div class="hud collection-panel" id="collectionPanel">
     <label for="collectionSelect">Rooms</label>
     <select id="collectionSelect" aria-label="Choose bookmark room"></select>
+    <div class="search-row">
+      <input id="bookmarkSearch" type="search" autocomplete="off" spellcheck="false" placeholder="Search bookmarks or rooms" aria-label="Search bookmarks or rooms" />
+      <button id="clearSearch" type="button" aria-label="Clear search" hidden>×</button>
+    </div>
     <div class="collection-meta" id="collectionMeta" aria-live="polite">Loading bookmark rooms</div>
   </div>
   <div class="hud hud--hint" id="hint">Drag to explore &nbsp;·&nbsp; Click a card to open</div>
@@ -521,51 +558,74 @@ function distributeRows(n) {
   return lats.map((lat, i) => ({ lat, n: counts[i] }));
 }
 
+function cardPlacements(n) {
+  if (n <= 12) {
+    const cols = Math.min(4, Math.ceil(Math.sqrt(n * 1.35)));
+    const rows = Math.ceil(n / cols);
+    const thetaStep = 0.46;
+    const latStep = 0.34;
+    const placements = [];
+    for (let row = 0; row < rows; row++) {
+      const remaining = n - row * cols;
+      const rowCount = Math.min(cols, remaining);
+      const lat = ((rows - 1) / 2 - row) * latStep;
+      for (let col = 0; col < rowCount; col++) {
+        const theta = Math.PI + (col - (rowCount - 1) / 2) * thetaStep;
+        placements.push({ lat, theta });
+      }
+    }
+    return placements;
+  }
+  return distributeRows(n).flatMap(row =>
+    Array.from({ length: row.n }, (_, k) => ({
+      lat: row.lat,
+      theta: (k / row.n) * Math.PI * 2 + row.lat * 0.7
+    }))
+  );
+}
+
 function buildCards(apps, collection) {
   clearCards();
-  let i = 0;
-  for (const row of distributeRows(apps.length)) {
-    for (let k = 0; k < row.n; k++) {
-      const app = apps[i];
-      const title = displayName(app);
-      const art = artFor(app, i);
-      const phi = Math.PI / 2 - row.lat;                       // polar angle
-      const theta = (k / row.n) * Math.PI * 2 + row.lat * 0.7; // stagger rows
-      const pos = new THREE.Vector3().setFromSphericalCoords(RADIUS, phi, theta);
+  const placements = cardPlacements(apps.length);
+  for (let i = 0; i < apps.length; i++) {
+    const app = apps[i];
+    const title = displayName(app);
+    const art = artFor(app, i);
+    const { lat, theta } = placements[i];
+    const phi = Math.PI / 2 - lat; // polar angle
+    const pos = new THREE.Vector3().setFromSphericalCoords(RADIUS, phi, theta);
 
-      const w = 10, h = 7.5;
-      const mat = new THREE.MeshBasicMaterial({ side: THREE.DoubleSide, transparent: true, opacity: 0 });
-      const mesh = new THREE.Mesh(new THREE.PlaneGeometry(w, h), mat);
-      mat.map = art.texture;
-      if (app.img) {
-        texLoader.load(app.img, t => {
-          t.colorSpace = THREE.SRGBColorSpace;
-          mat.map = t;
-          mat.needsUpdate = true;
-        });
-      }
-
-      mesh.position.copy(pos);
-      mesh.lookAt(0, 0, 0);
-      mesh.userData = {
-        title,
-        domain: shortDomain(app),
-        url: app.url,
-        img: app.img || art.dataUrl,
-        description: app.description,
-        index: i,
-        collectionTitle: collection?.title || "Bookmarks",
-        collectionPath: collection?.shortPath || collection?.path || "Bookmarks"
-      };
-      cardGroup.add(mesh);
-      cards.push(mesh);
-
-      // staggered intro
-      gsap.to(mat, { opacity: 1, duration: 1.1, delay: 0.18 + i * 0.022, ease: "power2.out" });
-      mesh.scale.setScalar(0.6);
-      gsap.to(mesh.scale, { x: 1, y: 1, z: 1, duration: 1.2, delay: 0.18 + i * 0.022, ease: "power3.out" });
-      i++;
+    const w = 10, h = 7.5;
+    const mat = new THREE.MeshBasicMaterial({ side: THREE.DoubleSide, transparent: true, opacity: 0 });
+    const mesh = new THREE.Mesh(new THREE.PlaneGeometry(w, h), mat);
+    mat.map = art.texture;
+    if (app.img) {
+      texLoader.load(app.img, t => {
+        t.colorSpace = THREE.SRGBColorSpace;
+        mat.map = t;
+        mat.needsUpdate = true;
+      });
     }
+
+    mesh.position.copy(pos);
+    mesh.lookAt(0, 0, 0);
+    mesh.userData = {
+      title,
+      domain: shortDomain(app),
+      url: app.url,
+      img: app.img || art.dataUrl,
+      description: app.description,
+      index: i,
+      collectionTitle: collection?.title || "Bookmarks",
+      collectionPath: collection?.shortPath || collection?.path || "Bookmarks"
+    };
+    cardGroup.add(mesh);
+    cards.push(mesh);
+
+    // staggered intro
+    gsap.to(mat, { opacity: 1, duration: 1.1, delay: 0.18 + i * 0.022, ease: "power2.out" });
+    mesh.scale.setScalar(0.6);
+    gsap.to(mesh.scale, { x: 1, y: 1, z: 1, duration: 1.2, delay: 0.18 + i * 0.022, ease: "power3.out" });
   }
   document.getElementById("count").textContent = `${cards.length} BOOKMARKS`;
 }
@@ -735,9 +795,13 @@ function buildArtGallery(apps) {
 let currentView = "sphere";
 let collections = [];
 let activeCollection = null;
+let selectedCollectionId = "";
+let searchQuery = "";
 const modeButtons = [...document.querySelectorAll(".mode-btn")];
 const collectionSelect = document.getElementById("collectionSelect");
 const collectionMeta = document.getElementById("collectionMeta");
+const bookmarkSearch = document.getElementById("bookmarkSearch");
+const clearSearch = document.getElementById("clearSearch");
 
 function updateCount() {
   const title = activeCollection?.title || "Bookmarks";
@@ -780,7 +844,7 @@ function renderCollection(collection) {
   buildCards(collection.items, collection);
   buildRoom(collection.items);
   buildArtGallery(collection.items);
-  collectionMeta.textContent = `${collection.count} bookmarks · ${collection.shortPath || collection.path}`;
+  collectionMeta.textContent = collection.metaText || `${collection.count} bookmarks · ${collection.shortPath || collection.path}`;
   updateCount();
   if (currentView === "room") {
     camera.position.set(roomWalk.x, .8, roomWalk.z);
@@ -788,10 +852,16 @@ function renderCollection(collection) {
   }
 }
 
-function setCollection(id) {
+function setCollection(id, keepSearch = false) {
   const collection = collections.find(item => item.id === id) || collections[0];
   if (!collection) return;
+  selectedCollectionId = collection.id;
   collectionSelect.value = collection.id;
+  if (!keepSearch) {
+    searchQuery = "";
+    bookmarkSearch.value = "";
+    clearSearch.hidden = true;
+  }
   renderCollection(collection);
 }
 
@@ -805,6 +875,80 @@ function populateCollectionSelect(defaultId) {
   collectionSelect.addEventListener("change", () => setCollection(collectionSelect.value));
   setCollection(defaultId);
 }
+
+function searchText(value) {
+  return String(value || "").toLowerCase();
+}
+
+function itemSearchText(item) {
+  return [
+    item.title,
+    item.domain,
+    item.url,
+    item.description,
+    item.sourcePath
+  ].map(searchText).join(" ");
+}
+
+function makeSearchCollection(query) {
+  const q = searchText(query).trim();
+  const seen = new Set();
+  const results = [];
+  function add(item, sourceCollection) {
+    const key = item.url || `${sourceCollection.id}:${item.title}`;
+    if (seen.has(key)) return;
+    seen.add(key);
+    results.push({
+      ...item,
+      sourcePath: item.sourcePath || sourceCollection.path,
+      matchedRoom: sourceCollection.title
+    });
+  }
+  for (const collection of collections) {
+    const roomText = [collection.title, collection.shortPath, collection.path].map(searchText).join(" ");
+    if (roomText.includes(q)) {
+      collection.items.forEach(item => add(item, collection));
+      continue;
+    }
+    collection.items.forEach(item => {
+      if (itemSearchText(item).includes(q)) add(item, collection);
+    });
+  }
+  return {
+    id: "search",
+    title: "Search",
+    path: `Search / ${query}`,
+    shortPath: `Search: ${query}`,
+    count: results.length,
+    directCount: results.length,
+    metaText: results.length ? `${results.length} results · ${query}` : `No results · ${query}`,
+    items: results
+  };
+}
+
+function applySearch() {
+  searchQuery = bookmarkSearch.value.trim();
+  clearSearch.hidden = !searchQuery;
+  if (!searchQuery) {
+    setCollection(selectedCollectionId || collections[0]?.id || "now", true);
+    return;
+  }
+  resetSphereOrbit();
+  renderCollection(makeSearchCollection(searchQuery));
+}
+
+bookmarkSearch.addEventListener("input", applySearch);
+bookmarkSearch.addEventListener("keydown", e => {
+  if (e.key === "Escape") {
+    bookmarkSearch.value = "";
+    applySearch();
+  }
+});
+clearSearch.addEventListener("click", () => {
+  bookmarkSearch.value = "";
+  applySearch();
+  bookmarkSearch.focus();
+});
 
 function manifestCollection(apps) {
   return {
@@ -840,6 +984,15 @@ const rot = {
   tYaw: 0, tPitch: 0,          // target
   vYaw: 0, vPitch: 0           // inertia velocity
 };
+function resetSphereOrbit() {
+  rot.yaw = 0;
+  rot.pitch = 0;
+  rot.tYaw = 0;
+  rot.tPitch = 0;
+  rot.vYaw = 0;
+  rot.vPitch = 0;
+  world.rotation.set(0, 0, 0);
+}
 const PITCH_LIMIT = 1.05;
 const EASE = 0.075;            // smooth-scroll style lag
 const DRAG_K = 0.0042;
@@ -1145,6 +1298,7 @@ window.__app = {
   setView, setCollection,
   collections: () => collections,
   activeCollection: () => activeCollection,
+  searchQuery: () => searchQuery,
   viewMode: () => currentView,
   screenPos(mesh) {
     const v = mesh.getWorldPosition(new THREE.Vector3()).project(camera);

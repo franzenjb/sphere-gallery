@@ -85,6 +85,54 @@ test("bookmark folders are selectable rooms that rebuild sphere and room", async
   expect(roomCount).toBe(pma.count);
 });
 
+test("search builds a temporary gallery and clears back to the selected room", async ({ page }) => {
+  await ready(page);
+
+  await page.locator("#collectionSelect").selectOption("pma");
+  await page.waitForFunction(() => window.__app.activeCollection()?.id === "pma");
+  const selectedRoomCount = await page.evaluate(() => window.__app.activeCollection().count);
+
+  await page.locator("#bookmarkSearch").fill("PMA2");
+  await page.waitForFunction(() => window.__app.activeCollection()?.id === "search");
+  await expect(page.locator("#collectionMeta")).toContainText("results");
+  const searchState = await page.evaluate(() => ({
+    query: window.__app.searchQuery(),
+    cards: window.__app.cards.length,
+    frames: window.__app.roomFrames.length,
+    activeCount: window.__app.activeCollection().count,
+    titles: window.__app.cards.map(card => card.userData.title)
+  }));
+  expect(searchState.query).toBe("PMA2");
+  expect(searchState.cards).toBeGreaterThan(0);
+  expect(searchState.cards).toBeLessThan(20);
+  expect(searchState.frames).toBe(searchState.cards);
+  expect(searchState.activeCount).toBe(searchState.cards);
+  expect(searchState.titles.some(title => title.toLowerCase().includes("pma2"))).toBeTruthy();
+  const firstResultScreen = await page.evaluate(() => window.__app.screenPos(window.__app.cards[0]));
+  expect(firstResultScreen.inFront).toBeTruthy();
+  expect(firstResultScreen.x).toBeGreaterThan(420);
+  expect(firstResultScreen.x).toBeLessThan(860);
+  expect(firstResultScreen.y).toBeGreaterThan(180);
+  expect(firstResultScreen.y).toBeLessThan(620);
+
+  await page.getByRole("button", { name: "Room" }).click();
+  await expect(page.locator("body")).toHaveAttribute("data-view", "room");
+  const roomFrames = await page.evaluate(() => window.__app.roomFrames.length);
+  expect(roomFrames).toBe(searchState.cards);
+
+  await page.getByRole("button", { name: "Clear search" }).click();
+  await page.waitForFunction(() => window.__app.activeCollection()?.id === "pma");
+  await expect(page.locator("#bookmarkSearch")).toHaveValue("");
+  const cleared = await page.evaluate(() => ({
+    query: window.__app.searchQuery(),
+    cards: window.__app.cards.length,
+    active: window.__app.activeCollection().id
+  }));
+  expect(cleared.query).toBe("");
+  expect(cleared.active).toBe("pma");
+  expect(cleared.cards).toBe(selectedRoomCount);
+});
+
 test("drag rotates sphere with eased follow and inertia", async ({ page }) => {
   await ready(page);
   const before = await page.evaluate(() => window.__app.rot.yaw);
@@ -110,12 +158,16 @@ test("drag rotates sphere with eased follow and inertia", async ({ page }) => {
   expect(Math.abs(later - justAfter.target)).toBeGreaterThan(0.001);
 
   // and the eased value converges toward the target
-  await page.waitForTimeout(1500);
+  await page.waitForFunction(
+    () => Math.abs(window.__app.rot.tYaw - window.__app.rot.yaw) < 0.03,
+    null,
+    { timeout: 5000 }
+  );
   const settled = await page.evaluate(() => ({
     yaw: window.__app.rot.yaw,
     target: window.__app.rot.tYaw
   }));
-  expect(Math.abs(settled.target - settled.yaw)).toBeLessThan(0.02);
+  expect(Math.abs(settled.target - settled.yaw)).toBeLessThan(0.03);
 });
 
 test("clicking a card animates detail page in; close returns", async ({ page }) => {

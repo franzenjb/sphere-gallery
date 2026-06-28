@@ -10,6 +10,8 @@ bookmark folder becomes a separate walk-around gallery.
 - Lenis-style drag: eased follow (lerp) + inertia on release; wheel orbits too
 - Click a card -> camera dollies toward it, a bookmark detail page slides up
 - Room mode -> selectable walk-around 3D galleries with one wall frame per bookmark
+- Search -> type a room name, bookmark title, domain, or URL to rebuild Sphere
+  and Room as a temporary results gallery
 - Images use saved screenshots when available, with generated artwork fallback
 
 No build step — a single `index.html` with an import map (three + gsap from CDN).
@@ -43,5 +45,5 @@ unreachable hosts. A safe capture pass can add more later, but the sphere and
 walk-around rooms stay usable with generated artwork.
 
 Tests cover load, drag easing + inertia, click -> detail open/close + camera
-restore, folder room selection, Room mode, WebGL nonblank rendering, and text
-contrast.
+restore, folder room selection, search results, Room mode, WebGL nonblank
+rendering, and text contrast.
