@@ -19,6 +19,15 @@ test("loads: canvas, one card per Chrome Now bookmark, no page errors", async ({
   expect(count).toBe(manifest.length);
   expect(count).toBeGreaterThan(60);
   expect(manifest.filter(app => app.img).length).toBeGreaterThan(50);
+  const collections = await page.evaluate(() =>
+    window.__app.collections().map(collection => ({
+      id: collection.id,
+      title: collection.title,
+      count: collection.count
+    }))
+  );
+  expect(collections.length).toBeGreaterThan(5);
+  expect(collections.find(collection => collection.id === "now")?.count).toBe(manifest.length);
   await expect(page.locator("body")).toHaveAttribute("data-view", "sphere");
   const nonBackgroundSamples = await page.evaluate(() => {
     const { renderer } = window.__app;
@@ -47,6 +56,33 @@ test("loads: canvas, one card per Chrome Now bookmark, no page errors", async ({
   });
   expect(nonBackgroundSamples).toBeGreaterThan(2);
   expect(errors).toEqual([]);
+});
+
+test("bookmark folders are selectable rooms that rebuild sphere and room", async ({ page }) => {
+  await ready(page);
+  const rooms = await page.evaluate(() =>
+    window.__app.collections().map(collection => ({
+      id: collection.id,
+      count: collection.count
+    }))
+  );
+  const pma = rooms.find(room => room.id === "pma");
+  expect(pma).toBeTruthy();
+
+  await page.locator("#collectionSelect").selectOption("pma");
+  await page.waitForFunction(() => window.__app.activeCollection()?.id === "pma");
+  await expect(page.locator("#collectionMeta")).toContainText("PMA");
+  const sphereCount = await page.evaluate(() => ({
+    cards: window.__app.cards.length,
+    activeCount: window.__app.activeCollection().count
+  }));
+  expect(sphereCount.cards).toBe(pma.count);
+  expect(sphereCount.activeCount).toBe(pma.count);
+
+  await page.getByRole("button", { name: "Room" }).click();
+  await expect(page.locator("body")).toHaveAttribute("data-view", "room");
+  const roomCount = await page.evaluate(() => window.__app.roomFrames.length);
+  expect(roomCount).toBe(pma.count);
 });
 
 test("drag rotates sphere with eased follow and inertia", async ({ page }) => {

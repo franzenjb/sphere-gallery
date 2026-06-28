@@ -1,5 +1,18 @@
 [
   {
+    "name": "geo-intelligence",
+    "title": "Geo Intelligence",
+    "domain": "intelligence.jbf.com",
+    "url": "https://intelligence.jbf.com/",
+    "img": "shots/geo-intelligence.jpg",
+    "description": "Saved in Chrome Now bookmarks. Source: intelligence.jbf.com.",
+    "source": "Chrome Bookmarks Bar / Now",
+    "sourcePath": "bookmark_bar / Bookmarks Bar / Now / Geo Intelligence",
+    "sourceIndex": 1,
+    "dateAdded": "13426863508822314",
+    "dateAddedIso": "2026-06-25T12:18:28.822Z"
+  },
+  {
     "name": "jbf-fleet-a-spherical-gallery",
     "title": "JBF Fleet — A Spherical Gallery",
     "domain": "sphere-gallery-omega.vercel.app",
@@ -8,7 +21,22 @@
     "description": "Saved in Chrome Now bookmarks. Source: sphere-gallery-omega.vercel.app.",
     "source": "Chrome Bookmarks Bar / Now",
     "sourcePath": "bookmark_bar / Bookmarks Bar / Now / JBF Fleet — A Spherical Gallery",
-    "sourceIndex": 1
+    "sourceIndex": 2,
+    "dateAdded": "13425675183057231",
+    "dateAddedIso": "2026-06-11T18:13:03.057Z"
+  },
+  {
+    "name": "florida-ros-new",
+    "title": "Florida ROS New",
+    "domain": "experience.arcgis.com",
+    "url": "https://experience.arcgis.com/experience/dbeedb5fd22545fe9d6dff4ae066ae86",
+    "img": "",
+    "description": "Saved in Chrome Now bookmarks. Source: experience.arcgis.com.",
+    "source": "Chrome Bookmarks Bar / Now",
+    "sourcePath": "bookmark_bar / Bookmarks Bar / Now / Florida ROS New",
+    "sourceIndex": 3,
+    "dateAdded": "13426789958482406",
+    "dateAddedIso": "2026-06-24T15:52:38.482Z"
   },
   {
     "name": "sdk-before-after",
@@ -19,7 +47,9 @@
     "description": "Saved in Chrome Now bookmarks. Source: active-projects-git-claude-arcgis-rest-fdefb6-jbf-2539-e1ec6bfb.vercel.app.",
     "source": "Chrome Bookmarks Bar / Now",
     "sourcePath": "bookmark_bar / Bookmarks Bar / Now / SDK Before After",
-    "sourceIndex": 2
+    "sourceIndex": 4,
+    "dateAdded": "13425341529447085",
+    "dateAddedIso": "2026-06-07T21:32:09.447Z"
   },
   {
     "name": "patient-animal-resource",
@@ -30,7 +60,9 @@
     "description": "Saved in Chrome Now bookmarks. Source: animals.jbf.com.",
     "source": "Chrome Bookmarks Bar / Now",
     "sourcePath": "bookmark_bar / Bookmarks Bar / Now / Patient Animal Resource",
-    "sourceIndex": 3
+    "sourceIndex": 5,
+    "dateAdded": "13426164392988416",
+    "dateAddedIso": "2026-06-17T10:06:32.988Z"
   },
   {
     "name": "red-cross-master-geography-catalog",
@@ -41,7 +73,9 @@
     "description": "Saved in Chrome Now bookmarks. Source: red-cross-data.vercel.app.",
     "source": "Chrome Bookmarks Bar / Now",
     "sourcePath": "bookmark_bar / Bookmarks Bar / Now / Red Cross Master Geography Catalog",
-    "sourceIndex": 4
+    "sourceIndex": 6,
+    "dateAdded": "13426090178358625",
+    "dateAddedIso": "2026-06-16T13:29:38.358Z"
   },
   {
     "name": "rapt-4-command-console",
@@ -52,7 +86,9 @@
     "description": "Saved in Chrome Now bookmarks. Source: rapt.jbf.com.",
     "source": "Chrome Bookmarks Bar / Now",
     "sourcePath": "bookmark_bar / Bookmarks Bar / Now / RAPT 4 Command Console",
-    "sourceIndex": 5
+    "sourceIndex": 7,
+    "dateAdded": "13425564607942301",
+    "dateAddedIso": "2026-06-10T11:30:07.942Z"
   },
   {
     "name": "red-cross-gis-data-assistant",
@@ -63,7 +99,9 @@
     "description": "Saved in Chrome Now bookmarks. Source: red-cross-gis-data-assistant.vercel.app.",
     "source": "Chrome Bookmarks Bar / Now",
     "sourcePath": "bookmark_bar / Bookmarks Bar / Now / Red Cross GIS Data Assistant",
-    "sourceIndex": 6
+    "sourceIndex": 8,
+    "dateAdded": "13424974359412956",
+    "dateAddedIso": "2026-06-03T15:32:39.412Z"
   },
   {
     "name": "project-inventory",
@@ -74,7 +112,9 @@
     "description": "Saved in Chrome Now bookmarks. Source: inventory.jbf.com.",
     "source": "Chrome Bookmarks Bar / Now",
     "sourcePath": "bookmark_bar / Bookmarks Bar / Now / Project Inventory",
-    "sourceIndex": 7
+    "sourceIndex": 9,
+    "dateAdded": "13421845376065963",
+    "dateAddedIso": "2026-04-28T10:22:56.065Z"
   },
   {
     "name": "hanna-v2",
@@ -85,7 +125,9 @@
     "description": "Saved in Chrome Now bookmarks. Source: hannahv2.jbf.com.",
     "source": "Chrome Bookmarks Bar / Now",
     "sourcePath": "bookmark_bar / Bookmarks Bar / Now / Hanna V2",
-    "sourceIndex": 8
+    "sourceIndex": 10,
+    "dateAdded": "13425734758013987",
+    "dateAddedIso": "2026-06-12T10:45:58.013Z"
   },
   {
     "name": "chapter-realignment-engine-american-red-cross",
@@ -96,7 +138,9 @@
     "description": "Saved in Chrome Now bookmarks. Source: realign.jbf.com.",
     "source": "Chrome Bookmarks Bar / Now",
     "sourcePath": "bookmark_bar / Bookmarks Bar / Now / Chapter Realignment Engine — American Red Cross",
-    "sourceIndex": 9
+    "sourceIndex": 11,
+    "dateAdded": "13423578499944131",
+    "dateAddedIso": "2026-05-18T11:48:19.944Z"
   },
   {
     "name": "jeff-franzen-rc-map-style-lab",
@@ -107,7 +151,9 @@
     "description": "Saved in Chrome Now bookmarks. Source: vector-basemap-lab.vercel.app.",
     "source": "Chrome Bookmarks Bar / Now",
     "sourcePath": "bookmark_bar / Bookmarks Bar / Now / Jeff Franzen RC Map Style Lab",
-    "sourceIndex": 10
+    "sourceIndex": 12,
+    "dateAdded": "13424975741248669",
+    "dateAddedIso": "2026-06-03T15:55:41.248Z"
   },
   {
     "name": "real-estate-facilities-intelligence-reintel-jbf-com-intel",
@@ -118,7 +164,9 @@
     "description": "Saved in Chrome Now bookmarks. Source: reintel.jbf.com.",
     "source": "Chrome Bookmarks Bar / Now",
     "sourcePath": "bookmark_bar / Bookmarks Bar / Now / Real Estate Facilities Intelligence reintel.jbf.com intel",
-    "sourceIndex": 11
+    "sourceIndex": 13,
+    "dateAdded": "13423615854250182",
+    "dateAddedIso": "2026-05-18T22:10:54.250Z"
   },
   {
     "name": "wyar",
@@ -129,7 +177,9 @@
     "description": "Saved in Chrome Now bookmarks. Source: wyar.jbf.com.",
     "source": "Chrome Bookmarks Bar / Now",
     "sourcePath": "bookmark_bar / Bookmarks Bar / Now / WYAR",
-    "sourceIndex": 12
+    "sourceIndex": 14,
+    "dateAdded": "13426592289616552",
+    "dateAddedIso": "2026-06-22T08:58:09.616Z"
   },
   {
     "name": "neris-api",
@@ -140,18 +190,22 @@
     "description": "Saved in Chrome Now bookmarks. Source: neris-api-data.vercel.app.",
     "source": "Chrome Bookmarks Bar / Now",
     "sourcePath": "bookmark_bar / Bookmarks Bar / Now / NERIS API",
-    "sourceIndex": 13
+    "sourceIndex": 15,
+    "dateAdded": "13423762050383957",
+    "dateAddedIso": "2026-05-20T14:47:30.383Z"
   },
   {
     "name": "obsidian-grafify",
     "title": "Obsidian Grafify",
-    "domain": "Local file",
+    "domain": "",
     "url": "file:///Users/jefffranzen/dev/vault-graph/graphify-out/graph.html",
     "img": "",
-    "description": "Saved in Chrome Now bookmarks. Source: Local file.",
+    "description": "Saved in Chrome Now bookmarks. Source: .",
     "source": "Chrome Bookmarks Bar / Now",
     "sourcePath": "bookmark_bar / Bookmarks Bar / Now / Obsidian Grafify",
-    "sourceIndex": 14
+    "sourceIndex": 16,
+    "dateAdded": "13425736238668298",
+    "dateAddedIso": "2026-06-12T11:10:38.668Z"
   },
   {
     "name": "agol-layer-browser-arcgis-sdk",
@@ -162,7 +216,9 @@
     "description": "Saved in Chrome Now bookmarks. Source: maps.jbf.com.",
     "source": "Chrome Bookmarks Bar / Now",
     "sourcePath": "bookmark_bar / Bookmarks Bar / Now / AGOL Layer Browser — ArcGIS SDK",
-    "sourceIndex": 15
+    "sourceIndex": 17,
+    "dateAdded": "13418911404558918",
+    "dateAddedIso": "2026-03-25T11:23:24.558Z"
   },
   {
     "name": "sitaware-jbf-com",
@@ -173,7 +229,9 @@
     "description": "Saved in Chrome Now bookmarks. Source: sitaware.jbf.com.",
     "source": "Chrome Bookmarks Bar / Now",
     "sourcePath": "bookmark_bar / Bookmarks Bar / Now / sitaware.jbf.com",
-    "sourceIndex": 16
+    "sourceIndex": 18,
+    "dateAdded": "13419937892742657",
+    "dateAddedIso": "2026-04-06T08:31:32.742Z"
   },
   {
     "name": "universal-language",
@@ -184,7 +242,9 @@
     "description": "Saved in Chrome Now bookmarks. Source: languages.jbf.com.",
     "source": "Chrome Bookmarks Bar / Now",
     "sourcePath": "bookmark_bar / Bookmarks Bar / Now / Universal Language",
-    "sourceIndex": 17
+    "sourceIndex": 19,
+    "dateAdded": "13423329429643915",
+    "dateAddedIso": "2026-05-15T14:37:09.643Z"
   },
   {
     "name": "northeast-division-dfsc-drive-times",
@@ -195,7 +255,9 @@
     "description": "Saved in Chrome Now bookmarks. Source: experience.arcgis.com.",
     "source": "Chrome Bookmarks Bar / Now",
     "sourcePath": "bookmark_bar / Bookmarks Bar / Now / Northeast Division - DFSC Drive Times",
-    "sourceIndex": 18
+    "sourceIndex": 20,
+    "dateAdded": "13425136521465101",
+    "dateAddedIso": "2026-06-05T12:35:21.465Z"
   },
   {
     "name": "flow",
@@ -206,7 +268,9 @@
     "description": "Saved in Chrome Now bookmarks. Source: blood-type-flow-tool.vercel.app.",
     "source": "Chrome Bookmarks Bar / Now",
     "sourcePath": "bookmark_bar / Bookmarks Bar / Now / Flow",
-    "sourceIndex": 19
+    "sourceIndex": 21,
+    "dateAdded": "13425313411167572",
+    "dateAddedIso": "2026-06-07T13:43:31.167Z"
   },
   {
     "name": "coding-101-codex-101",
@@ -217,7 +281,9 @@
     "description": "Saved in Chrome Now bookmarks. Source: coding.jbf.com.",
     "source": "Chrome Bookmarks Bar / Now",
     "sourcePath": "bookmark_bar / Bookmarks Bar / Now / Coding 101 + Codex 101",
-    "sourceIndex": 20
+    "sourceIndex": 22,
+    "dateAdded": "13423484886480757",
+    "dateAddedIso": "2026-05-17T09:48:06.480Z"
   },
   {
     "name": "cascade-i",
@@ -228,7 +294,9 @@
     "description": "Saved in Chrome Now bookmarks. Source: cascade1.jbf.com.",
     "source": "Chrome Bookmarks Bar / Now",
     "sourcePath": "bookmark_bar / Bookmarks Bar / Now / Cascade I",
-    "sourceIndex": 21
+    "sourceIndex": 23,
+    "dateAdded": "13421165987958644",
+    "dateAddedIso": "2026-04-20T13:39:47.958Z"
   },
   {
     "name": "prompt-builder",
@@ -239,7 +307,9 @@
     "description": "Saved in Chrome Now bookmarks. Source: two-techniques.vercel.app.",
     "source": "Chrome Bookmarks Bar / Now",
     "sourcePath": "bookmark_bar / Bookmarks Bar / Now / Prompt Builder",
-    "sourceIndex": 22
+    "sourceIndex": 24,
+    "dateAdded": "13423219864323782",
+    "dateAddedIso": "2026-05-14T08:11:04.323Z"
   },
   {
     "name": "real-estate-data-library-intel",
@@ -250,7 +320,9 @@
     "description": "Saved in Chrome Now bookmarks. Source: red-cross-real-estate-data.vercel.app.",
     "source": "Chrome Bookmarks Bar / Now",
     "sourcePath": "bookmark_bar / Bookmarks Bar / Now / Real Estate Data Library - intel",
-    "sourceIndex": 23
+    "sourceIndex": 25,
+    "dateAdded": "13423592671305404",
+    "dateAddedIso": "2026-05-18T15:44:31.305Z"
   },
   {
     "name": "clara-participant-intake",
@@ -261,7 +333,9 @@
     "description": "Saved in Chrome Now bookmarks. Source: docs.google.com.",
     "source": "Chrome Bookmarks Bar / Now",
     "sourcePath": "bookmark_bar / Bookmarks Bar / Now / Clara Participant Intake",
-    "sourceIndex": 24
+    "sourceIndex": 26,
+    "dateAdded": "13423333988307713",
+    "dateAddedIso": "2026-05-15T15:53:08.307Z"
   },
   {
     "name": "commmob-nate-interactive-learning-platform",
@@ -272,7 +346,9 @@
     "description": "Saved in Chrome Now bookmarks. Source: redcross-overview.vercel.app.",
     "source": "Chrome Bookmarks Bar / Now",
     "sourcePath": "bookmark_bar / Bookmarks Bar / Now / CommMob - Nate - Interactive Learning Platform",
-    "sourceIndex": 25
+    "sourceIndex": 27,
+    "dateAdded": "13423414008339988",
+    "dateAddedIso": "2026-05-16T14:06:48.339Z"
   },
   {
     "name": "sitaware-cascade-command-center",
@@ -283,7 +359,9 @@
     "description": "Saved in Chrome Now bookmarks. Source: sitaware-cascade-32sw3luvw-jbf-2539-e1ec6bfb.vercel.app.",
     "source": "Chrome Bookmarks Bar / Now",
     "sourcePath": "bookmark_bar / Bookmarks Bar / Now / SECOND / SitAware Cascade — Command Center",
-    "sourceIndex": 26
+    "sourceIndex": 28,
+    "dateAdded": "13421419747038770",
+    "dateAddedIso": "2026-04-23T12:09:07.038Z"
   },
   {
     "name": "ask-clara-arc-policy-assistant",
@@ -294,7 +372,9 @@
     "description": "Saved in Chrome Now bookmarks. Source: clara.jbf.com.",
     "source": "Chrome Bookmarks Bar / Now",
     "sourcePath": "bookmark_bar / Bookmarks Bar / Now / SECOND / Ask Clara — ARC Policy Assistant",
-    "sourceIndex": 27
+    "sourceIndex": 29,
+    "dateAdded": "13420654092810409",
+    "dateAddedIso": "2026-04-14T15:28:12.810Z"
   },
   {
     "name": "ops-jbf-com",
@@ -305,7 +385,9 @@
     "description": "Saved in Chrome Now bookmarks. Source: ops.jbf.com.",
     "source": "Chrome Bookmarks Bar / Now",
     "sourcePath": "bookmark_bar / Bookmarks Bar / Now / SECOND / ops.jbf.com",
-    "sourceIndex": 28
+    "sourceIndex": 30,
+    "dateAdded": "13419937892742694",
+    "dateAddedIso": "2026-04-06T08:31:32.742Z"
   },
   {
     "name": "da-lookup-helene2024",
@@ -316,7 +398,9 @@
     "description": "Saved in Chrome Now bookmarks. Source: da.jbf.com.",
     "source": "Chrome Bookmarks Bar / Now",
     "sourcePath": "bookmark_bar / Bookmarks Bar / Now / SECOND / DA Lookup helene2024",
-    "sourceIndex": 29
+    "sourceIndex": 31,
+    "dateAdded": "13421140215728939",
+    "dateAddedIso": "2026-04-20T06:30:15.728Z"
   },
   {
     "name": "intel-jbf-com",
@@ -327,7 +411,9 @@
     "description": "Saved in Chrome Now bookmarks. Source: intel.jbf.com.",
     "source": "Chrome Bookmarks Bar / Now",
     "sourcePath": "bookmark_bar / Bookmarks Bar / Now / SECOND / intel.jbf.com",
-    "sourceIndex": 30
+    "sourceIndex": 32,
+    "dateAdded": "13421054837996519",
+    "dateAddedIso": "2026-04-19T06:47:17.996Z"
   },
   {
     "name": "knowledge-graph",
@@ -338,7 +424,9 @@
     "description": "Saved in Chrome Now bookmarks. Source: explorer.jbf.com.",
     "source": "Chrome Bookmarks Bar / Now",
     "sourcePath": "bookmark_bar / Bookmarks Bar / Now / SECOND / Knowledge Graph",
-    "sourceIndex": 31
+    "sourceIndex": 33,
+    "dateAdded": "13421243000255592",
+    "dateAddedIso": "2026-04-21T11:03:20.255Z"
   },
   {
     "name": "county-jbf-com",
@@ -349,7 +437,9 @@
     "description": "Saved in Chrome Now bookmarks. Source: county.jbf.com.",
     "source": "Chrome Bookmarks Bar / Now",
     "sourcePath": "bookmark_bar / Bookmarks Bar / Now / SECOND / county.jbf.com",
-    "sourceIndex": 32
+    "sourceIndex": 34,
+    "dateAdded": "13420561119678185",
+    "dateAddedIso": "2026-04-13T13:38:39.678Z"
   },
   {
     "name": "cascade-ii",
@@ -360,7 +450,9 @@
     "description": "Saved in Chrome Now bookmarks. Source: cascade2.jbf.com.",
     "source": "Chrome Bookmarks Bar / Now",
     "sourcePath": "bookmark_bar / Bookmarks Bar / Now / SECOND / Cascade II",
-    "sourceIndex": 33
+    "sourceIndex": 35,
+    "dateAdded": "13421166016055102",
+    "dateAddedIso": "2026-04-20T13:40:16.055Z"
   },
   {
     "name": "commmob-v",
@@ -371,7 +463,9 @@
     "description": "Saved in Chrome Now bookmarks. Source: experience.arcgis.com.",
     "source": "Chrome Bookmarks Bar / Now",
     "sourcePath": "bookmark_bar / Bookmarks Bar / Now / SECOND / CommMob V",
-    "sourceIndex": 34
+    "sourceIndex": 36,
+    "dateAdded": "13419022016810172",
+    "dateAddedIso": "2026-03-26T18:06:56.810Z"
   },
   {
     "name": "flare-experience-builder",
@@ -382,7 +476,9 @@
     "description": "Saved in Chrome Now bookmarks. Source: experience.arcgis.com.",
     "source": "Chrome Bookmarks Bar / Now",
     "sourcePath": "bookmark_bar / Bookmarks Bar / Now / SECOND / Flare - Experience Builder",
-    "sourceIndex": 35
+    "sourceIndex": 37,
+    "dateAdded": "13419715332939619",
+    "dateAddedIso": "2026-04-03T18:42:12.939Z"
   },
   {
     "name": "flare-vercel",
@@ -393,7 +489,9 @@
     "description": "Saved in Chrome Now bookmarks. Source: flare-v2-red.vercel.app.",
     "source": "Chrome Bookmarks Bar / Now",
     "sourcePath": "bookmark_bar / Bookmarks Bar / Now / SECOND / Flare - Vercel",
-    "sourceIndex": 36
+    "sourceIndex": 38,
+    "dateAdded": "13419715576530295",
+    "dateAddedIso": "2026-04-03T18:46:16.530Z"
   },
   {
     "name": "jbf-tools",
@@ -404,7 +502,9 @@
     "description": "Saved in Chrome Now bookmarks. Source: tools.jbf.com.",
     "source": "Chrome Bookmarks Bar / Now",
     "sourcePath": "bookmark_bar / Bookmarks Bar / Now / SECOND / JBF Tools",
-    "sourceIndex": 37
+    "sourceIndex": 39,
+    "dateAdded": "13421407853160979",
+    "dateAddedIso": "2026-04-23T08:50:53.160Z"
   },
   {
     "name": "realestate-jbf-com",
@@ -415,7 +515,9 @@
     "description": "Saved in Chrome Now bookmarks. Source: realestate.jbf.com.",
     "source": "Chrome Bookmarks Bar / Now",
     "sourcePath": "bookmark_bar / Bookmarks Bar / Now / SECOND / realestate.jbf.com",
-    "sourceIndex": 38
+    "sourceIndex": 40,
+    "dateAdded": "13420561484347342",
+    "dateAddedIso": "2026-04-13T13:44:44.347Z"
   },
   {
     "name": "sitaware-codex",
@@ -426,7 +528,9 @@
     "description": "Saved in Chrome Now bookmarks. Source: sitaware.codex.jbf.com.",
     "source": "Chrome Bookmarks Bar / Now",
     "sourcePath": "bookmark_bar / Bookmarks Bar / Now / SECOND / SitAware Codex",
-    "sourceIndex": 39
+    "sourceIndex": 41,
+    "dateAdded": "13421764953996414",
+    "dateAddedIso": "2026-04-27T12:02:33.996Z"
   },
   {
     "name": "final-mile-intelligence-map",
@@ -437,7 +541,9 @@
     "description": "Saved in Chrome Now bookmarks. Source: final-mile-intel.vercel.app.",
     "source": "Chrome Bookmarks Bar / Now",
     "sourcePath": "bookmark_bar / Bookmarks Bar / Now / SECOND / Final Mile Intelligence Map",
-    "sourceIndex": 40
+    "sourceIndex": 42,
+    "dateAdded": "13422145415445314",
+    "dateAddedIso": "2026-05-01T21:43:35.445Z"
   },
   {
     "name": "helenegap-jbf-com",
@@ -448,7 +554,9 @@
     "description": "Saved in Chrome Now bookmarks. Source: helenegap.jbf.com.",
     "source": "Chrome Bookmarks Bar / Now",
     "sourcePath": "bookmark_bar / Bookmarks Bar / Now / TERTIARY / ALICE / HeleneGap.JBF.com",
-    "sourceIndex": 41
+    "sourceIndex": 43,
+    "dateAdded": "13421327546233043",
+    "dateAddedIso": "2026-04-22T10:32:26.233Z"
   },
   {
     "name": "alice-disaster-assistance-tracker-unitedforalice",
@@ -459,18 +567,22 @@
     "description": "Saved in Chrome Now bookmarks. Source: unitedforalice.org.",
     "source": "Chrome Bookmarks Bar / Now",
     "sourcePath": "bookmark_bar / Bookmarks Bar / Now / TERTIARY / ALICE / ALICE Disaster Assistance Tracker | UnitedForALICE",
-    "sourceIndex": 42
+    "sourceIndex": 44,
+    "dateAdded": "13421338263628533",
+    "dateAddedIso": "2026-04-22T13:31:03.628Z"
   },
   {
     "name": "alice-helene-charts",
     "title": "ALICE — Helene Charts",
-    "domain": "Local file",
+    "domain": "",
     "url": "file:///Users/jefffranzen/dev/alice-charts/index.html",
     "img": "",
-    "description": "Saved in Chrome Now bookmarks. Source: Local file.",
+    "description": "Saved in Chrome Now bookmarks. Source: .",
     "source": "Chrome Bookmarks Bar / Now",
     "sourcePath": "bookmark_bar / Bookmarks Bar / Now / TERTIARY / ALICE / ALICE — Helene Charts",
-    "sourceIndex": 43
+    "sourceIndex": 45,
+    "dateAdded": "13421336097021232",
+    "dateAddedIso": "2026-04-22T12:54:57.021Z"
   },
   {
     "name": "interview-scoring-community-operations-branch",
@@ -481,7 +593,9 @@
     "description": "Saved in Chrome Now bookmarks. Source: interview.jbf.com.",
     "source": "Chrome Bookmarks Bar / Now",
     "sourcePath": "bookmark_bar / Bookmarks Bar / Now / TERTIARY / Interview Scoring — Community Operations Branch",
-    "sourceIndex": 44
+    "sourceIndex": 46,
+    "dateAdded": "13421260108037758",
+    "dateAddedIso": "2026-04-21T15:48:28.037Z"
   },
   {
     "name": "lightrag",
@@ -492,7 +606,9 @@
     "description": "Saved in Chrome Now bookmarks. Source: dragons-brain-production-bb2c.up.railway.app.",
     "source": "Chrome Bookmarks Bar / Now",
     "sourcePath": "bookmark_bar / Bookmarks Bar / Now / TERTIARY / Lightrag",
-    "sourceIndex": 45
+    "sourceIndex": 47,
+    "dateAdded": "13421244717369043",
+    "dateAddedIso": "2026-04-21T11:31:57.369Z"
   },
   {
     "name": "registrant-dashboard-tour-jbf-com",
@@ -503,7 +619,9 @@
     "description": "Saved in Chrome Now bookmarks. Source: tour.jbf.com.",
     "source": "Chrome Bookmarks Bar / Now",
     "sourcePath": "bookmark_bar / Bookmarks Bar / Now / TERTIARY / Registrant Dashboard tour.jbf.com",
-    "sourceIndex": 46
+    "sourceIndex": 48,
+    "dateAdded": "13421761390730108",
+    "dateAddedIso": "2026-04-27T11:03:10.730Z"
   },
   {
     "name": "commmob-data-processor",
@@ -514,7 +632,9 @@
     "description": "Saved in Chrome Now bookmarks. Source: commmob-data-processor-live.vercel.app.",
     "source": "Chrome Bookmarks Bar / Now",
     "sourcePath": "bookmark_bar / Bookmarks Bar / Now / TERTIARY / CommMob Data Processor",
-    "sourceIndex": 47
+    "sourceIndex": 49,
+    "dateAdded": "13423329496777818",
+    "dateAddedIso": "2026-05-15T14:38:16.777Z"
   },
   {
     "name": "eb-embed-widget-recipes-sandra-hayden",
@@ -525,7 +645,9 @@
     "description": "Saved in Chrome Now bookmarks. Source: sandra-hayden-embeds.vercel.app.",
     "source": "Chrome Bookmarks Bar / Now",
     "sourcePath": "bookmark_bar / Bookmarks Bar / Now / TERTIARY / EB Embed Widget Recipes Sandra Hayden",
-    "sourceIndex": 48
+    "sourceIndex": 50,
+    "dateAdded": "13423399394969874",
+    "dateAddedIso": "2026-05-16T10:03:14.969Z"
   },
   {
     "name": "damage-intelligence-console-arcgis-sdk-field-notes",
@@ -536,7 +658,9 @@
     "description": "Saved in Chrome Now bookmarks. Source: two-techniques.vercel.app.",
     "source": "Chrome Bookmarks Bar / Now",
     "sourcePath": "bookmark_bar / Bookmarks Bar / Now / TERTIARY / Damage Intelligence Console | ArcGIS SDK Field Notes",
-    "sourceIndex": 49
+    "sourceIndex": 51,
+    "dateAdded": "13423343801175140",
+    "dateAddedIso": "2026-05-15T18:36:41.175Z"
   },
   {
     "name": "eb-teaching-app-sdk-embeds-for-experience-builder",
@@ -547,7 +671,9 @@
     "description": "Saved in Chrome Now bookmarks. Source: eb-teaching-app.vercel.app.",
     "source": "Chrome Bookmarks Bar / Now",
     "sourcePath": "bookmark_bar / Bookmarks Bar / Now / TERTIARY / EB Teaching App — SDK Embeds for Experience Builder",
-    "sourceIndex": 50
+    "sourceIndex": 52,
+    "dateAdded": "13423402259540274",
+    "dateAddedIso": "2026-05-16T10:50:59.540Z"
   },
   {
     "name": "lets-do-this",
@@ -558,7 +684,9 @@
     "description": "Saved in Chrome Now bookmarks. Source: instagram.com.",
     "source": "Chrome Bookmarks Bar / Now",
     "sourcePath": "bookmark_bar / Bookmarks Bar / Now / TERTIARY / Lets Do This",
-    "sourceIndex": 51
+    "sourceIndex": 53,
+    "dateAdded": "13423567104530940",
+    "dateAddedIso": "2026-05-18T08:38:24.530Z"
   },
   {
     "name": "two-sdk-techniques-beyond-experience-builder-dragon-jeff-franzen",
@@ -569,7 +697,9 @@
     "description": "Saved in Chrome Now bookmarks. Source: two-techniques.vercel.app.",
     "source": "Chrome Bookmarks Bar / Now",
     "sourcePath": "bookmark_bar / Bookmarks Bar / Now / TERTIARY / Two SDK Techniques Beyond Experience Builder — Dragon / Jeff Franzen",
-    "sourceIndex": 52
+    "sourceIndex": 54,
+    "dateAdded": "13421837208688137",
+    "dateAddedIso": "2026-04-28T08:06:48.688Z"
   },
   {
     "name": "lower-48-choropleth-demo",
@@ -580,7 +710,9 @@
     "description": "Saved in Chrome Now bookmarks. Source: state-demo-three.vercel.app.",
     "source": "Chrome Bookmarks Bar / Now",
     "sourcePath": "bookmark_bar / Bookmarks Bar / Now / Lower 48 Choropleth Demo",
-    "sourceIndex": 53
+    "sourceIndex": 55,
+    "dateAdded": "13423457801595136",
+    "dateAddedIso": "2026-05-17T02:16:41.595Z"
   },
   {
     "name": "ai-at-the-red-cross",
@@ -591,7 +723,9 @@
     "description": "Saved in Chrome Now bookmarks. Source: red-cross-ai.vercel.app.",
     "source": "Chrome Bookmarks Bar / Now",
     "sourcePath": "bookmark_bar / Bookmarks Bar / Now / AI at the Red Cross",
-    "sourceIndex": 54
+    "sourceIndex": 56,
+    "dateAdded": "13423686662447312",
+    "dateAddedIso": "2026-05-19T17:51:02.447Z"
   },
   {
     "name": "brivo-dashboard-real-estate",
@@ -602,7 +736,9 @@
     "description": "Saved in Chrome Now bookmarks. Source: arc-nhq-gis.maps.arcgis.com.",
     "source": "Chrome Bookmarks Bar / Now",
     "sourcePath": "bookmark_bar / Bookmarks Bar / Now / Brivo Dashboard Real Estate",
-    "sourceIndex": 55
+    "sourceIndex": 57,
+    "dateAdded": "13423687163210641",
+    "dateAddedIso": "2026-05-19T17:59:23.210Z"
   },
   {
     "name": "red-cross-community-vulnerability-atlas-alice-data-platform",
@@ -613,7 +749,9 @@
     "description": "Saved in Chrome Now bookmarks. Source: franzenjb.github.io.",
     "source": "Chrome Bookmarks Bar / Now",
     "sourcePath": "bookmark_bar / Bookmarks Bar / Now / Red Cross Community Vulnerability Atlas | ALICE Data Platform",
-    "sourceIndex": 56
+    "sourceIndex": 58,
+    "dateAdded": "13423838589277873",
+    "dateAddedIso": "2026-05-21T12:03:09.277Z"
   },
   {
     "name": "storyboard-ai-gis-and-the-new-red-cross-workbench",
@@ -624,7 +762,9 @@
     "description": "Saved in Chrome Now bookmarks. Source: ainow.jbf.com.",
     "source": "Chrome Bookmarks Bar / Now",
     "sourcePath": "bookmark_bar / Bookmarks Bar / Now / Storyboard | AI, GIS, and the New Red Cross Workbench",
-    "sourceIndex": 57
+    "sourceIndex": 59,
+    "dateAdded": "13423936031876132",
+    "dateAddedIso": "2026-05-22T15:07:11.876Z"
   },
   {
     "name": "ai-gis-and-the-new-red-cross-workbench",
@@ -635,7 +775,9 @@
     "description": "Saved in Chrome Now bookmarks. Source: ainow.jbf.com.",
     "source": "Chrome Bookmarks Bar / Now",
     "sourcePath": "bookmark_bar / Bookmarks Bar / Now / AI, GIS, and the New Red Cross Workbench",
-    "sourceIndex": 58
+    "sourceIndex": 60,
+    "dateAdded": "13423936041792009",
+    "dateAddedIso": "2026-05-22T15:07:21.792Z"
   },
   {
     "name": "trends-observatory-trends-jbf-com",
@@ -646,18 +788,22 @@
     "description": "Saved in Chrome Now bookmarks. Source: trend-observatory.vercel.app.",
     "source": "Chrome Bookmarks Bar / Now",
     "sourcePath": "bookmark_bar / Bookmarks Bar / Now / Trends Observatory — trends.jbf.com",
-    "sourceIndex": 59
+    "sourceIndex": 61,
+    "dateAdded": "13424263520852956",
+    "dateAddedIso": "2026-05-26T10:05:20.852Z"
   },
   {
     "name": "americanredcross-my-sharepoint-com",
-    "title": "americanredcross-my.sharepoint.com",
+    "title": "https://americanredcross-my.sharepoint.com/personal/timothy_dahlum_redcross_org/_layouts/15/stream.aspx?id=%2Fpersonal%2Ftimothy%5Fdahlum%5Fredcross%5Forg%2FDocuments%2FRecordings%2F%5BPAC%20IP%5D%20Situation%20Unit%20Workgroup%2D20260522%5F205233UTC%2DMeeting%20Recording%2Emp4&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2E331ea614%2Df9b2%2D415f%2Da4df%2Da63a71c42694&isDarkMode=true",
     "domain": "americanredcross-my.sharepoint.com",
     "url": "https://americanredcross-my.sharepoint.com/personal/timothy_dahlum_redcross_org/_layouts/15/stream.aspx?id=%2Fpersonal%2Ftimothy%5Fdahlum%5Fredcross%5Forg%2FDocuments%2FRecordings%2F%5BPAC%20IP%5D%20Situation%20Unit%20Workgroup%2D20260522%5F205233UTC%2DMeeting%20Recording%2Emp4&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2E331ea614%2Df9b2%2D415f%2Da4df%2Da63a71c42694&isDarkMode=true",
     "img": "",
     "description": "Saved in Chrome Now bookmarks. Source: americanredcross-my.sharepoint.com.",
     "source": "Chrome Bookmarks Bar / Now",
-    "sourcePath": "bookmark_bar / Bookmarks Bar / Now / ",
-    "sourceIndex": 60
+    "sourcePath": "bookmark_bar / Bookmarks Bar / Now / https://americanredcross-my.sharepoint.com/personal/timothy_dahlum_redcross_org/_layouts/15/stream.aspx?id=%2Fpersonal%2Ftimothy%5Fdahlum%5Fredcross%5Forg%2FDocuments%2FRecordings%2F%5BPAC%20IP%5D%20Situation%20Unit%20Workgroup%2D20260522%5F205233UTC%2DMeeting%20Recording%2Emp4&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2E331ea614%2Df9b2%2D415f%2Da4df%2Da63a71c42694&isDarkMode=true",
+    "sourceIndex": 62,
+    "dateAdded": "13424348770467382",
+    "dateAddedIso": "2026-05-27T09:46:10.467Z"
   },
   {
     "name": "shottr-upload-gallery",
@@ -668,7 +814,9 @@
     "description": "Saved in Chrome Now bookmarks. Source: shottr.cc.",
     "source": "Chrome Bookmarks Bar / Now",
     "sourcePath": "bookmark_bar / Bookmarks Bar / Now / Shottr Upload Gallery",
-    "sourceIndex": 61
+    "sourceIndex": 63,
+    "dateAdded": "13424350902948545",
+    "dateAddedIso": "2026-05-27T10:21:42.948Z"
   },
   {
     "name": "arc-real-estate-drive-time-deployment-overview-vercel",
@@ -679,7 +827,9 @@
     "description": "Saved in Chrome Now bookmarks. Source: vercel.com.",
     "source": "Chrome Bookmarks Bar / Now",
     "sourcePath": "bookmark_bar / Bookmarks Bar / Now / arc-real-estate-drive-time – Deployment Overview – Vercel",
-    "sourceIndex": 62
+    "sourceIndex": 64,
+    "dateAdded": "13424571450813593",
+    "dateAddedIso": "2026-05-29T23:37:30.813Z"
   },
   {
     "name": "coding-101-codex-101-state-demo-search-as-code-ai-risk-white-papers",
@@ -690,7 +840,9 @@
     "description": "Saved in Chrome Now bookmarks. Source: coding.jbf.com.",
     "source": "Chrome Bookmarks Bar / Now",
     "sourcePath": "bookmark_bar / Bookmarks Bar / Now / Coding 101 + Codex 101 + State Demo + Search as Code + AI Risk + White Papers",
-    "sourceIndex": 63
+    "sourceIndex": 65,
+    "dateAdded": "13426783867886485",
+    "dateAddedIso": "2026-06-24T14:11:07.886Z"
   },
   {
     "name": "claude-design",
@@ -701,6 +853,86 @@
     "description": "Saved in Chrome Now bookmarks. Source: claude.ai.",
     "source": "Chrome Bookmarks Bar / Now",
     "sourcePath": "bookmark_bar / Bookmarks Bar / Now / Claude Design",
-    "sourceIndex": 64
+    "sourceIndex": 66,
+    "dateAdded": "13426783911082883",
+    "dateAddedIso": "2026-06-24T14:11:51.082Z"
+  },
+  {
+    "name": "red-cross-guide-ai-demo-walk-me",
+    "title": "Red Cross Guide AI Demo Walk Me",
+    "domain": "walkme-red-cross-guide-demo.vercel.app",
+    "url": "https://walkme-red-cross-guide-demo.vercel.app/",
+    "img": "shots/red-cross-guide-ai-demo-walk-me.jpg",
+    "description": "Saved in Chrome Now bookmarks. Source: walkme-red-cross-guide-demo.vercel.app.",
+    "source": "Chrome Bookmarks Bar / Now",
+    "sourcePath": "bookmark_bar / Bookmarks Bar / Now / Red Cross Guide AI Demo Walk Me",
+    "sourceIndex": 67,
+    "dateAdded": "13426794550086403",
+    "dateAddedIso": "2026-06-24T17:09:10.086Z"
+  },
+  {
+    "name": "florida-regional-operating-summary",
+    "title": "Florida Regional Operating Summary",
+    "domain": "floridaros.jbf.com",
+    "url": "https://floridaros.jbf.com/",
+    "img": "shots/florida-regional-operating-summary.jpg",
+    "description": "Saved in Chrome Now bookmarks. Source: floridaros.jbf.com.",
+    "source": "Chrome Bookmarks Bar / Now",
+    "sourcePath": "bookmark_bar / Bookmarks Bar / Now / Florida Regional Operating Summary",
+    "sourceIndex": 68,
+    "dateAdded": "13426822703768797",
+    "dateAddedIso": "2026-06-25T00:58:23.768Z"
+  },
+  {
+    "name": "1-8-google-earth-pro-tips-for-drone-pros-youtube",
+    "title": "(1) 8 Google Earth Pro Tips for Drone Pros 🚁🌍 - YouTube",
+    "domain": "youtube.com",
+    "url": "https://www.youtube.com/watch?v=_ZBV9WnVHXQ&t=423s",
+    "img": "shots/1-8-google-earth-pro-tips-for-drone-pros-youtube.jpg",
+    "description": "Saved in Chrome Now bookmarks. Source: youtube.com.",
+    "source": "Chrome Bookmarks Bar / Now",
+    "sourcePath": "bookmark_bar / Bookmarks Bar / Now / (1) 8 Google Earth Pro Tips for Drone Pros 🚁🌍 - YouTube",
+    "sourceIndex": 69,
+    "dateAdded": "13426850607644940",
+    "dateAddedIso": "2026-06-25T08:43:27.644Z"
+  },
+  {
+    "name": "geographic-intelligence-platform-project-console",
+    "title": "Geographic Intelligence Platform — Project Console",
+    "domain": "geographic-intelligence-platform.vercel.app",
+    "url": "https://geographic-intelligence-platform.vercel.app/",
+    "img": "shots/geographic-intelligence-platform-project-console.jpg",
+    "description": "Saved in Chrome Now bookmarks. Source: geographic-intelligence-platform.vercel.app.",
+    "source": "Chrome Bookmarks Bar / Now",
+    "sourcePath": "bookmark_bar / Bookmarks Bar / Now / Geographic Intelligence Platform — Project Console",
+    "sourceIndex": 70,
+    "dateAdded": "13426862193002146",
+    "dateAddedIso": "2026-06-25T11:56:33.002Z"
+  },
+  {
+    "name": "rapt-catalog",
+    "title": "RAPT Catalog",
+    "domain": "experience.arcgis.com",
+    "url": "https://experience.arcgis.com/experience/da2d834f2ec24524b23fa898459298ea",
+    "img": "",
+    "description": "Saved in Chrome Now bookmarks. Source: experience.arcgis.com.",
+    "source": "Chrome Bookmarks Bar / Now",
+    "sourcePath": "bookmark_bar / Bookmarks Bar / Now / RAPT Catalog",
+    "sourceIndex": 71,
+    "dateAdded": "13427047204827432",
+    "dateAddedIso": "2026-06-27T15:20:04.827Z"
+  },
+  {
+    "name": "florida-ros",
+    "title": "Florida ROS",
+    "domain": "experience.arcgis.com",
+    "url": "https://experience.arcgis.com/experience/f0cdcfa1d08d48da97197c51c6e3169d",
+    "img": "",
+    "description": "Saved in Chrome Now bookmarks. Source: experience.arcgis.com.",
+    "source": "Chrome Bookmarks Bar / Now",
+    "sourcePath": "bookmark_bar / Bookmarks Bar / Now / Florida ROS",
+    "sourceIndex": 72,
+    "dateAdded": "13427051712170661",
+    "dateAddedIso": "2026-06-27T16:35:12.170Z"
   }
 ]

@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>JBF Now — Bookmark Museum</title>
+<title>JBF Bookmark Rooms</title>
 <style>
   :root {
     color-scheme: dark;
@@ -74,6 +74,44 @@
     top: 28px; right: 32px;
     font-size: 11px; letter-spacing: .28em; text-transform: uppercase;
     color: var(--quiet);
+  }
+  .collection-panel {
+    top: 76px; left: 32px;
+    width: min(330px, calc(100vw - 64px));
+    padding: 14px;
+    background: rgba(16,16,20,.82);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    pointer-events: auto;
+    backdrop-filter: blur(14px);
+  }
+  .collection-panel label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .24em;
+    text-transform: uppercase;
+    color: var(--quiet);
+  }
+  #collectionSelect {
+    width: 100%;
+    height: 36px;
+    border: 1px solid rgba(242,242,240,.2);
+    border-radius: 6px;
+    background: #f2f2f0;
+    color: #101014;
+    padding: 0 10px;
+    font: 700 12px/1 "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+  .collection-meta {
+    margin-top: 9px;
+    min-height: 28px;
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.35;
+    letter-spacing: .08em;
+    text-transform: uppercase;
   }
 
   /* hover title that follows cursor */
@@ -234,6 +272,8 @@
     .hud--label { display: none; }
     .hud--switch { top: 14px; right: 14px; left: auto; transform: none; }
     .mode-btn { min-width: 76px; height: 32px; letter-spacing: .1em; }
+    .collection-panel { top: 64px; left: 14px; width: calc(100vw - 28px); padding: 12px; }
+    .collection-meta { display: none; }
     .hud--hint, .hud--count { display: none; }
     #hoverTitle { display: none; }
     .detail-body { grid-template-columns: 1fr; gap: 24px; overflow-y: auto; align-items: start; }
@@ -250,12 +290,17 @@
 <body data-view="sphere">
   <div id="stage"></div>
 
-  <div class="hud hud--logo">JBF<span>&nbsp;/ NOW</span></div>
+  <div class="hud hud--logo">JBF<span>&nbsp;/ ROOMS</span></div>
   <div class="hud hud--switch" role="group" aria-label="Gallery view">
     <button class="mode-btn active" type="button" data-view="sphere" aria-pressed="true">Sphere</button>
     <button class="mode-btn" type="button" data-view="room" aria-pressed="false">Room</button>
   </div>
-  <div class="hud hud--label">Chrome Now bookmarks</div>
+  <div class="hud hud--label">Chrome bookmark rooms</div>
+  <div class="hud collection-panel" id="collectionPanel">
+    <label for="collectionSelect">Rooms</label>
+    <select id="collectionSelect" aria-label="Choose bookmark room"></select>
+    <div class="collection-meta" id="collectionMeta" aria-live="polite">Loading bookmark rooms</div>
+  </div>
   <div class="hud hud--hint" id="hint">Drag to explore &nbsp;·&nbsp; Click a card to open</div>
   <div class="hud hud--count" id="count">— BOOKMARKS</div>
   <div id="hoverTitle"></div>
@@ -265,7 +310,7 @@
       <div class="art-head">
         <div>
           <div class="kicker">Bookmark Art Wall</div>
-          <h1>Now</h1>
+          <h1>Rooms</h1>
         </div>
         <div class="art-count" id="galleryCount">— BOOKMARKS</div>
       </div>
@@ -275,7 +320,7 @@
 
   <section id="detail" aria-hidden="true">
     <div class="detail-bar">
-      <div class="brand">JBF / NOW</div>
+      <div class="brand">JBF / ROOMS</div>
       <button id="closeDetail">Close</button>
     </div>
     <div class="detail-body">
@@ -373,24 +418,25 @@ const starGeo = new THREE.BufferGeometry();
 const stars = new THREE.Points(starGeo, new THREE.PointsMaterial({ color: 0x55555f, size: 0.12 }));
 
 const world = new THREE.Group();      // rotates with drag
-world.add(shell, stars);
+const cardGroup = new THREE.Group();
+world.add(shell, stars, cardGroup);
 scene.add(world);
 
 const room = new THREE.Group();
 room.visible = false;
 scene.add(room);
 const roomFrames = [];
-const ROOM_START_Z = -1.5;
-const ROOM_BACK_LIMIT_Z = 3;
+const ROOM_START_X = 0;
+const ROOM_START_Z = 0;
 const roomWalk = {
-  x: 0,
-  tX: 0,
+  x: ROOM_START_X,
+  tX: ROOM_START_X,
   z: ROOM_START_Z,
   tZ: ROOM_START_Z,
-  minZ: -260,
-  maxZ: ROOM_BACK_LIMIT_Z,
-  minX: -4.4,
-  maxX: 4.4,
+  minZ: -24,
+  maxZ: 24,
+  minX: -24,
+  maxX: 24,
   sideDrift: 0,
   tSideDrift: 0,
   yaw: 0,
@@ -455,6 +501,15 @@ function wallArtFor(app, i) {
 
 /* ---------- build cards on inner sphere from the jbf.com fleet ---------- */
 const cards = [];
+function clearCards() {
+  for (const mesh of cards) {
+    gsap.killTweensOf(mesh.scale);
+    gsap.killTweensOf(mesh.material);
+    mesh.geometry?.dispose?.();
+  }
+  cardGroup.clear();
+  cards.length = 0;
+}
 function distributeRows(n) {
   // spread n cards over 5 latitude bands, weighted like a globe
   const weights = [8, 11, 12, 11, 8];
@@ -466,7 +521,8 @@ function distributeRows(n) {
   return lats.map((lat, i) => ({ lat, n: counts[i] }));
 }
 
-function buildCards(apps) {
+function buildCards(apps, collection) {
+  clearCards();
   let i = 0;
   for (const row of distributeRows(apps.length)) {
     for (let k = 0; k < row.n; k++) {
@@ -497,9 +553,11 @@ function buildCards(apps) {
         url: app.url,
         img: app.img || art.dataUrl,
         description: app.description,
-        index: i
+        index: i,
+        collectionTitle: collection?.title || "Bookmarks",
+        collectionPath: collection?.shortPath || collection?.path || "Bookmarks"
       };
-      world.add(mesh);
+      cardGroup.add(mesh);
       cards.push(mesh);
 
       // staggered intro
@@ -515,57 +573,80 @@ function buildCards(apps) {
 function buildRoom(apps) {
   room.clear();
   roomFrames.length = 0;
-  const bays = Math.ceil(apps.length / 2);
-  const spacing = 9.2;
-  const length = bays * spacing + 24;
-  const roomWidth = 19;
-  const wallX = 9.8;
-  const frameX = 9.42;
-  roomWalk.minZ = -length + 18;
-  roomWalk.maxZ = ROOM_BACK_LIMIT_Z;
-  roomWalk.minX = -4.4;
-  roomWalk.maxX = 4.4;
+  const perWall = Math.max(2, Math.ceil(apps.length / 4));
+  const spacing = apps.length > 120 ? 6.7 : 7.6;
+  const sideLength = Math.max(28, perWall * spacing + 13);
+  const half = sideLength / 2;
+  const walkInset = 8;
+  roomWalk.minX = -half + walkInset;
+  roomWalk.maxX = half - walkInset;
+  roomWalk.minZ = -half + walkInset;
+  roomWalk.maxZ = half - walkInset;
+  roomWalk.x = roomWalk.tX = ROOM_START_X;
+  roomWalk.z = roomWalk.tZ = ROOM_START_Z;
+  roomWalk.sideDrift = roomWalk.tSideDrift = ROOM_START_X;
+  roomWalk.yaw = roomWalk.tYaw = 0;
+  roomWalk.pitch = roomWalk.tPitch = 0;
 
   const wallMat = new THREE.MeshBasicMaterial({ color: 0x111116, side: THREE.DoubleSide });
   const floorMat = new THREE.MeshBasicMaterial({ color: 0x0d0d11, side: THREE.DoubleSide });
   const lineMat = new THREE.MeshBasicMaterial({ color: 0x24242c, side: THREE.DoubleSide });
 
-  const floor = new THREE.Mesh(new THREE.PlaneGeometry(roomWidth, length), floorMat);
+  const floor = new THREE.Mesh(new THREE.PlaneGeometry(sideLength, sideLength), floorMat);
   floor.rotation.x = -Math.PI / 2;
-  floor.position.set(0, -5.4, -length / 2 + 8);
+  floor.position.set(0, -5.4, 0);
   room.add(floor);
 
-  const ceiling = new THREE.Mesh(new THREE.PlaneGeometry(roomWidth, length), new THREE.MeshBasicMaterial({ color: 0x0f0f14, side: THREE.DoubleSide }));
+  const ceiling = new THREE.Mesh(new THREE.PlaneGeometry(sideLength, sideLength), new THREE.MeshBasicMaterial({ color: 0x0f0f14, side: THREE.DoubleSide }));
   ceiling.rotation.x = Math.PI / 2;
-  ceiling.position.set(0, 7.2, -length / 2 + 8);
+  ceiling.position.set(0, 7.2, 0);
   room.add(ceiling);
 
-  for (const side of [-1, 1]) {
-    const wall = new THREE.Mesh(new THREE.PlaneGeometry(length, 12.6), wallMat);
-    wall.rotation.y = side > 0 ? -Math.PI / 2 : Math.PI / 2;
-    wall.position.set(side * wallX, .9, -length / 2 + 8);
+  const walls = [
+    { pos: [0, .9, -half], rot: [0, 0, 0] },
+    { pos: [0, .9, half], rot: [0, Math.PI, 0] },
+    { pos: [-half, .9, 0], rot: [0, Math.PI / 2, 0] },
+    { pos: [half, .9, 0], rot: [0, -Math.PI / 2, 0] }
+  ];
+  for (const wallDef of walls) {
+    const wall = new THREE.Mesh(new THREE.PlaneGeometry(sideLength, 12.6), wallMat);
+    wall.position.set(...wallDef.pos);
+    wall.rotation.set(...wallDef.rot);
     room.add(wall);
   }
 
-  const endWall = new THREE.Mesh(new THREE.PlaneGeometry(roomWidth, 12.6), wallMat);
-  endWall.position.set(0, .9, -length + 8);
-  room.add(endWall);
-
-  for (let bay = 0; bay < bays + 1; bay++) {
-    const z = -bay * spacing - 4;
-    const stripe = new THREE.Mesh(new THREE.PlaneGeometry(roomWidth, .06), lineMat);
-    stripe.rotation.x = -Math.PI / 2;
-    stripe.position.set(0, -5.35, z);
-    room.add(stripe);
+  const gridLines = Math.max(2, Math.floor(sideLength / 14));
+  for (let i = -gridLines; i <= gridLines; i++) {
+    const offset = i * (sideLength / (gridLines * 2));
+    const horizontal = new THREE.Mesh(new THREE.PlaneGeometry(sideLength, .045), lineMat);
+    horizontal.rotation.x = -Math.PI / 2;
+    horizontal.position.set(0, -5.35, offset);
+    const vertical = new THREE.Mesh(new THREE.PlaneGeometry(sideLength, .045), lineMat);
+    vertical.rotation.x = -Math.PI / 2;
+    vertical.rotation.z = Math.PI / 2;
+    vertical.position.set(offset, -5.34, 0);
+    room.add(horizontal, vertical);
   }
 
   apps.forEach((app, i) => {
     const title = displayName(app);
     const art = artFor(app, i);
-    const side = i % 2 === 0 ? -1 : 1;
-    const bay = Math.floor(i / 2);
-    const z = -bay * spacing - 8.5;
-    const x = side * frameX;
+    const wall = i % 4;
+    const slot = Math.floor(i / 4);
+    const offset = (slot - (perWall - 1) / 2) * spacing;
+    let x = 0;
+    let z = 0;
+    let rotationY = 0;
+    let normal = new THREE.Vector3(0, 0, 1);
+    if (wall === 0) {
+      x = offset; z = -half + .24; rotationY = 0; normal.set(0, 0, 1);
+    } else if (wall === 1) {
+      x = -offset; z = half - .24; rotationY = Math.PI; normal.set(0, 0, -1);
+    } else if (wall === 2) {
+      x = -half + .24; z = -offset; rotationY = Math.PI / 2; normal.set(1, 0, 0);
+    } else {
+      x = half - .24; z = offset; rotationY = -Math.PI / 2; normal.set(-1, 0, 0);
+    }
 
     const frame = new THREE.Mesh(
       new THREE.PlaneGeometry(6.8, 4.8),
@@ -579,28 +660,31 @@ function buildRoom(apps) {
       });
     }
     frame.position.set(x, .9, z);
-    frame.rotation.y = side > 0 ? -Math.PI / 2 : Math.PI / 2;
+    frame.rotation.y = rotationY;
     frame.userData = {
       title,
       domain: shortDomain(app),
       url: app.url,
       img: app.img || art.dataUrl,
       description: app.description,
-      index: i
+      index: i,
+      collectionTitle: activeCollection?.title || "Bookmarks",
+      collectionPath: activeCollection?.shortPath || activeCollection?.path || "Bookmarks"
     };
 
     const backing = new THREE.Mesh(
       new THREE.PlaneGeometry(7.34, 5.34),
       new THREE.MeshBasicMaterial({ color: 0x050507, side: THREE.DoubleSide })
     );
-    backing.position.set(x + side * .03, .9, z);
+    backing.position.copy(frame.position).addScaledVector(normal, -.04);
     backing.rotation.copy(frame.rotation);
 
     const rail = new THREE.Mesh(
       new THREE.PlaneGeometry(7.9, .08),
       new THREE.MeshBasicMaterial({ color: 0x454550, side: THREE.DoubleSide })
     );
-    rail.position.set(x + side * .04, -2.05, z);
+    rail.position.copy(frame.position).addScaledVector(normal, -.03);
+    rail.position.y = -2.05;
     rail.rotation.copy(frame.rotation);
 
     room.add(backing, frame, rail);
@@ -648,16 +732,19 @@ function buildArtGallery(apps) {
   document.getElementById("galleryCount").textContent = `${apps.length} BOOKMARKS`;
 }
 
-fetch("shots/manifest.json")
-  .then(r => r.json())
-  .then(apps => {
-    buildCards(apps);
-    buildRoom(apps);
-    buildArtGallery(apps);
-  });
-
 let currentView = "sphere";
+let collections = [];
+let activeCollection = null;
 const modeButtons = [...document.querySelectorAll(".mode-btn")];
+const collectionSelect = document.getElementById("collectionSelect");
+const collectionMeta = document.getElementById("collectionMeta");
+
+function updateCount() {
+  const title = activeCollection?.title || "Bookmarks";
+  document.getElementById("count").textContent =
+    currentView === "room" ? `${roomFrames.length} ROOM FRAMES · ${title}` : `${cards.length} BOOKMARKS · ${title}`;
+}
+
 function setView(mode) {
   currentView = mode === "room" ? "room" : "sphere";
   document.body.dataset.view = currentView;
@@ -678,8 +765,7 @@ function setView(mode) {
   }
   camera.fov = currentView === "room" ? (window.innerWidth <= 820 ? 82 : 66) : 72;
   camera.updateProjectionMatrix();
-  document.getElementById("count").textContent =
-    currentView === "room" ? `${roomFrames.length} ROOM FRAMES` : `${cards.length} BOOKMARKS`;
+  updateCount();
   if (currentView === "room") {
     setHover(null);
     hint.classList.add("hidden");
@@ -688,6 +774,65 @@ function setView(mode) {
   }
 }
 modeButtons.forEach(btn => btn.addEventListener("click", () => setView(btn.dataset.view)));
+
+function renderCollection(collection) {
+  activeCollection = collection;
+  buildCards(collection.items, collection);
+  buildRoom(collection.items);
+  buildArtGallery(collection.items);
+  collectionMeta.textContent = `${collection.count} bookmarks · ${collection.shortPath || collection.path}`;
+  updateCount();
+  if (currentView === "room") {
+    camera.position.set(roomWalk.x, .8, roomWalk.z);
+    applyRoomLook();
+  }
+}
+
+function setCollection(id) {
+  const collection = collections.find(item => item.id === id) || collections[0];
+  if (!collection) return;
+  collectionSelect.value = collection.id;
+  renderCollection(collection);
+}
+
+function populateCollectionSelect(defaultId) {
+  collectionSelect.replaceChildren(...collections.map(collection => {
+    const option = document.createElement("option");
+    option.value = collection.id;
+    option.textContent = `${collection.title} (${collection.count})`;
+    return option;
+  }));
+  collectionSelect.addEventListener("change", () => setCollection(collectionSelect.value));
+  setCollection(defaultId);
+}
+
+function manifestCollection(apps) {
+  return {
+    id: "now",
+    title: "Now",
+    path: "bookmark_bar / Bookmarks Bar / Now",
+    shortPath: "Now",
+    count: apps.length,
+    directCount: apps.length,
+    items: apps
+  };
+}
+
+fetch("shots/collections.json")
+  .then(r => {
+    if (!r.ok) throw new Error("collections.json missing");
+    return r.json();
+  })
+  .then(data => {
+    collections = (data.collections || []).filter(collection => collection.items?.length);
+    populateCollectionSelect(data.defaultCollectionId || "now");
+  })
+  .catch(() => fetch("shots/manifest.json")
+    .then(r => r.json())
+    .then(apps => {
+      collections = [manifestCollection(apps)];
+      populateCollectionSelect("now");
+    }));
 
 /* ---------- lenis-style drag: eased follow + inertia ---------- */
 const rot = {
@@ -857,9 +1002,9 @@ function openDetail(mesh) {
   detailSourceView = currentView;
   const d = mesh.userData;
   detailTitle.textContent = d.title;
-  detailKicker.textContent = `${d.domain} - ${String(d.index + 1).padStart(2, "0")}`;
+  detailKicker.textContent = `${d.collectionTitle || "Bookmarks"} / ${d.domain} - ${String(d.index + 1).padStart(2, "0")}`;
   detailText.textContent =
-    `${d.title} is saved in the Chrome Now bookmark folder. Open it to continue from ${d.domain}.`;
+    `${d.title} is saved in the ${d.collectionPath || "Chrome bookmarks"} room. Open it to continue from ${d.domain}.`;
   detailImg.src = d.img;
   visitLink.href = d.url;
   visitLink.textContent = d.url.startsWith("file:") ? "Open Local Bookmark" : "Open Bookmark";
@@ -997,7 +1142,9 @@ window.addEventListener("resize", () => {
 /* test hooks */
 window.__app = {
   rot, cards, roomFrames, roomWalk, camera, world, room, renderer,
-  setView,
+  setView, setCollection,
+  collections: () => collections,
+  activeCollection: () => activeCollection,
   viewMode: () => currentView,
   screenPos(mesh) {
     const v = mesh.getWorldPosition(new THREE.Vector3()).project(camera);
